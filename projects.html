@@ -1,0 +1,81 @@
+---
+layout: default
+title: Projects
+---
+
+<style>
+  /* This page scrolls; the site's default layout is a fixed, non-scrolling shell. */
+  body { position: static !important; overflow: auto !important; }
+  .container-sm { position: static !important; }
+  #info { background-color: transparent !important; }
+
+  .proj-list { display: flex; flex-direction: column; gap: 18px; margin: 24px 0 60px; padding: 0; list-style: none; }
+  .proj-card {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 22px;
+    align-items: stretch;
+    background: rgba(0, 0, 0, .55);
+    border: 1px solid #368;
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #f1f1f1;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .proj-card:hover { border-color: #6bd; transform: translateY(-2px); }
+  .proj-card:focus-visible { outline: 2px solid #6bd; outline-offset: 2px; }
+  .proj-thumb { background: #0b0c12 center/cover no-repeat; min-height: 150px; }
+  .proj-body { padding: 18px 22px 20px 0; }
+  .proj-kicker { font-family: 'Source Code Pro', monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #6bd; }
+  .proj-card h2 { margin: 8px 0 0; font-size: 22px; line-height: 1.2; color: #fff; }
+  .proj-card p { margin: 8px 0 0; font-size: 15px; line-height: 1.55; color: #cfd3e5; max-width: 60ch; }
+  .proj-meta { margin-top: 12px; font-family: 'Source Code Pro', monospace; font-size: 11px; letter-spacing: .08em; color: #8fa2b8; }
+  .proj-soon { opacity: .55; pointer-events: none; }
+
+  @media (max-width: 700px) {
+    .proj-card { grid-template-columns: 1fr; }
+    .proj-body { padding: 0 18px 20px; }
+  }
+</style>
+
+<h1>Projects</h1>
+<p>Design work, at a glance.</p>
+
+<ul class="proj-list">
+  <li>
+    <a class="proj-card" href="{{ '/projects/neuralyzer.html' | relative_url }}">
+      <div class="proj-thumb" style="background-image: url('{{ '/assets/img/neuralyzer-thumb.png' | relative_url }}')"></div>
+      <div class="proj-body">
+        <div class="proj-kicker">UX case study &middot; 2025</div>
+        <h2>Neuralyzer: a device with no interface</h2>
+        <p>Redesigning the Men In Black neuralyzer as a wearable — film scenes treated as field research, twenty sketches, paper prototypes, and a working interactive prototype you can drive in the browser.</p>
+        <div class="proj-meta">Research &middot; Ideation &middot; Prototyping &middot; Testing</div>
+      </div>
+    </a>
+  </li>
+
+  <li>
+    <a class="proj-card proj-soon" href="#">
+      <div class="proj-thumb"></div>
+      <div class="proj-body">
+        <div class="proj-kicker">In progress</div>
+        <h2>Project two</h2>
+        <p>Replace this card when the next case study is ready — same markup, new thumbnail and link.</p>
+        <div class="proj-meta">Coming soon</div>
+      </div>
+    </a>
+  </li>
+
+  <li>
+    <a class="proj-card proj-soon" href="#">
+      <div class="proj-thumb"></div>
+      <div class="proj-body">
+        <div class="proj-kicker">In progress</div>
+        <h2>Project three</h2>
+        <p>Replace this card when the next case study is ready — same markup, new thumbnail and link.</p>
+        <div class="proj-meta">Coming soon</div>
+      </div>
+    </a>
+  </li>
+</ul>
