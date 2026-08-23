@@ -54,10 +54,10 @@ nav {
   z-index: 5;
 }
 
-// The site's one scroll container. Every page's content scrolls here, above the
-// starfield and under the nav. padding-top clears the fixed nav.
+// The site's one scroll container. Every page's content scrolls here, above the starfield and under the nav. padding-top clears the fixed nav.
+// Deliberately transparent: it now covers the whole viewport, so any tint here becomes a scrim over the entire starfield. The panel below carries the wash.
 .container-sm {
-  background: rgba(0, 0, 0, 0.5);
+  background: transparent;
   position: fixed;
   top: 0;
   left: 0;
@@ -90,18 +90,19 @@ a.hover {
   text-decoration: none;
 }
 
-// default.html nests a second .container-sm as #info. It must not become a second
-// scroll container or paint a second dark wash inside the first.
+// default.html nests a second .container-sm as #info. It must not become a second scroll container or paint a second dark wash inside the first.
+// The content panel. Translucent rather than solid $element so the starfield still reads through it — the stars are the site's signature, and a full-bleed opaque panel hides all of them.
 #info {
-  background-color: $element;
+  background-color: rgba(51, 102, 136, 0.55);
+  backdrop-filter: blur(2px);
+  border-radius: 8px;
   position: relative;
   overflow: visible;
   width: auto;
   padding: 20px;
 }
 
-// Opt a page out of the tinted #info panel when its content brings its own
-// surfaces — add `class="bare"` to the page's wrapper or set it on #info.
+// Opt a page out of the tinted #info panel when its content brings its own surfaces — add `class="bare"` to the page's wrapper or set it on #info.
 #info.bare,
 .bare #info {
   background-color: transparent;

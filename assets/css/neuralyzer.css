@@ -14,9 +14,9 @@
   --n500: #9397ab; --n600: #75798c; --n700: #595d6c; --n800: #3f424d;
   --n900: #292b31;
 
-  --a: #9184d9;
-  --a200: #e7e5fe; --a300: #d2cefd; --a400: #b5abfc; --a500: #968ae0;
-  --a700: #5d5294; --a800: #423a6a; --a900: #2b2741;
+  --a: #5599bb;
+  --a200: #dcedf6; --a300: #c0e0ef; --a400: #93cbe3; --a500: #69b0d2;
+  --a700: #35617d; --a800: #274a5f; --a900: #18303e;
 
   --r-sm: 4px; --r-md: 8px; --r-lg: 14px;
   --sh-sm: 0 0 0 1px #3f424d;
@@ -28,6 +28,9 @@
   --heading: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, monospace;
   --body: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* the site's blues — nav #368, links #59b, hover #6bd */
+  --blue: #59b; --blue-dk: #368; --blue-lt: #6bd;
 
   /* HUD green inside the lenses */
   --hud: #5ddc58;
@@ -140,9 +143,9 @@
 
 .n-h1 {
   font-family: var(--heading); font-weight: 500;
-  font-weight: 600;
-  font-size: clamp(30px, 4.6vw, 56px); line-height: 1.08; letter-spacing: -.03em;
-  margin: 28px 0 0; max-width: 21ch; width: 100%; text-wrap: balance;
+  font-weight: 700;
+  font-size: clamp(26px, 4.2vw, 52px); line-height: 1.06; letter-spacing: -.046em;
+  margin: 28px 0 0; max-width: 40ch; width: 100%; text-wrap: balance;
 }
 .n-lede {
   font-size: 20px; line-height: 1.55; color: var(--n300);
@@ -334,19 +337,31 @@
   text-transform: uppercase; color: var(--a400);
 }
 .n-sechead .n-seclabel { color: var(--n500); }
-.n-secrule { flex: 1; height: 1px; background: linear-gradient(to right, var(--n800), transparent); }
+.n-secrule {
+  flex: 1; height: 2px; border-radius: 2px;
+  background: linear-gradient(to right, var(--blue-lt) 0%, var(--blue) 22%, var(--blue-dk) 55%, transparent 100%);
+}
 
 .n-h2 {
   font-family: var(--heading); font-weight: 600;
-  font-size: clamp(22px, 2.7vw, 33px); line-height: 1.18; letter-spacing: -.022em;
+  font-size: clamp(21px, 2.6vw, 32px); line-height: 1.18; letter-spacing: -.03em;
   margin: 24px 0 0;
+  color: var(--n100);
+  text-shadow: 0 0 2px rgba(89,153,187,.85), 0 0 18px rgba(89,153,187,.42), 0 0 44px rgba(51,102,136,.3);
 }
-.n-h2--narrow { max-width: 34ch; }
+.n-h2--narrow { max-width: 40ch; }
 .n-h2--sm {
   font-family: var(--heading); font-weight: 600;
-  font-size: clamp(19px, 2.3vw, 27px); line-height: 1.2; letter-spacing: -.022em; margin: 0;
+  font-size: clamp(19px, 2.3vw, 27px); line-height: 1.2; letter-spacing: -.028em; margin: 0;
+  color: var(--n100);
+  text-shadow: 0 0 2px rgba(89,153,187,.85), 0 0 18px rgba(89,153,187,.42), 0 0 44px rgba(51,102,136,.3);
 }
-.n-h3 { font-family: var(--heading); font-weight: 600; font-size: 17px; letter-spacing: -.01em; margin: 56px 0 0; }
+.n-h3 {
+  font-family: var(--heading); font-weight: 600; font-size: 17px;
+  letter-spacing: -.02em; margin: 56px 0 0;
+  color: var(--n100);
+  text-shadow: 0 0 2px rgba(89,153,187,.7), 0 0 14px rgba(89,153,187,.32);
+}
 
 .n-p { font-size: 17px; line-height: 1.65; color: var(--n300); margin: 20px 0 0; text-wrap: pretty; }
 .n-p--wide { max-width: 54ch; }
@@ -415,12 +430,17 @@
   overflow: hidden;
 }
 .n-band-in { max-width: 1056px; margin: 0 auto; }
-.n-band-mark { width: 48px; height: 3px; background: var(--a300); margin-bottom: clamp(24px, 3vw, 40px); }
+.n-band-mark {
+  width: 72px; height: 4px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--blue-lt), var(--blue-dk));
+  margin-bottom: clamp(24px, 3vw, 40px);
+}
 .n-band-quote {
   margin: 0; padding: 0;
   font-family: var(--heading); font-weight: 600;
-  font-size: clamp(22px, 3.7vw, 44px); line-height: 1.15; letter-spacing: -.03em;
-  color: var(--n100); max-width: 40ch; text-wrap: pretty;
+  font-size: clamp(21px, 3.4vw, 41px); line-height: 1.15; letter-spacing: -.04em;
+  color: var(--n100); max-width: 44ch; text-wrap: pretty;
+  text-shadow: 0 0 2px rgba(89,153,187,.85), 0 0 22px rgba(89,153,187,.45), 0 0 56px rgba(51,102,136,.32);
 }
 .n-band-cap {
   font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
@@ -454,7 +474,10 @@
 /* --- prototyping ---------------------------------------------------------- */
 .n-list { margin: 24px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; max-width: 60ch; }
 .n-list li { display: flex; gap: 14px; font-size: 16px; line-height: 1.5; color: var(--n300); }
-.n-dash { flex: none; width: 20px; height: 1px; background: var(--a500); margin-top: 12px; }
+.n-dash {
+  flex: none; width: 20px; height: 2px; border-radius: 2px; margin-top: 12px;
+  background: linear-gradient(90deg, var(--blue-lt), var(--blue-dk));
+}
 
 .n-papergrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 32px; }
 .n-papergrid img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--r-md); display: block; }
