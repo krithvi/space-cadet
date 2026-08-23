@@ -1,5 +1,20 @@
 theme: jekyll-theme-hacker
 markdown: GFM
+# GitHub Pages serves this repo at https://krithvi.github.io/space-cadet/
+# baseurl is that subpath; every asset and link must go through
+# `| relative_url` so it resolves both locally and on Pages.
+baseurl: "/space-cadet"
+url: "https://krithvi.github.io"
+
+# Never copy these into the built site.
+exclude:
+  - _site
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .gitsecret
+  - README.md
+
 plugins:
   - jekyll-feed
   - jekyll-sitemap
