@@ -22,8 +22,11 @@
   --sh-sm: 0 0 0 1px #3f424d;
   --sh-md: 0 0 0 1px #595d6c, 0 6px 18px rgba(0,0,0,.55);
 
-  --heading: "Inter", system-ui, sans-serif;
-  --body: "Inter", system-ui, sans-serif;
+  /* Headings in the site face — declared locally in _sass/fonts.scss, so this
+     page pulls no webfont for them. Body copy is the reader's own system font.
+     JetBrains Mono stays for labels, numbers and the HUD. */
+  --heading: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --body: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, monospace;
 
   /* HUD green inside the lenses */
@@ -137,8 +140,9 @@
 
 .n-h1 {
   font-family: var(--heading); font-weight: 500;
-  font-size: clamp(40px, 6.4vw, 76px); line-height: 1.02; letter-spacing: -.025em;
-  margin: 28px 0 0; max-width: 15.7ch; width: 100%; text-wrap: balance;
+  font-weight: 600;
+  font-size: clamp(30px, 4.6vw, 56px); line-height: 1.08; letter-spacing: -.03em;
+  margin: 28px 0 0; max-width: 21ch; width: 100%; text-wrap: balance;
 }
 .n-lede {
   font-size: 20px; line-height: 1.55; color: var(--n300);
@@ -333,16 +337,16 @@
 .n-secrule { flex: 1; height: 1px; background: linear-gradient(to right, var(--n800), transparent); }
 
 .n-h2 {
-  font-family: var(--heading); font-weight: 500;
-  font-size: clamp(28px, 3.6vw, 44px); line-height: 1.12; letter-spacing: -.02em;
+  font-family: var(--heading); font-weight: 600;
+  font-size: clamp(22px, 2.7vw, 33px); line-height: 1.18; letter-spacing: -.022em;
   margin: 24px 0 0;
 }
-.n-h2--narrow { max-width: 26ch; }
+.n-h2--narrow { max-width: 34ch; }
 .n-h2--sm {
-  font-family: var(--heading); font-weight: 500;
-  font-size: clamp(24px, 3vw, 36px); line-height: 1.15; letter-spacing: -.02em; margin: 0;
+  font-family: var(--heading); font-weight: 600;
+  font-size: clamp(19px, 2.3vw, 27px); line-height: 1.2; letter-spacing: -.022em; margin: 0;
 }
-.n-h3 { font-family: var(--heading); font-weight: 500; font-size: 21px; letter-spacing: -.01em; margin: 56px 0 0; }
+.n-h3 { font-family: var(--heading); font-weight: 600; font-size: 17px; letter-spacing: -.01em; margin: 56px 0 0; }
 
 .n-p { font-size: 17px; line-height: 1.65; color: var(--n300); margin: 20px 0 0; text-wrap: pretty; }
 .n-p--wide { max-width: 54ch; }
@@ -414,9 +418,9 @@
 .n-band-mark { width: 48px; height: 3px; background: var(--a300); margin-bottom: clamp(24px, 3vw, 40px); }
 .n-band-quote {
   margin: 0; padding: 0;
-  font-family: var(--heading); font-weight: 500;
-  font-size: clamp(30px, 5.2vw, 62px); line-height: 1.1; letter-spacing: -.028em;
-  color: var(--n100); max-width: 30ch; text-wrap: pretty;
+  font-family: var(--heading); font-weight: 600;
+  font-size: clamp(22px, 3.7vw, 44px); line-height: 1.15; letter-spacing: -.03em;
+  color: var(--n100); max-width: 40ch; text-wrap: pretty;
 }
 .n-band-cap {
   font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
@@ -468,8 +472,8 @@
 .n-fbgrid > * { min-width: 0; }
 .n-pull {
   margin: 24px 0 0; padding: 0 0 0 18px; border-left: 1px solid var(--a700);
-  font-family: var(--heading); font-weight: 500; font-size: 22px;
-  line-height: 1.3; letter-spacing: -.01em; color: var(--a200);
+  font-family: var(--heading); font-weight: 600; font-size: 17px;
+  line-height: 1.45; letter-spacing: -.015em; color: var(--a200);
 }
 .n-pullcap {
   font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase;

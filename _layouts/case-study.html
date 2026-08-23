@@ -7,7 +7,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Source+Code+Pro:wght@400;700&display=swap">
+    <!-- Only JetBrains Mono is fetched. Source Code Pro is declared locally in
+         _sass/fonts.scss and arrives with styles.css below; body copy is the
+         reader's own system font. -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap">
 
     <!-- the site's own stylesheet first, so the nav and base match every other page -->
     <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">

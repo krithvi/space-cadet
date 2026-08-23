@@ -4,31 +4,43 @@ $hover: #6bd;
 $text: #fff;
 $element: #368;
 $dark: #0d0d0d;
+$mono: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, monospace;
 
+// The body stays pinned. This is load-bearing: canvas.js sizes the starfield from
+// document.body.clientHeight, so an unpinned body makes the canvas as tall as the
+// whole document. Because the canvas is in normal flow, that pushes every page's
+// content below the fold — which looks like "the animation ate my content".
+// Pages therefore scroll in .container-sm, not in the body.
 body {
   background-color: black;
-  position: fixed; 
-  left: 0px; 
-  right: 0px; 
-  top: 0px; 
-  bottom: 0px; 
-  overflow: hidden; 
-  margin: 0; 
+  font-family: $mono;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+  margin: 0;
   padding: 0;
 }
 
-canvas{
-  width: 100%; 
-  height: 100%; 
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .current {
   text-decoration-style: dotted;
 }
 
-nav{
+nav {
   background: $element;
   color: rgb(240, 255, 255);
   position: fixed;
@@ -37,17 +49,33 @@ nav{
   left: 0;
   width: 100%;
   padding: 10px;
-  font-family: 'Source Code Pro';
-  font-weight: 700 ;
+  font-family: $mono;
+  font-weight: 700;
+  z-index: 5;
 }
 
+// The site's one scroll container. Every page's content scrolls here, above the
+// starfield and under the nav. padding-top clears the fixed nav.
 .container-sm {
   background: rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
   color: rgb(241, 241, 241);
   width: 100%;
-  padding: 20px;
+  padding: 60px 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $mono;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 a {
@@ -62,8 +90,20 @@ a.hover {
   text-decoration: none;
 }
 
+// default.html nests a second .container-sm as #info. It must not become a second
+// scroll container or paint a second dark wash inside the first.
 #info {
   background-color: $element;
   position: relative;
+  overflow: visible;
+  width: auto;
+  padding: 20px;
+}
 
+// Opt a page out of the tinted #info panel when its content brings its own
+// surfaces — add `class="bare"` to the page's wrapper or set it on #info.
+#info.bare,
+.bare #info {
+  background-color: transparent;
+  padding: 0;
 }
