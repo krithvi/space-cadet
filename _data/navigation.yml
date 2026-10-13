@@ -1,8 +1,12 @@
-- name: 🎛️
+- icon: 🎛️
+  label: Base
   link: /
-- name: 🧑🏾 About
+- icon: 🧑🏾
+  label: About
   link: /about.html
-- name: 🧑🏾‍💻 Projects
+- icon: 🧑🏾‍💻
+  label: Projects
   link: /projects.html
-- name: 🤹🏾 Skills
+- icon: 🤹🏾
+  label: Skills
   link: /skills.html

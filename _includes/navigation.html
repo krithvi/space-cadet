@@ -1,7 +1,19 @@
-<nav>
-  {% for item in site.data.navigation %}    
-      <a id=a-nav href="{{ item.link | relative_url }}" {% if page.url == item.link %}class="current"{% endif %}>
-      {{ item.name }}
-      </a>&emsp;
+<nav class="console" aria-label="Main">
+  {% for item in site.data.navigation %}
+    {% assign section = item.link | remove: '.html' %}
+    {% if page.url == item.link or item.link != '/' and page.url contains section %}
+      {% assign is_current = true %}
+    {% else %}
+      {% assign is_current = false %}
+    {% endif %}
+    <span class="key-well">
+      <a class="key{% if is_current %} current{% endif %}"
+         href="{{ item.link | relative_url }}"
+         {% if is_current %}aria-current="page"{% endif %}>
+        <span class="key-icon" aria-hidden="true">{{ item.icon }}</span>
+        <span class="key-led" aria-hidden="true"></span>
+        <span class="key-label">{{ item.label }}</span>
+      </a>
+    </span>
   {% endfor %}
 </nav>

@@ -36,24 +36,168 @@ canvas {
   pointer-events: none;
 }
 
-.current {
-  text-decoration-style: dotted;
-}
+// nav {
+//  background: $element;
+//  color: rgb(240, 255, 255);
+//  position: fixed;
+//  display: block;
+//  top: 0;
+//  left: 0;
+//  width: 100%;
+//  padding: 10px;
+//  font-family: $mono;
+//  font-weight: 700;
+//  z-index: 5;
+//}
+// ── Control-panel nav ──────────────────────────────────────────────
+// Each link is a mechanical keycap: it rests 6px above its socket, lifts on hover, and drops flush into the socket when pressed.
+$key-top: #3d7aa3;
+$key-mid: #326a90;
+$key-base: #2c6085;
+$key-rim: #5590b8;
+$key-wall: #142f42;
+$key-wall-dark: #0c1f2c;
+$key-socket: #1b3a50;
+$led-off: #173447;
+$led-on: #8ee8ff;
 
-nav {
-  background: $element;
-  color: rgb(240, 255, 255);
+nav.console {
   position: fixed;
-  display: block;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 10px;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 16px 16px 18px;
+  background: $element;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.25),
+    0 6px 18px rgba(0, 0, 0, 0.5);
   font-family: $mono;
   font-weight: 700;
-  z-index: 5;
+  font-size: 15px;
 }
 
+// Recessed socket each key sits in, so the press reads as travel into the panel.
+.key-well {
+  display: inline-block;
+  padding: 3px 3px 4px;
+  border-radius: 9px;
+  background: $key-socket;
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.55),
+    0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.key {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 15px 10px 13px;
+  color: rgb(240, 255, 255);
+  text-decoration: none;
+  user-select: none;
+  border-radius: 6px;
+  border: 1px solid $key-rim;
+  background: linear-gradient(180deg, $key-top 0%, $key-mid 45%, $key-base 100%);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.18),
+    inset 0 0 0 3px rgba(255, 255, 255, 0.03),
+    0 6px 0 $key-wall,
+    0 7px 0 $key-wall-dark,
+    0 9px 10px rgba(0, 0, 0, 0.5);
+  transform: translateY(-6px);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, text-shadow 0.25s ease;
+
+  &:visited { color: rgb(240, 255, 255); }
+}
+
+// Lift + soft glow. Hover only on devices that really hover, so taps on phones don't leave keys stuck "up".
+@mixin key-lifted {
+  color: #fff;
+  transform: translateY(-8px);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.26),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.18),
+    inset 0 0 0 3px rgba(255, 255, 255, 0.03),
+    0 8px 0 $key-wall,
+    0 9px 0 $key-wall-dark,
+    0 13px 14px rgba(0, 0, 0, 0.5);
+  text-shadow:
+    0 0 3px rgba(150, 215, 240, 0.45),
+    0 0 7px rgba(102, 187, 221, 0.35);
+
+  .key-icon { animation: zero-g 2.6s ease-in-out infinite; }
+}
+
+@media (hover: hover) {
+  .key:hover { @include key-lifted; }
+}
+.key:focus-visible {
+  outline: 2px solid $led-on;
+  outline-offset: 3px;
+  @include key-lifted;
+}
+
+// Pressed: drops the full travel and sits flush in the socket.
+.key:active {
+  transform: translateY(0);
+  box-shadow:
+    inset 0 2px 3px rgba(0, 0, 0, 0.35),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+  transition-duration: 0.05s;
+}
+
+.key-icon {
+  display: inline-block;
+  font-size: 17px;
+  line-height: 1;
+}
+
+// Floats for as long as the key is hovered.
+@keyframes zero-g {
+  0%   { transform: translate(0, 0) rotate(0); }
+  25%  { transform: translate(1px, -3px) rotate(-12deg); }
+  50%  { transform: translate(-1px, -4px) rotate(6deg); }
+  75%  { transform: translate(1px, -2px) rotate(-6deg); }
+  100% { transform: translate(0, 0) rotate(0); }
+}
+
+.key-led {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: $led-off;
+  box-shadow:
+    inset 0 1px 1px rgba(0, 0, 0, 0.7),
+    0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.key.current .key-led {
+  background: $led-on;
+  box-shadow:
+    0 0 4px $hover,
+    0 0 8px rgba(102, 187, 221, 0.7);
+}
+
+// Narrow screens: tighter keys so the panel stays on one or two rows.
+@media (max-width: 520px) {
+  nav.console { gap: 10px; padding: 14px 10px 16px; font-size: 13px; }
+  .key { padding: 8px 10px 9px; gap: 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .key,
+  .key-led { transition: none; }
+  .key .key-icon { animation: none !important; }
+}
 // The site's one scroll container. Every page's content scrolls here, above the starfield and under the nav. padding-top clears the fixed nav.
 // Deliberately transparent: it now covers the whole viewport, so any tint here becomes a scrim over the entire starfield. The panel below carries the wash.
 .container-sm {
@@ -69,7 +213,7 @@ nav {
   -webkit-overflow-scrolling: touch;
   color: rgb(241, 241, 241);
   width: 100%;
-  padding: 60px 20px;
+  padding: 100px 20px 60px;
 }
 
 h1, h2, h3, h4, h5, h6 {
