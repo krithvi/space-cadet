@@ -3,3 +3,4 @@
 !*.secret
 .gitsecret/secret.md
 .env
+_site
