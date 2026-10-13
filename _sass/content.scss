@@ -1,0 +1,254 @@
+// ── Content pages: shared pieces for Base, About and Research ─────────
+// Same visual language as the project cards and the console nav: #368 panels, #59b rims, cyan accents.
+
+$rim: #59b;
+$rim-hover: #6bd;
+$panel-a: #3d7a9c;
+$panel-b: #24455c;
+$ink-soft: #cdeaf8;
+$ink-dim: #bcd6e5;
+$led: #8ee8ff;
+
+// Small uppercase "instrument label" above a heading.
+.kicker {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $ink-soft;
+  margin: 0 0 6px;
+}
+
+.page-section { margin: 0 0 44px; }
+.page-section > h2 { margin: 0 0 16px; font-size: 22px; }
+
+.lede {
+  font-size: 18px;
+  line-height: 1.65;
+  max-width: 62ch;
+  color: #f1f1f1;
+}
+
+// ── Base (home) hero ──
+.hero { padding: 24px 0 8px; }
+.hero h1 { font-size: clamp(34px, 6vw, 56px); margin: 0 0 10px; letter-spacing: -0.02em; }
+.hero .tagline { font-size: 15px; color: $ink-soft; margin: 0 0 22px; }
+
+.status-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding: 8px 14px;
+  border: 1px solid $rim;
+  border-radius: 6px;
+  background: rgba(11, 12, 18, 0.35);
+  font-size: 13px;
+  color: $ink-soft;
+}
+.status-line .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: $led;
+  box-shadow: 0 0 4px $rim-hover, 0 0 8px rgba(102, 187, 221, 0.7);
+  animation: blink 2.4s ease-in-out infinite;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 26px 0 0; }
+.cta {
+  display: inline-block;
+  padding: 9px 16px;
+  border: 1px solid $rim;
+  border-radius: 6px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  background: rgba(51, 102, 136, 0.6);
+  transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+  &:hover, &:focus-visible { border-color: $rim-hover; transform: translateY(-2px); background: rgba(74, 140, 176, 0.7); color: #fff; }
+  &:visited { color: #fff; }
+}
+
+// ── Cards (research threads, teaching, etc.) ──
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 16px;
+}
+.card {
+  display: block;
+  padding: 16px 18px 18px;
+  border: 1px solid $rim;
+  border-radius: 8px;
+  background: linear-gradient(112deg, $panel-a 0%, #336481 52%, $panel-b 100%);
+  color: #f1f1f1;
+  text-decoration: none;
+  h3 { margin: 0 0 8px; font-size: 17px; line-height: 1.3; color: #fff; }
+  p { margin: 0; font-size: 14px; line-height: 1.6; color: #e4eef5; }
+  .meta { margin-top: 12px; font-size: 11px; letter-spacing: 0.08em; color: $ink-dim; }
+}
+a.card { transition: border-color 0.2s ease, transform 0.2s ease; }
+a.card:hover, a.card:focus-visible { border-color: $rim-hover; transform: translateY(-2px); color: #f1f1f1; }
+
+// ── Flight log: a vertical timeline for education and experience ──
+.log { list-style: none; margin: 0; padding: 0 0 0 22px; border-left: 2px solid rgba(85, 153, 187, 0.6); }
+.log li { position: relative; margin: 0 0 22px; }
+.log li::before {
+  content: "";
+  position: absolute;
+  left: -29px; top: 6px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: #173447;
+  border: 2px solid $rim;
+}
+.log li.now::before { background: $led; border-color: $led; box-shadow: 0 0 6px $rim-hover; }
+.log .when { display: block; font-size: 12px; letter-spacing: 0.06em; color: $ink-dim; }
+.log .what { display: block; font-weight: 700; font-size: 16px; color: #fff; margin: 2px 0; }
+.log .where { display: block; font-size: 14px; color: #e4eef5; }
+.log .note { display: block; font-size: 13px; color: $ink-soft; margin-top: 4px; }
+
+// ── Publications ──
+.pubs { list-style: none; margin: 0; padding: 0; }
+.pubs li {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(85, 153, 187, 0.35);
+}
+.pubs li:last-child { border-bottom: 0; }
+.pub-tag {
+  align-self: start;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 0;
+  border: 1px solid $rim;
+  border-radius: 4px;
+  color: $led;
+}
+.pub-title { display: block; font-weight: 700; color: #fff; line-height: 1.45; }
+.pub-authors { display: block; font-size: 14px; color: #e4eef5; margin-top: 4px; }
+.pub-authors .me { color: #fff; text-decoration: underline; text-decoration-color: $rim-hover; text-underline-offset: 3px; }
+.pub-venue { display: block; font-size: 13px; color: $ink-soft; margin-top: 4px; font-style: italic; }
+.pub-links { margin-top: 6px; font-size: 13px; a { color: $led; } }
+.fineprint { font-size: 12px; color: $ink-dim; margin-top: 8px; }
+
+// Simple two-column definition list for teaching, service and memberships.
+.ledger { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 8px 20px; font-size: 15px; }
+.ledger dt { color: $ink-dim; font-size: 13px; padding-top: 2px; white-space: nowrap; }
+.ledger dd { margin: 0; color: #f1f1f1; }
+
+@media (max-width: 560px) {
+  .ledger { grid-template-columns: 1fr; gap: 2px; }
+  .ledger dd { margin-bottom: 10px; }
+  .pubs li { grid-template-columns: 1fr; gap: 6px; }
+  .pub-tag { justify-self: start; padding: 2px 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-line .dot { animation: none; }
+  .cta, a.card { transition: none; }
+}
+
+// ── Collection cards (Research and Design Lab listings) ──
+// Moved here from the inline <style> that used to sit in projects.html.
+.entry-list { display: flex; flex-direction: column; gap: 18px; margin: 8px 0 44px; padding: 0; list-style: none; }
+.entry-card {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 22px;
+  align-items: stretch;
+  background: linear-gradient(112deg, $panel-a 0%, #336481 52%, $panel-b 100%);
+  border: 1px solid $rim;
+  border-radius: 8px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #f1f1f1;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+  &.no-thumb { grid-template-columns: 1fr; .entry-body { padding-left: 22px; } }
+  &:hover { border-color: $rim-hover; transform: translateY(-2px); color: #f1f1f1; }
+  &:focus-visible { outline: 2px solid $rim-hover; outline-offset: 2px; }
+  &:visited { color: #f1f1f1; }
+  h2 { margin: 8px 0 0; font-size: 21px; line-height: 1.25; color: #fff; }
+  p { margin: 8px 0 0; font-size: 14px; line-height: 1.6; color: #e4eef5; max-width: 62ch; }
+}
+.entry-thumb { background: rgba(11, 12, 18, 0.4) center / cover no-repeat; min-height: 150px; }
+.entry-body { padding: 18px 22px 20px 0; }
+.entry-kicker { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: $ink-soft; }
+.entry-meta { margin-top: 14px; font-size: 11px; letter-spacing: 0.08em; color: $ink-dim; }
+
+@media (max-width: 700px) {
+  .entry-card { grid-template-columns: 1fr; }
+  .entry-body, .entry-card.no-thumb .entry-body { padding: 16px 18px 20px; }
+  .entry-thumb { min-height: 170px; }
+}
+
+// ── A single entry page (_layouts/entry.html) ──
+.entry { max-width: 760px; }
+.entry-back { display: inline-block; margin-bottom: 18px; font-size: 13px; color: $ink-soft; text-decoration: none; &:hover { color: #fff; } }
+.entry-head h1 { margin: 0 0 12px; }
+.entry-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin: 22px 0 0;
+  div { padding: 10px 14px; border: 1px solid rgba(85, 153, 187, 0.6); border-radius: 6px; background: rgba(11, 12, 18, 0.3); }
+  dt { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: $ink-dim; font-weight: 400; }
+  dd { margin: 4px 0 0; font-size: 14px; color: #fff; }
+}
+.entry-hero { display: block; width: 100%; margin: 28px 0 0; border-radius: 8px; border: 1px solid $rim; }
+.entry-content {
+  margin-top: 32px;
+  font-size: 16px;
+  line-height: 1.75;
+  h2 { font-size: 22px; margin: 36px 0 12px; }
+  h3 { font-size: 18px; margin: 28px 0 10px; }
+  img { max-width: 100%; height: auto; border-radius: 6px; margin: 12px 0; }
+  blockquote { margin: 20px 0; padding: 4px 0 4px 16px; border-left: 3px solid $rim-hover; color: $ink-soft; }
+  a { color: $led; }
+}
+
+.pub-authors strong { color: #fff; text-decoration: underline; text-decoration-color: $rim-hover; text-underline-offset: 3px; }
+
+// ── Posters (_includes/posters.html, _includes/poster.html) ──
+.poster-list { list-style: none; margin: 0; padding: 0; }
+.poster-list > li { padding: 14px 0; border-bottom: 1px solid rgba(85, 153, 187, 0.35); }
+.poster-list > li:last-child { border-bottom: 0; }
+.poster-when { display: block; font-size: 12px; letter-spacing: 0.06em; color: $ink-dim; }
+.poster-title { display: block; font-weight: 700; color: #fff; margin: 2px 0; }
+.poster-venue { display: block; font-size: 14px; color: #e4eef5; }
+
+.poster-peek { margin-top: 10px; }
+.poster-peek summary {
+  display: inline-block;
+  cursor: pointer;
+  list-style: none;
+  padding: 5px 12px;
+  border: 1px solid $rim;
+  border-radius: 6px;
+  font-size: 13px;
+  color: $led;
+  &::-webkit-details-marker { display: none; }
+  &:hover { border-color: $rim-hover; }
+}
+.poster-peek[open] summary { margin-bottom: 12px; }
+
+.poster {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  margin: 0;
+  aspect-ratio: 1 / var(--ratio, 1.414);
+  background: #0b0c12 center / contain no-repeat;
+  border: 1px solid $rim;
+  border-radius: 6px;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;   // no long-press "Save image" on iOS
+}
+.poster-shield { position: absolute; inset: 0; }   // catches clicks and drags meant for the image
+
+@media print { .poster { display: none; } }        // printing the page leaves the poster out

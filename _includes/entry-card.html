@@ -1,0 +1,21 @@
+{%- comment -%}
+  One card for a research study or design case study.
+  Usage: {% include entry-card.html entry=item %}
+  Reads from the entry's front matter: title (or card_title), kicker, summary, meta, thumb, link.
+  `link` (optional) sends the card somewhere else, e.g. a DOI; otherwise it opens the entry's own page.
+{%- endcomment -%}
+{%- assign e = include.entry -%}
+{%- if e.link -%}{%- assign href = e.link -%}{%- else -%}{%- assign href = e.url | relative_url -%}{%- endif -%}
+<li>
+  <a class="entry-card{% unless e.thumb %} no-thumb{% endunless %}" href="{{ href }}">
+    {%- if e.thumb %}
+    <div class="entry-thumb" style="background-image: url('{{ e.thumb | relative_url }}')"></div>
+    {%- endif %}
+    <div class="entry-body">
+      {%- if e.kicker %}<div class="entry-kicker">{{ e.kicker }}</div>{% endif %}
+      <h2>{{ e.card_title | default: e.title }}</h2>
+      {%- if e.summary %}<p>{{ e.summary }}</p>{% endif %}
+      {%- if e.meta %}<div class="entry-meta">{{ e.meta }}</div>{% endif %}
+    </div>
+  </a>
+</li>

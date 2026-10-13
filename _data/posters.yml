@@ -1,0 +1,12 @@
+- when: May 2026
+  title: "Emotional effects of reading news via social media for international students in the US"
+  venue: UMBC COEIT Research Day
+  # image: /assets/posters/news-2026.webp
+  # ratio: 1.414
+- when: April 2025
+  title: "Positive and negative self-reflection and emotion across self-expression modalities"
+  venue: UMBC COEIT Research Day
+  # image: /assets/posters/self-reflection-2025.webp
+  # ratio: 1.414
+# image: a watermarked preview made with tools/make_poster_preview.py (never the original file)
+# ratio: height ÷ width of the poster (portrait A0/A1 = 1.414, landscape = 0.707, 36×48in = 1.333)

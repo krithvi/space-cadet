@@ -1,0 +1,313 @@
+---
+layout: case-study   # keeps its own custom design; the collection just lists it
+title: "Neuralyzer — giving a device with no interface an interface"
+description: "A UX case study: redesigning the Men In Black neuralyzer as a wearable. Research, task analysis, twenty concepts, paper prototypes and a working browser prototype."
+order: 1
+card_title: "Neuralyzer: a device with no interface"
+kicker: "UX case study · 2023"
+summary: "Redesigning the Men In Black neuralyzer as a wearable — film scenes treated as field research, twenty sketches, paper prototypes, and a working interactive prototype you can drive in the browser."
+meta: "Research · Ideation · Prototyping · Testing"
+thumb: /assets/img/neuralyzer/still-device.png
+---
+
+<div class="n-rail" role="navigation" aria-label="Sections">
+  <a href="#s1"><span class="n-rail-label">The premise</span><span class="n-rail-num">01</span><span class="n-rail-tick"></span></a>
+  <a href="#s2"><span class="n-rail-label">Research</span><span class="n-rail-num">02</span><span class="n-rail-tick"></span></a>
+  <a href="#s3"><span class="n-rail-label">The turn</span><span class="n-rail-num">03</span><span class="n-rail-tick"></span></a>
+  <a href="#s4"><span class="n-rail-label">Ideation</span><span class="n-rail-num">04</span><span class="n-rail-tick"></span></a>
+  <a href="#s5"><span class="n-rail-label">Prototyping</span><span class="n-rail-num">05</span><span class="n-rail-tick"></span></a>
+  <a href="#s6"><span class="n-rail-label">The flow</span><span class="n-rail-num">06</span><span class="n-rail-tick"></span></a>
+  <a href="#feedback"><span class="n-rail-label">What testing changed</span><span class="n-rail-num">07</span><span class="n-rail-tick"></span></a>
+</div>
+
+<div class="n-col n-col--hero">
+  <div class="n-eyebrow">
+    <span>HCC 613 · UI Prototyping &amp; Development</span>
+    <span>UMBC</span>
+    <span>Individual project</span>
+    <span>2023</span>
+  </div>
+  <h1 class="n-h1">Giving the Neuralyzer an interface</h1>
+  <p class="n-lede">Men In Black's memory-wiping device has no screen — just dials and a flash of light. I spent a semester treating it like a real product: studying its users, mapping its tasks, and redesigning it around a constraint the films had been staring at for three movies.</p>
+</div>
+
+<div class="n-col n-col--gap">
+  <div class="n-cards">
+    <div class="n-card n-card--lead">
+      <div class="n-card-k">My role</div>
+      <div class="n-card-t">Individually led end-to-end: research, task analysis, ideation, prototyping. Peers volunteered as users for research and testing.</div>
+      <div class="n-card-tools">Adobe XD · Google Slides · Paper</div>
+    </div>
+    <div class="n-card">
+      <div class="n-card-k">Research without users</div>
+      <div class="n-card-t">Built the evidence base from the source material: hierarchical task analysis, empathy mapping, user bios.</div>
+    </div>
+    <div class="n-card">
+      <div class="n-card-k">Insight over restyling</div>
+      <div class="n-card-t">The redesign turns on a constraint in the existing task flow. Each screen is justified from the user's task rather than convention.</div>
+    </div>
+    <div class="n-card">
+      <div class="n-card-k">Tested and revised</div>
+      <div class="n-card-t">Peer testing identified a label that failed. The critique and the revision are documented — <a href="#feedback">see the findings</a>.</div>
+    </div>
+  </div>
+</div>
+
+<div class="n-col n-col--wide">
+  <div class="n-stage" id="n-stage">
+    <img class="n-glasses" src="{{ '/assets/img/neuralyzer/glasses-base.png' | relative_url }}" alt="Prototype glasses">
+    <div class="n-flash"></div>
+
+    <div class="n-lens">
+      <div class="n-scanlines"></div>
+      <div class="n-sweep"></div>
+
+      <div class="n-screen" data-screen="1">
+        <div class="n-spinrow">
+          <div class="n-spinner"></div>
+          <div class="n-spinner"></div>
+        </div>
+        <div class="n-hudtxt n-hudtxt--scan">RETINAL SCAN<br>IN PROGRESS<span class="n-dots">..</span></div>
+      </div>
+
+      <div class="n-screen" data-screen="2">
+        <div class="n-stack n-stack--auth">
+          <div class="n-hello">HELLO, AGENT J</div>
+          <div class="n-authorized">AUTHORIZED</div>
+        </div>
+      </div>
+
+      <div class="n-screen" data-screen="3">
+        <div class="n-stack n-stack--dur">
+          <div class="n-durlabel">PREVIOUS NEURALYZE DURATION:</div>
+          <div class="n-durrow">
+            <button class="n-digit" type="button"><span class="n-digit-n">00</span><span class="n-digit-l">YY</span></button>
+            <button class="n-digit" type="button"><span class="n-digit-n">00</span><span class="n-digit-l">MM</span></button>
+            <button class="n-digit" type="button"><span class="n-digit-n">00</span><span class="n-digit-l">DD</span></button>
+            <button class="n-digit" type="button"><span class="n-digit-n">05</span><span class="n-digit-l">HH</span></button>
+          </div>
+          <button class="n-hudbtn" type="button" data-act="neuralyze">NEURALYZE?</button>
+        </div>
+      </div>
+
+      <div class="n-screen" data-screen="4">
+        <div class="n-confirm">TARGET NEURALYZED</div>
+      </div>
+
+      <div class="n-screen" data-screen="5">
+        <div class="n-stack n-stack--rec">
+          <div class="n-recmsg">INITIATING NARRATIVE<br>RECORDING IN..</div>
+          <div class="n-count">3</div>
+          <div class="n-recbtns">
+            <button class="n-hudbtn n-hudbtn--sm" type="button" data-act="cancel">CANCEL RECORDING?</button>
+            <button class="n-hudbtn n-hudbtn--sm" type="button" data-act="team">CALL TEAM?</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="n-screen" data-screen="6">
+        <div class="n-stack n-stack--arch">
+          <div class="n-archmsg">RECORDING SAVED TO ARCHIVE</div>
+          <div class="n-tick">✓</div>
+          <div class="n-archmsg">THANK YOU, AGENT J</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="n-badge">
+      <span class="n-badge-dot"></span>
+      <span class="n-badge-text">Demo running — click to take control</span>
+    </div>
+  </div>
+
+  <div class="n-steprow">
+    <div class="n-steps">
+      <div class="n-step"><span>01</span><span>Scan</span></div>
+      <div class="n-step"><span>02</span><span>Authorize</span></div>
+      <div class="n-step"><span>03</span><span>Duration</span></div>
+      <div class="n-step"><span>04</span><span>Confirm</span></div>
+      <div class="n-step"><span>05</span><span>Record</span></div>
+      <div class="n-step"><span>06</span><span>Archive</span></div>
+    </div>
+    <button class="n-restart" type="button" data-act="restart">Restart flow</button>
+  </div>
+
+  <p class="n-protonote">Rebuilt in the browser from the prototype flow. The duration digits are tappable. The lenses are the display — everything an agent needs sits on a surface they were already wearing.</p>
+</div>
+
+<div class="n-col">
+
+  <section class="n-sec" id="s1">
+    <div class="n-sechead"><span>01</span><span class="n-seclabel">The premise</span><span class="n-secrule"></span></div>
+    <h2 class="n-h2 n-h2--narrow">MIB's Neuralyzer:<br>A device with no interface</h2>
+    <div class="n-2col">
+      <div>
+        <p class="n-p" style="margin-top:0">One red "neuralyzing" flash erases some span of memory that the agent selects for the often-unaware subjects. The span is set by dials on the barrel. False memories are narrated afterward to replace the erased memory. Since the flash affects anyone who sees it, the agent always wears <em>Ray-Ban-</em>style dark glasses first.</p>
+        <p class="n-aside">So the actual product is two objects and a script the user has to hold in their head. That's where I started looking.</p>
+      </div>
+      <div class="n-stillpair">
+        <figure class="n-fig n-lighten"><img src="{{ '/assets/img/neuralyzer/still-device.png' | relative_url }}" alt="The Neuralyzer device"></figure>
+        <figure class="n-fig n-lighten"><img src="{{ '/assets/img/neuralyzer/still-glasses.png' | relative_url }}" alt="An agent putting on the dark glasses"></figure>
+        <figcaption class="n-figcap">Stills from Men In Black (1997) © Columbia Pictures — academic reference only.</figcaption>
+      </div>
+    </div>
+  </section>
+
+  <section class="n-sec" id="s2">
+    <div class="n-sechead"><span>02</span><span class="n-seclabel">Research</span><span class="n-secrule"></span></div>
+    <h2 class="n-h2 n-h2--narrow">Researching a user who doesn't exist</h2>
+    <p class="n-p n-p--mid">Three films, treated as field data.</p>
+
+    <div class="n-stats">
+      <div class="n-stat">
+        <div class="n-stat-n">03</div>
+        <div class="n-stat-l">Films, scene by scene</div>
+        <div class="n-stat-d">Every use of the device logged as an observation.</div>
+      </div>
+      <div class="n-stat">
+        <div class="n-stat-n">02</div>
+        <div class="n-stat-l">User bios built</div>
+        <div class="n-stat-d">Agents J and K, plus Extraordinaire Cards.</div>
+      </div>
+      <div class="n-stat">
+        <div class="n-stat-n">3<span> levels</span></div>
+        <div class="n-stat-l">Task analysis depth</div>
+        <div class="n-stat-d">One neuralyzing, broken to sub-task level.</div>
+      </div>
+      <div class="n-stat">
+        <div class="n-stat-n">6<span> senses</span></div>
+        <div class="n-stat-l">Empathy mapped</div>
+        <div class="n-stat-d">Agent K mid-operation: sees, hears, needs.</div>
+      </div>
+    </div>
+
+    <div class="n-figgrid">
+      <figure class="n-fig">
+        <img src="{{ '/assets/img/neuralyzer/hta-diagram.png' | relative_url }}" alt="Hierarchical Task Analysis diagram">
+        <figcaption class="n-figcap n-figcap--gap">HTA — Agent K neuralyzes bystanders</figcaption>
+      </figure>
+      <figure class="n-fig">
+        <img src="{{ '/assets/img/neuralyzer/empathy-map.png' | relative_url }}" alt="Empathy map">
+        <figcaption class="n-figcap n-figcap--gap">Empathy map — the same scene, felt</figcaption>
+      </figure>
+      <figure class="n-fig">
+        <img src="{{ '/assets/img/neuralyzer/user-bio.png' | relative_url }}" alt="User bio sheet">
+        <figcaption class="n-figcap n-figcap--gap">User bio — Agent J</figcaption>
+      </figure>
+      <figure class="n-fig">
+        <img class="n-lighten" src="{{ '/assets/img/neuralyzer/extraordinaire-card.png' | relative_url }}" alt="Extraordinaire Card for Agent J: main scene, alternate scene and surprising scene detail">
+        <figcaption class="n-figcap n-figcap--gap">Extraordinaire Card — Agent J: main, alternate and surprising scenes<br>Funny &amp; goofy · Enthusiastic · Resists authority · Intelligent<br>Stills © Columbia Pictures (1997), academic reference</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="n-h3">Then I acted it out</h3>
+    <p class="n-aside" style="max-width:58ch;margin-top:16px">I stopped trusting the task list once I acted the scene out. On paper the order looks clean; standing there with a device in one hand and glasses in the other, the real problem was that both hands were busy at the exact moment the agent needs to control a room. That's the constraint I designed against.</p>
+    <div class="n-rolepair">
+      <figure class="n-fig n-lighten"><img src="{{ '/assets/img/neuralyzer/rolestorm-1.png' | relative_url }}" alt="Rolestorming a scene"></figure>
+      <figure class="n-fig n-lighten"><img src="{{ '/assets/img/neuralyzer/rolestorm-2.png' | relative_url }}" alt="Rolestorming a scene at a door"></figure>
+    </div>
+  </section>
+
+  <section class="n-sec" id="s3">
+    <div class="n-sechead"><span>03</span><span class="n-seclabel">The turn</span><span class="n-secrule"></span></div>
+    <div class="n-band">
+      <div class="n-band-in">
+        <div class="n-band-mark"></div>
+        <blockquote class="n-band-quote">If the dark glasses are always needed to use the device — why not put the device inside the glasses?</blockquote>
+        <p class="n-band-cap">The realisation that reframed the project</p>
+      </div>
+    </div>
+    <p class="n-aside" style="max-width:62ch;margin-top:32px">The films treat the sunglasses as a prop. The task analysis says they're a required step. Once the glasses are mandatory equipment, a second hand-held object is pure overhead — and the interface I'd been sketching didn't need a new surface, it needed to move onto one the user was already wearing.</p>
+  </section>
+
+  <section class="n-sec" id="s4">
+    <div class="n-sechead"><span>04</span><span class="n-seclabel">Ideation</span><span class="n-secrule"></span></div>
+    <h2 class="n-h2 n-h2--narrow">Twenty ideas before I let myself pick one</h2>
+    <div class="n-idearow">
+      <p class="n-aside">I forced myself to ten before refining any of them, because my first sketch was the obvious one and I didn't want it winning by default. Half of what I drew was unusable — that was the point.</p>
+      <div class="n-metrics">
+        <div><div class="n-metric-n">20</div><div class="n-metric-l">Concepts</div></div>
+        <div><div class="n-metric-n">05</div><div class="n-metric-l">Taken forward</div></div>
+      </div>
+    </div>
+
+    <div class="n-ideagrid">
+      <figure class="n-fig">
+        <a href="{{ '/assets/img/neuralyzer/sketch-notes.png' | relative_url }}" target="_blank" rel="noopener"><img class="n-lighten" src="{{ '/assets/img/neuralyzer/sketch-notes.png' | relative_url }}" alt="Sketchbook page of concept variations"></a>
+        <figcaption class="n-figcap n-figcap--gap">Sketch page from the 10+10 round — open for full size</figcaption>
+      </figure>
+      <div class="n-ideacol">
+        <div class="n-idea"><div class="n-idea-n">01</div><div class="n-idea-t">Neuralyzer inside the glasses — red eye in the bridge</div></div>
+        <div class="n-idea"><div class="n-idea-n">02</div><div class="n-idea-t">Retinal scan to activate</div></div>
+        <div class="n-idea"><div class="n-idea-n">03</div><div class="n-idea-t">Fingerprint recognition</div></div>
+        <div class="n-idea"><div class="n-idea-n">04</div><div class="n-idea-t">Voice recognition</div></div>
+        <div class="n-idea"><div class="n-idea-n">05</div><div class="n-idea-t">Touch input in place of dials</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="n-sec" id="s5">
+    <div class="n-sechead"><span>05</span><span class="n-seclabel">Prototyping</span><span class="n-secrule"></span></div>
+    <h2 class="n-h2">Paper first, on purpose</h2>
+    <ul class="n-list">
+      <li><span class="n-dash"></span><span>Lens-shaped paper, drawn on directly — peers wore it and narrated what they expected to see.</span></li>
+      <li><span class="n-dash"></span><span>Back to the HTA to decide which tasks earn a screen. Most didn't.</span></li>
+      <li><span class="n-dash"></span><span>Black lens, green type — the one combination legible through a dark lens.</span></li>
+    </ul>
+    <div class="n-papergrid">
+      <img src="{{ '/assets/img/neuralyzer/paper-crop-1.png' | relative_url }}" alt="Paper prototype: retinal scan in progress">
+      <img src="{{ '/assets/img/neuralyzer/paper-crop-4.png' | relative_url }}" alt="Paper prototype: hello Agent J, authorized">
+      <img src="{{ '/assets/img/neuralyzer/paper-crop-3.png' | relative_url }}" alt="Paper prototype: previous neuralyze time">
+      <img src="{{ '/assets/img/neuralyzer/paper-crop-2.png' | relative_url }}" alt="Paper prototype: new neuralyze time">
+      <img src="{{ '/assets/img/neuralyzer/paper-crop-5.png' | relative_url }}" alt="Paper prototype: cover story recording in progress">
+      <img src="{{ '/assets/img/neuralyzer/paper-crop-6.png' | relative_url }}" alt="Paper prototype: target neuralyzed">
+    </div>
+  </section>
+
+  <section class="n-sec" id="s6">
+    <div class="n-sechead"><span>06</span><span class="n-seclabel">The flow</span><span class="n-secrule"></span></div>
+    <h2 class="n-h2">Six screens, one flash</h2>
+    <p class="n-p n-p--wide">One decision per screen.</p>
+    <p class="n-note">Shot through the real glasses in Google Slides; carried into Adobe XD for the interactive build.</p>
+    <div class="n-screengrid">
+      <figure class="n-fig n-lighten"><img src="{{ '/assets/img/neuralyzer/screen-1.png' | relative_url }}" alt="Retinal scan screen"><figcaption class="n-screencap">The device authenticates on wear.</figcaption></figure>
+      <figure class="n-fig n-lighten"><img src="{{ '/assets/img/neuralyzer/screen-2.png' | relative_url }}" alt="Authorized screen"><figcaption class="n-screencap">Identity confirmed. One action, nothing competing with it.</figcaption></figure>
+      <figure class="n-fig n-lighten"><img src="{{ '/assets/img/neuralyzer/screen-3.png' | relative_url }}" alt="Duration screen"><figcaption class="n-screencap">Last-used duration recalled — the common case becomes one tap.</figcaption></figure>
+      <figure class="n-fig n-lighten"><img src="{{ '/assets/img/neuralyzer/screen-5.png' | relative_url }}" alt="Target neuralyzed screen"><figcaption class="n-screencap">Confirmation that the flash landed.</figcaption></figure>
+      <figure class="n-fig n-lighten"><img src="{{ '/assets/img/neuralyzer/screen-4.png' | relative_url }}" alt="Narrative recording screen"><figcaption class="n-screencap">Cover story recorded, with an escape hatch and a call for backup.</figcaption></figure>
+      <figure class="n-fig n-lighten"><img src="{{ '/assets/img/neuralyzer/screen-6.png' | relative_url }}" alt="Saved to archive screen"><figcaption class="n-screencap">The cover story is filed to the Archive.</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="n-sec n-sec--last" id="feedback">
+    <div class="n-sechead"><span>07</span><span class="n-seclabel">What testing changed</span><span class="n-secrule"></span></div>
+    <div class="n-fbgrid">
+      <div>
+        <h2 class="n-h2--sm">One word broke</h2>
+        <p class="n-p n-p--tight">I demoed the prototype to the class. The flow held; the last screen didn't.</p>
+        <blockquote class="n-pull">"Archive of what, for whom?"</blockquote>
+        <div class="n-pullcap">Peer critique · week 6</div>
+        <div class="n-swap">
+          <span class="n-chip n-chip--old">SAVED TO ARCHIVE</span>
+          <span class="n-arrow">→</span>
+          <span class="n-chip n-chip--new">COVER STORY FILED · CASE #</span>
+        </div>
+        <p class="n-swapnote">I'd named the screen from the system's side. The agent doesn't file an archive — they file a story about a person.</p>
+      </div>
+
+      <div>
+        <h2 class="n-h2--sm">Ideas for next iteration</h2>
+        <ul class="n-numlist">
+          <li><span class="n-numidx">01</span><span class="n-numtxt">Whose memory, what window, what story — can the next agent retrieve the case from the record alone?</span></li>
+          <li><span class="n-numidx">02</span><span class="n-numtxt">Does the recording countdown give an agent time to think, or just time to panic?</span></li>
+          <li><span class="n-numidx">03</span><span class="n-numtxt">Both need the same test: hands full, one shot, someone watching.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="n-footer">
+    <span>Kavya Rajendran — HCC 613, UMBC · advised by Dr. Helena Mentis</span>
+    <span>Men In Black stills © Columbia Pictures (1997), academic reference</span>
+  </footer>
+</div>

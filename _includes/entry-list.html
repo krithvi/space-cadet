@@ -1,0 +1,10 @@
+{%- comment -%}
+  Cards for a whole collection, sorted by `order` (lower first).
+  Usage: {% include entry-list.html entries=site.research %}
+{%- endcomment -%}
+{%- assign sorted = include.entries | sort: "order" -%}
+<ul class="entry-list">
+  {%- for item in sorted %}
+  {%- unless item.hidden %}{% include entry-card.html entry=item %}{% endunless %}
+  {%- endfor %}
+</ul>

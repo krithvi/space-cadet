@@ -17,3 +17,14 @@
     </span>
   {% endfor %}
 </nav>
+<script>
+  // Publish the nav's real height as --nav-h so pages (and the case-study progress bar) sit just below it,
+  // even when the keys wrap onto two rows on a phone.
+  (function () {
+    var nav = document.currentScript.previousElementSibling;
+    function set() { document.documentElement.style.setProperty('--nav-h', nav.offsetHeight + 'px'); }
+    set();
+    if ('ResizeObserver' in window) new ResizeObserver(set).observe(nav);
+    else window.addEventListener('resize', set);
+  })();
+</script>

@@ -1,0 +1,5 @@
+<dl class="ledger">
+  {%- for p in site.data.posters %}
+  <dt>{{ p.when }}</dt><dd>{{ p.title }}. {{ p.venue }}.</dd>
+  {%- endfor %}
+</dl>

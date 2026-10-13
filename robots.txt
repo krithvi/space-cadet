@@ -1,0 +1,24 @@
+---
+layout: null
+sitemap: false
+---
+# AI crawlers: keep out of the poster images.
+# (A request that reputable crawlers honor, not a lock.)
+# To keep them out of the entire site instead, change the line below to `Disallow: /`.
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: anthropic-ai
+User-agent: Google-Extended
+User-agent: CCBot
+User-agent: PerplexityBot
+User-agent: Bytespider
+User-agent: Applebot-Extended
+User-agent: meta-externalagent
+Disallow: /assets/posters/
+
+# Everyone else (search engines) may index pages, but not the poster images.
+User-agent: *
+Disallow: /assets/posters/
+
+Sitemap: {{ '/sitemap.xml' | absolute_url }}

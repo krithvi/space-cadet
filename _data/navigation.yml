@@ -4,9 +4,9 @@
 - icon: 🧑🏾
   label: About
   link: /about.html
-- icon: 🧑🏾‍💻
-  label: Projects
-  link: /projects.html
-- icon: 🤹🏾
-  label: Skills
-  link: /skills.html
+- icon: 🔭
+  label: Research
+  link: /research.html
+- icon: 🛠️
+  label: Design
+  link: /design.html

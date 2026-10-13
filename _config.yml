@@ -22,3 +22,20 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+
+# Each collection is a folder of Markdown files (_research/, _design/).
+# Jekyll builds one page per file and exposes them as site.research / site.design.
+collections:
+  research:
+    output: true
+    permalink: /research/:name/
+  design:
+    output: true
+    permalink: /design/:name/
+
+# Every file in these folders gets the entry layout unless it says otherwise.
+defaults:
+  - scope: { path: "", type: research }
+    values: { layout: entry, section: Research, section_url: /research.html }
+  - scope: { path: "", type: design }
+    values: { layout: entry, section: Design Lab, section_url: /design.html }

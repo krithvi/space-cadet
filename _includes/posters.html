@@ -1,0 +1,16 @@
+<ol class="poster-list">
+  {%- for p in site.data.posters %}
+  <li>
+    <span class="poster-when">{{ p.when }}</span>
+    <span class="poster-title">{{ p.title }}</span>
+    <span class="poster-venue">{{ p.venue }}</span>
+    {%- if p.image %}
+    <details class="poster-peek">
+      <summary>View poster</summary>
+      {% include poster.html src=p.image alt=p.title ratio=p.ratio %}
+      <p class="fineprint">Preview only. For the full poster, <a href="mailto:kvyrjndrn@gmail.com?subject=Poster: {{ p.title | uri_escape }}">ask me</a>.</p>
+    </details>
+    {%- endif %}
+  </li>
+  {%- endfor %}
+</ol>
