@@ -48,7 +48,7 @@ description: "Kavya Rajendran is a PhD student in Human-Centered Computing at UM
 author:
   name: Kavya Rajendran
   initials: KR                     # shown in the porthole until a photo is set
-  portrait: /assets/img/neuralyzer/kavya-selfie.jpg                     # (square, at least 600×600)
+  portrait: /assets/img/kavya-selfie.png # (square, at least 600×600)
   eyebrow: [PhD · Human-Centered Computing, UMBC, 2025 – 2029]
   summary: "I will be exploring the intersection of affective computing and emotional well-being through the lenses of collaborative reflection and dance therapy."
   location: Catonsville, MD
