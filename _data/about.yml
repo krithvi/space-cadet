@@ -21,6 +21,18 @@ education:
     school: UMBC
     now: true
 
+# The Toolkit section: one group per row of tags. Add or remove freely.
+toolkit:
+  - group: Research
+    items: [IRB study design, In-person studies, Interviews, Thematic analysis, Literature review]
+  - group: Design
+    items: [Task analysis, Empathy mapping, Sketching, Paper prototyping, Adobe XD]
+  - group: Code
+    items: ["Deep learning (RNN, LSTM)", HTML and SCSS, Jekyll, Git]
+
+# The Off duty line at the end of About.
+off_duty: Music, and imagining fictional worlds in digital spaces.
+
 # "Crew and community" cards on About, in this order.
 # mark: 2–4 letters shown in the round badge (or set logo: /assets/img/logos/x.png for a real logo).
 # tags: the first one is highlighted. events: a growing list of chips (add the next conference here).

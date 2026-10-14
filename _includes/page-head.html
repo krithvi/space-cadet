@@ -1,6 +1,11 @@
-{%- comment -%} Top of an inner page. Usage: {% include page-head.html eyebrow="Research log" title="..." lede="..." %} {%- endcomment -%}
+{%- comment -%}
+  Top of an inner page, from _data/sections.yml.
+  Usage: {% include page-head.html section="research" %}
+{%- endcomment -%}
+{%- assign h = site.data.sections[include.section] -%}
 <header class="page-head">
-  {%- if include.eyebrow %}<div class="eyebrow"><span>{{ include.eyebrow }}</span></div>{% endif %}
-  <h1 class="display">{{ include.title }}</h1>
-  {%- if include.lede %}<p class="lede">{{ include.lede }}</p>{% endif %}
+  <div class="eyebrow"><span>{{ h.eyebrow }}</span></div>
+  <h1 class="display">{{ h.title }}</h1>
+  {%- if h.lede %}<p class="lede">{{ h.lede }}</p>{% endif %}
+  {%- if h.areas %}<div class="chips page-head-areas">{% for a in h.areas %}<span class="chip chip--round">{{ a }}</span>{% endfor %}</div>{% endif %}
 </header>

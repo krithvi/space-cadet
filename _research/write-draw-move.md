@@ -1,9 +1,10 @@
 ---
 title: "Write! Draw! Move!"
-status: published
+status: complete
 badge: "Published · ICMI '25"
 tagline: "Effects of multimodal self-reflection of emotional experiences."
 patch: path
+code: HCC 746 · MS thesis
 order: 1
 summary: "Graduate students reflected on a good and a bad experience through writing, drawing and movement. The way they expressed it shaped what they felt."
 facts:
@@ -14,6 +15,8 @@ facts:
 links:
   - label: Read the paper
     url: https://doi.org/10.1145/3716553.3750798
+  - label: Read the thesis
+    url: https://www.proquest.com/docview/3156362385
 ---
 
 ## The question

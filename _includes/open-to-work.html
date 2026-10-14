@@ -1,0 +1,8 @@
+{%- assign o = site.author.open_to_work -%}
+{%- if o and o.show %}
+<aside class="otw" aria-label="Open to work">
+  <span class="otw-status"><span class="otw-led" aria-hidden="true"></span>Open to work · {{ o.when }}</span>
+  <span class="otw-what">{{ o.what }}</span>
+  <span class="otw-roles">{% for r in o.roles %}<span class="chip chip--round">{{ r }}</span>{% endfor %}</span>
+</aside>
+{%- endif %}

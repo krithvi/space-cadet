@@ -1,7 +1,9 @@
 ---
 layout: default
 title: Design
-description: "UX case studies, prototypes and visual design work by Kavya Rajendran."
+description: "UX case studies, prototypes, visual design and code by Kavya Rajendran."
 ---
-{% include page-head.html eyebrow="Design & Code" title="Where research turns into things you can touch" lede="UX case studies, prototypes,software, tactile and visual design." %}
-{% include entry-grid.html entries=site.design num="01" title="Case studies" %}
+{% include page-head.html section="design" %}
+{% include entry-grid.html entries=site.design key="shelf" value="featured" num="01" title="Featured" row=true %}
+{% include entry-grid.html entries=site.design key="shelf" value="more" num="02" title="More work" %}
+{% include entry-grid.html entries=site.design key="shelf" value="code" num="03" title="Night shift code" row=true %}

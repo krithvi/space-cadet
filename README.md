@@ -11,7 +11,8 @@ This is my personal website hosted on GitHub Pages (using [Jekyll](https://jekyl
 | A paper | `_data/publications.yml` | The Publications stat on Base counts these |
 | A course you TA | `_data/teaching.yml` | The Courses stat on Base counts these |
 | A poster | `_data/posters.yml` | Make the preview with `tools/make_poster_preview.py`; keep originals in `posters-src/` |
-| Bio, tags, timeline, service | `_data/about.yml` | |
+| Research or Design page header, research areas | `_data/sections.yml` | Also sets the doorway text on Base |
+| Bio, toolkit, timeline, crew, off duty | `_data/about.yml` | |
 | Your photo, summary, links | `author:` in `_config.yml` | Leave a link `""` to hide its button |
 | The three stats | `_data/stats.yml` | Fixed `value:` or `count:` a data file |
 

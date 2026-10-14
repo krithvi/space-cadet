@@ -1,9 +1,10 @@
 ---
 title: "International Students vs News"
 status: in-progress
-badge: "In progress · Poster '26"
+badge: "In prep · for CHI '27"
 tagline: "How the news feed affects international students."
 patch: feed
+code: IS 805
 order: 3
 summary: "International students follow news from home and from the US, mostly through social media. How does that reading make them feel?"
 facts:

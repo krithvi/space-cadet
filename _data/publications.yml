@@ -1,17 +1,19 @@
-# One entry per publication, newest first. The count on Base updates on its own.
-# short: the one-line venue shown on the card.
+# One entry per publication, newest first. The Publications stat on Base counts these.
+# venue: the short name shown big on the left. type: Conference paper, Journal article, Master's thesis…
 # Wrap your own name in **double asterisks** to highlight it. Mark co-first authors with † after their names.
-- #tag: C1
-  title: "Write! Draw! Move!: Investigating the Effects of Positive and Negative Self-Reflection on Emotion through Self-Expression Modalities"
-  short: "ACM ICMI '25 · co-first author"
+- title: "Write! Draw! Move!: Investigating the Effects of Positive and Negative Self-Reflection on Emotion through Self-Expression Modalities"
+  venue: ICMI '25
+  type: Conference paper
+  role: Co-first author
   authors: "Golnaz Moharrer†, **Kavya Rajendran**†, Rowena Pinto, Andrea Kleinsmith"
-  venue: "Proceedings of the 27th ACM International Conference on Multimodal Interaction (ICMI '25), pp. 540–549"
   links:
-    - label: "DOI: 10.1145/3716553.3750798"
+    - label: Read paper
       url: https://doi.org/10.1145/3716553.3750798
 
-- #tag: J1
-  title: "A Sentiment Analysis Study of Movie Reviews"
-  authors: "K. G. Rajendran, K. Annadurai, **K. Rajendran**, P. S. Rathnakumar"
-  venue: "International Journal of Science & Engineering Development Research, vol. 7, no. 7, pp. 5–10, 2022"
-# TODO: Change the tags as it is a very CV feature than an actual portfolio website
+- title: "Effects of Self-Expression Modalities on Positive and Negative Self-Reflection for Emotional Well-Being"
+  venue: UMBC '24
+  type: Master's thesis
+  authors: "**Kavya Rajendran**"
+  links:
+    - label: Read thesis
+      url: https://www.proquest.com/docview/3156362385

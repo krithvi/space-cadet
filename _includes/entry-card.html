@@ -1,16 +1,21 @@
 {%- comment -%}
-  One card. Reads the entry's front matter: card_title (or title), badge, tagline (or summary),
-  thumb (image) or patch (drawn badge), status, link (send the card elsewhere instead of the entry page).
+  One card. Reads the entry's front matter: card_title (or title), badge, code, tagline (or summary),
+  thumb (image) or patch (drawn badge), status, and link + link_label to send the card somewhere else.
+  include.row=true draws it as a compact horizontal card with the picture on the left.
 {%- endcomment -%}
 {%- assign e = include.entry -%}
 {%- if e.link %}{% assign href = e.link %}{% else %}{% assign href = e.url | relative_url %}{% endif -%}
-<a class="mcard" href="{{ href }}">
+<a class="mcard{% if include.row %} mcard--row{% endif %}" href="{{ href }}">
   <div class="mcard-media">
     {%- if e.thumb %}<img src="{{ e.thumb | relative_url }}" alt="" loading="lazy">{% else %}{% include patch.html kind=e.patch %}{% endif -%}
   </div>
   <div class="mcard-body">
-    {%- if e.badge %}<span class="chip{% if e.status == 'published' %} chip--lit{% endif %}">{{ e.badge }}</span>{% endif %}
+    <div class="mcard-meta">
+      {%- if e.badge %}<span class="chip{% if e.status == 'complete' or e.shelf == 'featured' %} chip--lit{% endif %}">{{ e.badge }}</span>{% endif %}
+      {%- if e.code %}<span class="mcard-code">{{ e.code }}</span>{% endif %}
+    </div>
     <h3 class="mcard-title">{{ e.card_title | default: e.title }}</h3>
     <p class="mcard-text">{{ e.tagline | default: e.summary }}</p>
+    {%- if e.link %}<span class="mcard-ext">{{ e.link_label | default: "Open" }} <span aria-hidden="true">↗</span></span>{% endif %}
   </div>
 </a>

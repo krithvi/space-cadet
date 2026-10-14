@@ -4,14 +4,17 @@
 published: false
 title: "Short, human title"
 # card_title: "Shorter title for the card, if the page title is long"
-badge: "UX case study · 2026"
+shelf: more                  # featured (big row card), more (grid) or code (Night shift code)
+badge: "UX case study"       # chip on the card: the discipline
+code: HCC 613 · 2026         # small label next to it: course, tool or year (optional)
 tagline: "One line for the card. Keep it under about 50 characters."
 summary: "One or two sentences. Shown at the top of the entry page."
 order: 10                    # position in its grid, lower comes first
 thumb: /assets/img/your-entry/thumb.jpg     # card image, 16:10 works best (optional)
-patch: orbit               # card art when there is no thumb: path, pulse, feed or orbit
+patch: orbit               # card art when there is no thumb: path, pulse, feed, call, trend, screen, phone, brand, code, orbit
 # hero: /assets/img/your-entry/hero.jpg     # image beside the title on the entry page (optional, else thumb)
 # link: https://example.com   # optional: make the card open this URL instead of the entry page
+# link_label: Behance        # what the card says it opens
 facts:                       # small stat tiles under the header (optional)
   Role: What you did
   Timeline: 2026, 10 weeks

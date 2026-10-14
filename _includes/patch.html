@@ -1,7 +1,7 @@
 {%- comment -%}
   A "mission patch" badge, used as card art when an entry has no image.
   Usage: {% include patch.html kind="pulse" px=140 %}
-  kind: path (three points joined), pulse (heartbeat), feed (stacked lines), orbit (default)
+  kind: path, pulse, feed, call, trend, screen, phone, brand, code, or orbit (default)
 {%- endcomment -%}
 {%- assign k = include.kind | default: "orbit" -%}
 <svg class="patch" aria-hidden="true" width="{{ include.px | default: 140 }}" height="{{ include.px | default: 140 }}" viewBox="0 0 150 150">
@@ -18,6 +18,24 @@
   <line x1="56" y1="60" x2="94" y2="60" stroke="#93cbe3" stroke-width="2.5" stroke-linecap="round"/>
   <line x1="56" y1="74" x2="86" y2="74" stroke="#93cbe3" stroke-width="2.5" stroke-linecap="round"/>
   <line x1="56" y1="88" x2="80" y2="88" stroke="#93cbe3" stroke-width="2.5" stroke-linecap="round"/>
+  {%- when "call" %}
+  <rect x="40" y="52" width="70" height="46" rx="8" fill="none" stroke="#8ee8ff" stroke-width="2.5"/>
+  <circle cx="62" cy="75" r="8" fill="#93cbe3"/><circle cx="90" cy="75" r="8" fill="#93cbe3"/>
+  {%- when "trend" %}
+  <path d="M36 96 L58 74 L76 88 L112 52" fill="none" stroke="#8ee8ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="112" cy="52" r="5" fill="#93cbe3"/>
+  {%- when "screen" %}
+  <rect x="42" y="48" width="66" height="54" rx="6" fill="none" stroke="#8ee8ff" stroke-width="2.5"/>
+  <line x1="42" y1="62" x2="108" y2="62" stroke="#93cbe3" stroke-width="2.5"/><line x1="58" y1="62" x2="58" y2="102" stroke="#93cbe3" stroke-width="2.5"/>
+  {%- when "phone" %}
+  <rect x="56" y="38" width="38" height="74" rx="7" fill="none" stroke="#8ee8ff" stroke-width="2.5"/>
+  <circle cx="75" cy="102" r="3" fill="#93cbe3"/>
+  {%- when "brand" %}
+  <path d="M48 98 L75 46 L102 98 Z" fill="none" stroke="#8ee8ff" stroke-width="2.5" stroke-linejoin="round"/>
+  <circle cx="75" cy="82" r="7" fill="#93cbe3"/>
+  {%- when "code" %}
+  <path d="M60 56 L42 75 L60 94 M90 56 L108 75 L90 94" fill="none" stroke="#8ee8ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="80" y1="50" x2="70" y2="100" stroke="#93cbe3" stroke-width="2.5" stroke-linecap="round"/>
   {%- else %}
   <ellipse cx="75" cy="75" rx="44" ry="16" fill="none" stroke="#8ee8ff" stroke-width="2.5" transform="rotate(-24 75 75)"/>
   <circle cx="75" cy="75" r="14" fill="#93cbe3"/><circle cx="114" cy="58" r="5" fill="#8ee8ff"/>

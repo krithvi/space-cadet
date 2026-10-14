@@ -1,0 +1,15 @@
+# Headers for Research and Design, and their doorway cards on Base.
+# Keep the titles broad: specific topics go in `areas`, which you can add to as your work grows.
+research:
+  eyebrow: Research log
+  title: Human-computer interaction for well-being
+  lede: Studying how technology shapes how we feel, connect and express ourselves, now and in the future.
+  door: Affective, social and movement computing.
+  areas: [Affective computing, Emotional well-being, Dance and movement, Social computing, Collaborative reflection, Group work]
+
+design:
+  eyebrow: Design & Code
+  title: Where research turns into things you can touch
+  lede: UX case studies, prototypes, visual design and code.
+  door: UX case studies, prototypes and code.
+  areas: [UI prototyping, UX research, Graphic design, Brand design, Front-end code]

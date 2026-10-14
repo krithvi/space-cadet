@@ -131,8 +131,49 @@ body.site {
   img { width: 100%; height: 100%; object-fit: cover; display: block; }
 }
 .mcard-body { padding: 18px 20px 22px; display: flex; flex-direction: column; }
+.mcard-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+.mcard-code { font-family: $label; font-size: 11px; letter-spacing: 0.06em; color: $n600; }
+.mcard-ext { margin-top: 12px; font-family: $label; font-size: 12px; color: $a400; }
 .mcard-title { margin: 12px 0 0; font-family: $heading; font-weight: 700; font-size: 19px; letter-spacing: -0.02em; color: $n100; }
 .mcard-text { margin: 6px 0 0; font-size: 15px; line-height: 1.5; color: $n400; }
+
+// Compact horizontal cards: picture on the left (Design › Featured, Night shift code)
+.grid--rows { grid-template-columns: repeat(auto-fill, minmax(#{"min(100%, 460px)"}, 1fr)); }
+.mcard--row { flex-direction: row; min-height: 0; }
+.mcard--row .mcard-media { flex: 0 0 38%; max-width: 300px; aspect-ratio: 4 / 3; }
+.mcard--row .mcard-body { flex: 1; justify-content: center; padding: 20px 22px; }
+.mcard--row .mcard-media .patch { width: 96px; height: 96px; }
+
+// Open to work: one slim bar above Explore
+.otw {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px;
+  margin-top: 40px; padding: 14px 18px;
+  border-radius: 8px; background: $a900; box-shadow: 0 0 0 1px $a, 0 0 24px rgba(85, 153, 187, 0.15);
+}
+.otw-status { display: inline-flex; align-items: center; gap: 10px; font-family: $label; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: $cyan; }
+.otw-led { width: 8px; height: 8px; border-radius: 50%; background: $cyan; box-shadow: 0 0 6px $blue-lt; animation: blink 2.4s ease-in-out infinite; }
+@keyframes blink { 50% { opacity: 0.35; } }
+.otw-what { font-family: $heading; font-weight: 700; font-size: 15px; color: $n100; }
+.otw-roles { display: flex; flex-wrap: wrap; gap: 6px; flex: 1 1 auto; .chip { margin: 0; } }
+.otw .btn { margin-left: auto; }
+
+// Roles on Base
+.roles { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.role {
+  display: flex; flex-direction: column; gap: 10px; padding: 22px 20px;
+  background: $surface; border-radius: 8px; box-shadow: 0 0 0 1px $n800; text-decoration: none;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  &:hover { box-shadow: $lift; transform: translateY(-3px); }
+}
+.role-dial { width: 52px; height: 52px; border-radius: 50%; border: 1.5px solid $a; background: $bg; display: flex; align-items: center; justify-content: center; color: $cyan; }
+.role-title { margin-top: 4px; font-family: $heading; font-weight: 700; font-size: 17px; color: $n100; }
+.role-text { font-size: 14px; line-height: 1.5; color: $n400; }
+
+// Toolkit on About
+.toolkit { display: grid; grid-template-columns: repeat(auto-fill, minmax(#{"min(100%, 300px)"}, 1fr)); gap: 32px; }
+.toolkit-group .chips { margin-top: 12px; }
+
+.sec--tight { margin-top: 72px; }
 
 // Doorways on Base: picture left, words right
 .doors { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
@@ -213,6 +254,7 @@ body.site {
 
 // ── Inner page header ──
 .page-head { padding-top: 96px; }
+.page-head-areas { margin-top: 24px; max-width: 760px; }
 
 // ── A single study or case study (_layouts/entry.html) ──
 .back { display: inline-block; margin-top: 48px; font-family: $label; font-size: 12px; text-decoration: none; }
@@ -275,10 +317,13 @@ body.site {
   .stat-l { font-size: 9px; letter-spacing: 0.06em; }
   .door { flex-direction: column; }
   .door-media { flex-basis: auto; aspect-ratio: 16 / 9; }
+  .mcard--row { flex-direction: column; }
+  .mcard--row .mcard-media { flex-basis: auto; max-width: none; aspect-ratio: 16 / 9; }
+  .otw .btn { margin-left: 0; }
   .doors { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .porthole-orbit { animation: none; }
+  .porthole-orbit, .otw-led { animation: none; }
   .mcard, .door, .btn { transition: none; }
 }

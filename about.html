@@ -28,7 +28,19 @@ description: "About Kavya Rajendran: education, teaching and service in Human-Ce
 </section>
 
 <section class="sec">
-  {% include section-head.html num="02" title="Teaching" %}
+  {% include section-head.html num="02" title="Toolkit" %}
+  <div class="toolkit">
+    {%- for g in a.toolkit %}
+    <div class="toolkit-group">
+      <span class="label">{{ g.group }}</span>
+      <div class="chips">{% for t in g.items %}<span class="chip chip--round">{{ t }}</span>{% endfor %}</div>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="sec">
+  {% include section-head.html num="03" title="Teaching" %}
   <div class="grid grid--tiles">
     {%- for c in site.data.teaching %}
     <div class="tile">
@@ -41,10 +53,17 @@ description: "About Kavya Rajendran: education, teaching and service in Human-Ce
 </section>
 
 <section class="sec">
-  {% include section-head.html num="03" title="Crew and community" %}
+  {% include section-head.html num="04" title="Crew and community" %}
   <div class="crew-grid">
     {%- for c in a.crew %}
     {% include crew-card.html item=c %}
     {%- endfor %}
   </div>
 </section>
+
+{%- if a.off_duty %}
+<section class="sec">
+  {% include section-head.html num="05" title="Off duty" %}
+  <p class="lede">{{ a.off_duty }}</p>
+</section>
+{%- endif %}

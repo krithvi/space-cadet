@@ -1,0 +1,18 @@
+<div class="roles">
+  {%- for r in site.data.roles %}
+  <a class="role" href="{{ r.link | relative_url }}">
+    <span class="role-dial" aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        {%- case r.icon -%}
+        {%- when "cap" %}<path d="M3 9l9-5 9 5-9 5-9-5z"/><path d="M7 11v5c3 2 7 2 10 0v-5"/>
+        {%- when "lens" %}<circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/>
+        {%- when "layout" %}<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16M9 9v11"/>
+        {%- else %}<path d="M20 14.5A8 8 0 1 1 9.5 4 6.5 6.5 0 0 0 20 14.5z"/>
+        {%- endcase %}
+      </svg>
+    </span>
+    <span class="role-title">{{ r.title }}</span>
+    <span class="role-text">{{ r.text }}</span>
+  </a>
+  {%- endfor %}
+</div>

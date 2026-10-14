@@ -1,0 +1,17 @@
+# The Roles section on Base. icon: cap, lens, layout or moon.
+- icon: cap
+  title: PhD student
+  text: Second year, HCC at UMBC.
+  link: /about.html
+- icon: lens
+  title: HCC researcher
+  text: Affective computing and well-being studies.
+  link: /research.html
+- icon: layout
+  title: UX designer
+  text: Visual design and UX research.
+  link: /design.html
+- icon: moon
+  title: Nocturnal coder
+  text: Personal projects, built after hours.
+  link: https://github.com/krithvi

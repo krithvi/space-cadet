@@ -3,8 +3,8 @@ layout: default
 title: Research
 description: "Research, publications and posters by Kavya Rajendran, PhD student in Human-Centered Computing at UMBC."
 ---
-{% include page-head.html eyebrow="Research log" title="Emotion, reflection and the feed" lede="How expressing ourselves changes how we feel, and what that looks like in the body and on our screens." %}
-{% include entry-grid.html entries=site.research status="in-progress" num="01" title="Current missions" %}
-{% include entry-grid.html entries=site.research status="published" num="02" title="Published studies" %}
-{% include publications.html num="03" %}
+{% include page-head.html section="research" %}
+{% include publications.html num="01" %}
+{% include entry-grid.html entries=site.research key="status" value="in-progress" num="02" title="Current missions" %}
+{% include entry-grid.html entries=site.research key="status" value="complete" num="03" title="Past missions" %}
 {% include posters.html num="04" %}

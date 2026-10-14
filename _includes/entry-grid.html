@@ -1,16 +1,16 @@
 {%- comment -%}
   A numbered section with a grid of cards. The whole section hides itself when it has nothing to show.
-  Usage: {% include entry-grid.html entries=site.research status="in-progress" num="01" title="Current missions" %}
-  status is optional: leave it out to show every entry.
+  Usage: {% include entry-grid.html entries=site.research key="status" value="in-progress" num="01" title="Current missions" %}
+  key/value are optional (leave them out to show every entry). Add row=true for compact horizontal cards.
 {%- endcomment -%}
 {%- assign list = include.entries | sort: "order" -%}
-{%- if include.status %}{% assign list = list | where: "status", include.status %}{% endif -%}
+{%- if include.key %}{% assign list = list | where: include.key, include.value %}{% endif -%}
 {%- if list.size > 0 %}
 <section class="sec">
   {% include section-head.html num=include.num title=include.title %}
-  <div class="grid">
+  <div class="grid{% if include.row %} grid--rows{% endif %}">
     {%- for item in list %}
-    {% include entry-card.html entry=item %}
+    {% include entry-card.html entry=item row=include.row %}
     {%- endfor %}
   </div>
 </section>

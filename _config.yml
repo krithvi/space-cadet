@@ -59,3 +59,9 @@ author:
   orcid: ""
   github: https://github.com/krithvi
   favicon: ""                      # later: e.g. /assets/img/favicon.png (square, 512×512)
+  # The compact "Open to work" bar on Base. Set show: false to hide it.
+  open_to_work:
+    show: true
+    when: Summer 2027
+    what: Graduate and PhD internships
+    roles: [UX Researcher, UI/UX Designer, Product Designer]
