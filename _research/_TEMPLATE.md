@@ -22,12 +22,15 @@ links:                       # buttons in the header; the first one is highlight
     url: https://example.com
 ---
 
-## The problem
+## The question
 
-Write in plain Markdown. Headings, lists, **bold**, links and images all work.
-
-![Describe the image]({{ '/assets/img/your-entry/screen.jpg' | relative_url }})
+Write in plain Markdown: short paragraphs, lists, **bold** and links all work.
+Each `##` heading becomes a numbered section (01, 02, …), like the Neuralyzer case study.
 
 ## What I did
 
-## What changed
+{% include figure.html src="/assets/img/your-entry/screen.jpg" alt="Describe the image" caption="Optional caption" %}
+
+## What I found
+
+## My role

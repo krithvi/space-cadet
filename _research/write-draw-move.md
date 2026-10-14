@@ -2,32 +2,39 @@
 title: "Write! Draw! Move!"
 status: published
 badge: "Published · ICMI '25"
-tagline: "Investigating the Effects of Positive and Negative Self-Reflection on Emotion through Self-Expression Modalities"
+tagline: "Effects of multimodal self-reflection of emotional experiences."
 patch: path
 order: 1
-summary: "How positive and negative self-reflection shape emotion, and whether the way people express themselves changes that."
-meta: "Self-reflection · Emotion · Multimodal self-expression"
+summary: "Graduate students reflected on a good and a bad experience through writing, drawing and movement. The way they expressed it shaped what they felt."
 facts:
-  Venue: ACM ICMI 2025
-  Lab: Affective Behavior Interaction Lab, UMBC
-  Authorship: Co-first author
-  Collaborators: G. Moharrer (co-first author), R. Pinto, A. Kleinsmith
+  Venue: ACM ICMI '25
+  My role: Co-PI · co-first author
+  Methods: In-person study · interviews · thematic analysis
+  Lab: Affective Behavior Interaction Lab
 links:
   - label: Read the paper
     url: https://doi.org/10.1145/3716553.3750798
 ---
 
-We compared how reflecting on positive and negative experiences affects emotion when people express that reflection through three modalities: writing, drawing, and movement.
+## The question
 
-Emotional self-expression positively impacts people’s well-being by reducing stress and contributing to overall well-being. As digital mental health interventions become more prevalent in assisting graduate students with stress management and emotional awareness, it is important to understand how self-expression modalities can be effectively integrated. We conducted a study in which graduate students reflected on a positive experience and a negative experience, separately through three self-expression modalities (visual art, writing, and movement). Our results showed that negative reflection elicited a sense of relief as it felt calming and therapeutic. The visual and movement modalities helped participants express themselves creatively, whereas writing pushed them to face their emotions head-on. Our findings contribute to the multimodal interaction community and the field of HCI toward developing intelligent, affective multimodal digital technologies to encourage enhanced well-being through emotional and creative expression and reflection for graduate students.
+Expressing emotion helps reduce stress. As digital mental-health tools reach more graduate students, which ways of expressing ourselves actually help, and do they work differently for good and bad memories?
 
-As a Co-principal investigator(Co-PI) under this IRB-approved study, I conducted the in-person experiment and the exit interview alongside my other Co-PI, Golnaz Moharrer, and Research Assistant, Rowena Pinto. I also had equal contribution in the data analysis -  finding themes and forming contribution and discussion points to write the manuscript that was published in ICMI '25.
+## What we did
+
+Graduate students reflected on one positive and one negative experience, each through three modalities: visual art, writing and movement.
 
 {% comment %}
-TODO (Kavya): 2–4 short paragraphs in your own words.
-- The question, and why it matters
-- What participants did (study design, how many people)
-- What you found
-- What you personally did: design, running sessions, analysis, writing
-Add a figure with: ![Alt text]({{ '/assets/img/research/your-figure.png' | relative_url }}) -> HOW??
+Add a photo of the setup here when you have one, e.g.
+{% include figure.html src="/assets/img/write-draw-move/setup.jpg" alt="A participant drawing during the study" caption="Study setup" %}
 {% endcomment %}
+
+## What we found
+
+- **Negative reflection brought relief.** Participants described it as calming and therapeutic.
+- **Drawing and movement opened up creativity**, while writing made people face their emotions head-on.
+- These point toward affective, multimodal tools that support graduate students' well-being through creative expression.
+
+## My role
+
+Co-PI on an IRB-approved study with Golnaz Moharrer (Co-PI) and Rowena Pinto (research assistant). I ran the in-person sessions and exit interviews, and contributed equally to the thematic analysis and to writing the paper.

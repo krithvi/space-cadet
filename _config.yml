@@ -5,7 +5,7 @@ kramdown:
 # Served at the root of the custom domain, so baseurl stays empty.
 # Every asset and link still goes through `| relative_url`, so a future move to a subpath only means changing baseurl.
 baseurl: ""
-url: "https://krithvi.space/"
+url: "https://krithvi.space"
 
 # Never copy these into the built site.
 exclude:
@@ -48,7 +48,7 @@ description: "Kavya Rajendran is a PhD student in Human-Centered Computing at UM
 author:
   name: Kavya Rajendran
   initials: KR                     # shown in the porthole until a photo is set
-  portrait: ""                     # e.g. /assets/img/kavya.jpg (square, at least 600×600)
+  portrait: /assets/img/neuralyzer/kavya-selfie.jpg                     # (square, at least 600×600)
   eyebrow: [PhD · Human-Centered Computing, UMBC, 2025 – 2029]
   summary: "I will be exploring the intersection of affective computing and emotional well-being through the lenses of collaborative reflection and dance therapy."
   location: Catonsville, MD
@@ -58,3 +58,4 @@ author:
   linkedin: linkedin.com/in/kavya-rajendran
   orcid: ""
   github: https://github.com/krithvi
+  favicon: ""                      # later: e.g. /assets/img/favicon.png (square, 512×512)

@@ -1,7 +1,7 @@
 # One entry per publication, newest first. The count on Base updates on its own.
 # short: the one-line venue shown on the card.
 # Wrap your own name in **double asterisks** to highlight it. Mark co-first authors with † after their names.
-- tag: C1
+- #tag: C1
   title: "Write! Draw! Move!: Investigating the Effects of Positive and Negative Self-Reflection on Emotion through Self-Expression Modalities"
   short: "ACM ICMI '25 · co-first author"
   authors: "Golnaz Moharrer†, **Kavya Rajendran**†, Rowena Pinto, Andrea Kleinsmith"
@@ -10,7 +10,7 @@
     - label: "DOI: 10.1145/3716553.3750798"
       url: https://doi.org/10.1145/3716553.3750798
 
-- tag: J1
+- #tag: J1
   title: "A Sentiment Analysis Study of Movie Reviews"
   authors: "K. G. Rajendran, K. Annadurai, **K. Rajendran**, P. S. Rathnakumar"
   venue: "International Journal of Science & Engineering Development Research, vol. 7, no. 7, pp. 5–10, 2022"

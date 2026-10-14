@@ -1,0 +1,7 @@
+{%- comment -%}
+  An image (or two side by side) with an optional caption, for use inside an entry's Markdown.
+  {% include figure.html src="/assets/img/write-draw-move/setup.jpg" alt="Participant drawing" caption="Study setup" %}
+  {% include figure.html src="a.jpg" alt="…" src2="b.jpg" alt2="…" caption="Before and after" %}
+  Add wide=true to let a single image run wider than the text.
+{%- endcomment -%}
+<figure class="fig{% if include.src2 %} fig--pair{% endif %}{% if include.wide %} fig--wide{% endif %}"><img src="{{ include.src | relative_url }}" alt="{{ include.alt }}" loading="lazy">{% if include.src2 %}<img src="{{ include.src2 | relative_url }}" alt="{{ include.alt2 }}" loading="lazy">{% endif %}{% if include.caption %}<figcaption>{{ include.caption }}</figcaption>{% endif %}</figure>

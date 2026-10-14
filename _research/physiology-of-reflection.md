@@ -5,18 +5,18 @@ badge: "In progress"
 tagline: "What self-reflection looks like in the body."
 patch: pulse
 order: 2
-kicker: "In preparation"
-summary: "Measuring the physiological effects of self-reflection alongside what people report feeling."
-meta: "Self-reflection · Physiological signals"
+summary: "Measuring what self-reflection does to the body, alongside what people say they feel."
 facts:
   Status: Manuscript in preparation
   # Authorship: Co-first author
-  Collaborators: G. Moharrer (co-first author), V. Lambert, A. Kleinsmith
-  Lab: Affective Behavior Interaction Lab, UMBC
+  Team: G. Moharrer, V. Lambert, A. Kleinsmith
+  Lab: Affective Behavior Interaction Lab
 ---
 
-This study looks at what self-reflection does to the body, not just to how people say they feel.
+## The question
+
+People can tell us how reflecting on a memory made them feel. This study looks at what their bodies register while they do it.
 
 {% comment %}
-TODO (Kavya): describe the measures and the question once you're comfortable sharing them publicly.
+TODO (Kavya): add the measures and early findings once you're comfortable sharing them publicly.
 {% endcomment %}
