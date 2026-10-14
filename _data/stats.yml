@@ -1,0 +1,9 @@
+# The stat strip on Base. Each stat is either a fixed `value`,
+# or `count:` the name of a data file, which counts its entries for you
+# (add a paper to publications.yml and the number goes up on its own).
+- value: "2029"
+  label: PhD expected
+- count: publications
+  label: Publications
+- count: teaching
+  label: Courses taught as TA

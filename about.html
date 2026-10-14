@@ -1,0 +1,55 @@
+---
+layout: default
+title: About
+description: "About Kavya Rajendran: education, teaching and service in Human-Centered Computing at UMBC."
+---
+{%- assign a = site.data.about -%}
+<section class="hero hero--about">
+  {% include porthole.html small=true %}
+  <div class="hero-text">
+    <div class="eyebrow"><span>Crew profile</span></div>
+    <h1 class="display">Hi, I'm {{ site.author.name | split: " " | first }}.</h1>
+    <p class="lede">{{ a.bio }}</p>
+    <div class="chips">{% for f in a.facts %}<span class="chip chip--round">{{ f }}</span>{% endfor %}</div>
+  </div>
+</section>
+
+<section class="sec">
+  {% include section-head.html num="01" title="Trajectory" %}
+  <ol class="trajectory">
+    {%- for e in a.education %}
+    <li class="stop{% if e.now %} stop--now{% endif %}">
+      <span class="label">{{ e.when }}{% if e.now %} · now{% endif %}</span>
+      <span class="stop-title">{{ e.degree }}</span>
+      <span class="stop-text">{{ e.school }}</span>
+    </li>
+    {%- endfor %}
+  </ol>
+</section>
+
+<section class="sec">
+  {% include section-head.html num="02" title="Teaching" %}
+  <div class="grid grid--tiles">
+    {%- for c in site.data.teaching %}
+    <div class="tile">
+      <span class="tile-code">{{ c.code }}</span>
+      <span class="tile-title">{{ c.course }}</span>
+      <span class="label">{{ c.term }}</span>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="sec">
+  {% include section-head.html num="03" title="Beyond the lab" %}
+  <div class="split">
+    <div>
+      <span class="label">Service</span>
+      <div class="chips">{% for s in a.service %}<span class="chip chip--round">{{ s }}</span>{% endfor %}</div>
+    </div>
+    <div>
+      <span class="label">Recognition</span>
+      <div class="chips">{% for r in a.recognition %}<span class="chip chip--round chip--lit">{{ r }}</span>{% endfor %}</div>
+    </div>
+  </div>
+</section>

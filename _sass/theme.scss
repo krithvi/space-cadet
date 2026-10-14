@@ -1,0 +1,249 @@
+// ── Site theme ──────────────────────────────────────────────────────
+// The Neuralyzer case study's look (night sky, glowing Source Code Pro headings, JetBrains Mono labels,
+// dark cards), applied to every regular page. Scoped to body.site so the case study keeps its own CSS.
+
+// Tokens (same values as neuralyzer.css)
+$bg: #0b0c12;
+$surface: #232532;
+$n100: #f3f5fe; $n200: #e4e7f5; $n300: #cfd3e5; $n400: #b2b6ca; $n500: #9397ab; $n600: #75798c; $n800: #3f424d; $n900: #292b31;
+$a: #5599bb; $a200: #dcedf6; $a300: #c0e0ef; $a400: #93cbe3; $a700: #35617d; $a900: #18303e;
+$cyan: #8ee8ff;
+$blue-dk: #368; $blue-lt: #6bd;
+$heading: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, monospace;
+$label: 'JetBrains Mono', ui-monospace, monospace;
+$body: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+$glow: 0 0 2px rgba(89, 153, 187, 0.85), 0 0 18px rgba(89, 153, 187, 0.42), 0 0 44px rgba(51, 102, 136, 0.3);
+$lift: 0 0 0 1px $a, 0 10px 28px rgba(0, 0, 0, 0.6);
+
+body.site {
+  background: $bg;
+  font-family: $body;
+  color: #e9e9ed;
+  -webkit-font-smoothing: antialiased;
+
+  #canvas { opacity: 0.6; }          // stars a touch dimmer so cards stay readable
+
+  .container-sm {                    // the scroll container from main.scss
+    padding: var(--nav-h, 80px) 0 0;
+    color: #e9e9ed;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  a { color: $a300; }
+  a:hover { color: $a200; }
+  :focus-visible { outline: 2px solid $a; outline-offset: 3px; }
+  ::selection { background: #274a5f; }
+}
+
+.page { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+.page { padding-bottom: 32px; }
+
+// ── Type ──
+.eyebrow {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  font-family: $label; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: $n500;
+  > :first-child { color: $a400; }
+}
+.display {
+  margin: 20px 0 0;
+  font-family: $heading; font-weight: 700; font-size: clamp(32px, 4.4vw, 52px);
+  line-height: 1.05; letter-spacing: -0.046em; color: $n100; text-shadow: $glow; text-wrap: balance;
+}
+.display--xl { font-size: clamp(40px, 5.6vw, 64px); }
+.lede { margin: 20px 0 0; max-width: 52ch; font-size: 19px; line-height: 1.6; color: $n300; text-wrap: pretty; }
+.label { display: block; font-family: $label; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: $n500; }
+.fine { margin: 12px 0 0; font-family: $label; font-size: 11px; color: $n600; }
+
+// ── Numbered section heading: 01 · Title ──── ──
+.sec { margin-top: 96px; }
+.sec-head { display: flex; align-items: center; gap: 16px; margin: 0 0 32px; }
+.sec-num { font-family: $label; font-size: 13px; letter-spacing: 0.14em; color: $a400; }
+.sec-title { font-family: $heading; font-weight: 600; font-size: clamp(22px, 2.6vw, 30px); letter-spacing: -0.03em; color: $n100; text-shadow: $glow; }
+.sec-rule { flex: 1; height: 2px; border-radius: 2px; background: linear-gradient(to right, $blue-lt 0%, $a 22%, $blue-dk 55%, transparent 100%); }
+
+// ── Buttons and chips ──
+.btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.btn {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px;
+  border: 1px solid $a; border-radius: 6px;
+  font-family: $label; font-size: 13px; letter-spacing: 0.04em; color: $a300; text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+  &:hover { background: $a900; color: $a200; transform: translateY(-2px); }
+}
+.btn--primary { background: $a; color: $bg; font-weight: 700; &:hover { background: $blue-lt; color: $bg; } }
+.btn--quiet { border-color: $n800; color: $n400; }
+.btn--small { min-height: 40px; padding: 0 14px; font-size: 12px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.chip {
+  display: inline-block; align-self: flex-start; padding: 3px 8px;
+  border: 1px solid $a700; border-radius: 4px;
+  font-family: $label; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: $a400;
+}
+.chip--lit { border-color: $a; background: $a900; color: $a300; }
+.chip--round { padding: 6px 12px; border-color: $n800; border-radius: 999px; background: $bg; font-size: 12px; letter-spacing: 0.02em; text-transform: none; color: $n300; }
+.chip--round.chip--lit { border-color: $a; color: $a300; }
+
+// ── Hero with the porthole ──
+.hero { display: flex; flex-wrap: wrap; align-items: center; gap: 56px; padding-top: 72px; }
+.hero-text { flex: 999 1 480px; min-width: 0; }
+.hero > .porthole { flex: 1 1 300px; }
+
+.porthole { position: relative; width: 320px; height: 320px; max-width: 100%; margin: 0 auto; }
+.porthole-orbit {
+  position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible;
+  ellipse { fill: none; stroke: $a700; stroke-width: 1; }
+  circle { fill: $cyan; }
+  animation: orbit 60s linear infinite;
+}
+@keyframes orbit { to { transform: rotate(360deg); } }
+.porthole-glass {
+  position: absolute; inset: 12.5%; border-radius: 50%; padding: 8px; background: $surface;
+  box-shadow: 0 0 0 2px $a, 0 0 0 10px $a900, 0 0 0 11px $a700, 0 0 40px rgba(85, 153, 187, 0.35);
+  img, .porthole-initials { width: 100%; height: 100%; border-radius: 50%; }
+  img { display: block; object-fit: cover; }
+}
+.porthole-initials {
+  display: flex; align-items: center; justify-content: center; background: $n900;
+  font-family: $heading; font-weight: 700; font-size: 56px; letter-spacing: -0.04em; color: $a400; text-shadow: $glow;
+}
+.porthole--small { width: 280px; height: 280px; flex: 0 0 auto; }
+.hero--about { padding-top: 72px; }
+
+// ── Stats ──
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 72px; }
+.stat { border: 1px solid $n800; border-radius: 4px; padding: 20px 20px 22px; background: $bg; margin: 0; }
+.stat-n { font-family: $label; font-size: 30px; line-height: 1; color: $a400; }
+.stat-l { margin-top: 10px; font-family: $label; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: $n400; font-weight: 400; }
+
+// ── Cards ──
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.mcard, .door {
+  display: flex; flex-direction: column; overflow: hidden;
+  background: $surface; border-radius: 8px; box-shadow: 0 0 0 1px $n800;
+  color: $n200; text-decoration: none;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  &:hover { box-shadow: $lift; transform: translateY(-3px); color: $n200; }
+}
+.mcard-media {
+  aspect-ratio: 16 / 10; background: $a900;
+  display: flex; align-items: center; justify-content: center;
+  img { width: 100%; height: 100%; object-fit: cover; display: block; }
+}
+.mcard-body { padding: 18px 20px 22px; display: flex; flex-direction: column; }
+.mcard-title { margin: 12px 0 0; font-family: $heading; font-weight: 700; font-size: 19px; letter-spacing: -0.02em; color: $n100; }
+.mcard-text { margin: 6px 0 0; font-size: 15px; line-height: 1.5; color: $n400; }
+
+// Doorways on Base: picture left, words right
+.doors { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+.door { flex-direction: row; min-height: 200px; }
+.door-media {
+  flex: 0 0 42%; background: $a900; display: flex; align-items: center; justify-content: center;
+  img { width: 100%; height: 100%; object-fit: cover; display: block; }
+}
+.door-body { flex: 1; padding: 24px; display: flex; flex-direction: column; justify-content: center; gap: 8px; }
+.door-body .label { color: $a400; }
+.door-title { font-family: $heading; font-weight: 700; font-size: 24px; color: $n100; }
+.door-text { font-size: 15px; line-height: 1.5; color: $n400; }
+
+// ── About: trajectory and teaching ──
+.trajectory { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px 16px; }
+.stop { position: relative; padding-top: 34px; display: flex; flex-direction: column; gap: 6px; }
+.stop::before { content: ""; position: absolute; top: 9px; left: 0; right: -16px; border-top: 2px dashed $a700; }
+.stop::after { content: ""; position: absolute; top: 2px; left: 0; width: 14px; height: 14px; border-radius: 50%; background: #173447; border: 2px solid $a; }
+.stop--now::before { border-top-style: solid; border-color: $a; right: 0; }
+.stop--now::after { top: 0; width: 18px; height: 18px; border: 0; background: $cyan; box-shadow: 0 0 12px $blue-lt; }
+.stop--now .label { color: $a400; }
+.stop-title { font-family: $heading; font-weight: 700; font-size: 20px; color: $n100; }
+.stop-text { font-size: 15px; color: $n400; }
+
+.grid--tiles { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.tile { display: flex; flex-direction: column; gap: 8px; padding: 22px 22px 24px; background: $surface; border-radius: 8px; box-shadow: 0 0 0 1px $n800; }
+.tile-code { font-family: $label; font-size: 26px; color: $a400; }
+.tile-title { font-size: 15px; color: $n200; }
+
+.split { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+
+// ── Publications ──
+.pubs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.pub { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; padding: 20px 22px; background: $surface; border-radius: 8px; box-shadow: 0 0 0 1px $n800; }
+.pub-tag {
+  flex: 0 0 auto; width: 52px; height: 52px; border-radius: 50%; border: 2px solid $a;
+  display: flex; align-items: center; justify-content: center;
+  font-family: $label; font-weight: 700; font-size: 14px; color: $cyan;
+}
+.pub-body { flex: 999 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.pub-title { font-family: $heading; font-weight: 700; font-size: 17px; line-height: 1.4; color: $n100; }
+.pub-short { font-family: $label; font-size: 12px; color: $a400; }
+.pub-authors { font-size: 13px; color: $n500; strong { color: $n200; font-weight: 600; } }
+
+// ── Posters ──
+.posters { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 260px)); gap: 24px; }
+.poster-tile { margin: 0; figcaption { margin-top: 12px; display: flex; flex-direction: column; gap: 4px; } }
+.poster-title { font-size: 15px; color: $n200; }
+.poster-ask { font-family: $label; font-size: 12px; }
+.poster {
+  position: relative; width: 100%; margin: 0;
+  aspect-ratio: 1 / var(--ratio, 1.414);
+  background: $a900 center / contain no-repeat;
+  border-radius: 6px; box-shadow: 0 0 0 1px $a;
+  user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+}
+.poster-shield { position: absolute; inset: 0; }
+.poster--empty {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+  span { font-family: $label; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: $n500; }
+}
+@media print { .poster { display: none; } }
+
+// ── Inner page header ──
+.page-head { padding-top: 72px; }
+
+// ── A single study or case study (_layouts/entry.html) ──
+.back { display: inline-block; margin-top: 48px; font-family: $label; font-size: 12px; text-decoration: none; }
+.entry-head { display: flex; flex-wrap: wrap; align-items: center; gap: 48px; margin-top: 24px; }
+.entry-head-text { flex: 999 1 460px; min-width: 0; .chip { margin-bottom: 4px; } }
+.entry-head-art {
+  flex: 1 1 260px; display: flex; align-items: center; justify-content: center;
+  aspect-ratio: 4 / 3; border-radius: 8px; background: $a900; overflow: hidden; box-shadow: 0 0 0 1px $n800;
+  img { width: 100%; height: 100%; object-fit: cover; display: block; }
+}
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 48px 0 0; dd { margin: 8px 0 0; font-size: 15px; color: $n200; } }
+.prose {
+  max-width: 68ch; margin-top: 56px; font-size: 17px; line-height: 1.7; color: $n300;
+  h2 { margin: 56px 0 0; font-family: $heading; font-weight: 600; font-size: 26px; letter-spacing: -0.03em; color: $n100; text-shadow: $glow; }
+  h3 { margin: 40px 0 0; font-family: $heading; font-weight: 600; font-size: 19px; color: $n100; }
+  p, ul, ol { margin: 18px 0 0; }
+  img { max-width: 100%; height: auto; border-radius: 8px; margin-top: 24px; }
+  blockquote { margin: 24px 0 0; padding-left: 18px; border-left: 1px solid $a700; color: $n400; }
+}
+
+// ── Footer ──
+.site-foot {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px;
+  width: calc(100% - 64px); max-width: 1056px; margin: 112px auto 0; padding: 28px 0 56px; border-top: 1px solid $n800;
+  font-family: $label; font-size: 12px; letter-spacing: 0.04em; color: $n500;
+}
+.site-foot-links { display: flex; flex-wrap: wrap; gap: 18px; }
+
+// ── Phones ──
+@media (max-width: 640px) {
+  .page { padding-left: 18px; padding-right: 18px; }
+  .site-foot { width: calc(100% - 36px); }
+  .hero { gap: 32px; padding-top: 40px; }
+  .hero > .porthole { order: -1; flex: 0 0 auto; width: 220px; height: 220px; }
+  .porthole--small { width: 200px; height: 200px; }
+  .porthole-initials { font-size: 40px; }
+  .sec { margin-top: 72px; }
+  .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 48px; }
+  .stat { padding: 14px 12px 16px; }
+  .stat-n { font-size: 22px; }
+  .stat-l { font-size: 9px; letter-spacing: 0.06em; }
+  .door { flex-direction: column; }
+  .door-media { flex-basis: auto; aspect-ratio: 16 / 9; }
+  .doors { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .porthole-orbit { animation: none; }
+  .mcard, .door, .btn { transition: none; }
+}

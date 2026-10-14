@@ -1,0 +1,33 @@
+# Content for the About page. Short is better: these render as tags and tiles.
+bio: >-
+  A PhD student in Human-Centered Computing at UMBC. I came from computer science
+  and now work where emotion, self-expression and technology meet.
+facts:
+  - Catonsville, MD
+  - Affective Behavior Interaction Lab
+  - ACM SIGCHI
+  - CWIT, UMBC
+
+# The trajectory timeline. `now: true` lights up the current stop.
+education:
+  - when: 2018 – 2022
+    degree: BE, Computer Science
+    school: SVCE, India
+  - when: 2022 – 2024
+    degree: MS, Human-Centered Computing
+    school: UMBC
+  - when: 2025 – 2029
+    degree: PhD, Human-Centered Computing
+    school: UMBC
+    now: true
+
+service:
+  - FIKA Committee Member
+  - ACM SIGCSE '24 volunteer
+  - BNConf '23 volunteer
+  - Know-I Research Forum, executive committee
+  - Math coach, Baltimore schools
+
+recognition:
+  - Top 4 · cult.fit case study challenge '23
+  - 3rd · SVCE poster contest '20

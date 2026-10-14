@@ -1,16 +1,20 @@
-<ol class="pubs">
-  {%- for p in site.data.publications %}
-  <li>
-    <span class="pub-tag">{{ p.tag }}</span>
-    <div>
-      <span class="pub-title">{{ p.title }}</span>
-      <span class="pub-authors">{{ p.authors | markdownify | remove: "<p>" | remove: "</p>" | strip | replace: "†", "<sup>†</sup>" }}</span>
-      <span class="pub-venue">{{ p.venue }}</span>
-      {%- if p.links %}
-      <div class="pub-links">{% for l in p.links %}<a href="{{ l.url }}">{{ l.label }}</a>{% unless forloop.last %} · {% endunless %}{% endfor %}</div>
-      {%- endif %}
-    </div>
-  </li>
-  {%- endfor %}
-</ol>
-<p class="fineprint">† Co-first authors.</p>
+{%- if site.data.publications.size > 0 %}
+<section class="sec">
+  {% include section-head.html num=include.num title="Publications" %}
+  <ol class="pubs">
+    {%- for p in site.data.publications %}
+    <li class="pub">
+      <span class="pub-tag">{{ p.tag }}</span>
+      <div class="pub-body">
+        <span class="pub-title">{{ p.title }}</span>
+        <span class="pub-short">{{ p.short }}</span>
+        <span class="pub-authors">{{ p.authors | markdownify | remove: "<p>" | remove: "</p>" | strip | replace: "†", "<sup>†</sup>" }}</span>
+      </div>
+      {%- if p.url %}<a class="btn btn--small" href="{{ p.url }}">Read paper</a>{% endif %}
+    </li>
+    {%- endfor %}
+  </ol>
+  {%- assign cofirst = site.data.publications | map: "authors" | join: " " -%}
+  {%- if cofirst contains "†" %}<p class="fine">† Co-first authors</p>{% endif %}
+</section>
+{%- endif %}

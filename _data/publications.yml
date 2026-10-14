@@ -1,7 +1,9 @@
-# One entry per publication, newest first.
+# One entry per publication, newest first. The count on Base updates on its own.
+# short: the one-line venue shown on the card.
 # Wrap your own name in **double asterisks** to highlight it. Mark co-first authors with † after their names.
 - tag: C1
   title: "Write! Draw! Move!: Investigating the Effects of Positive and Negative Self-Reflection on Emotion through Self-Expression Modalities"
+  short: "ACM ICMI '25 · co-first author"
   authors: "Golnaz Moharrer†, **Kavya Rajendran**†, Rowena Pinto, Andrea Kleinsmith"
   venue: "Proceedings of the 27th ACM International Conference on Multimodal Interaction (ICMI '25), pp. 540–549"
   links:
@@ -12,3 +14,4 @@
   title: "A Sentiment Analysis Study of Movie Reviews"
   authors: "K. G. Rajendran, K. Annadurai, **K. Rajendran**, P. S. Rathnakumar"
   venue: "International Journal of Science & Engineering Development Research, vol. 7, no. 7, pp. 5–10, 2022"
+# TODO: Change the tags as it is a very CV feature than an actual portfolio website

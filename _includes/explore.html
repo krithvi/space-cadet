@@ -1,0 +1,22 @@
+{%- comment -%} The two doorways on Base. Counts and the Design Lab picture update themselves from the collections. {%- endcomment -%}
+{%- assign studies = site.research -%}
+{%- assign cases = site.design | sort: "order" -%}
+{%- assign cover = cases | where_exp: "e", "e.thumb" | first -%}
+<div class="doors">
+  <a class="door" href="{{ '/research.html' | relative_url }}">
+    <div class="door-media">{% include patch.html kind="path" px=120 %}</div>
+    <div class="door-body">
+      <span class="label">{{ studies | size }} {% if studies.size == 1 %}study{% else %}studies{% endif %} · {{ site.data.publications | size }} {% if site.data.publications.size == 1 %}paper{% else %}papers{% endif %}</span>
+      <span class="door-title">Research <span aria-hidden="true">→</span></span>
+      <span class="door-text">Emotion, reflection and the feed.</span>
+    </div>
+  </a>
+  <a class="door" href="{{ '/design.html' | relative_url }}">
+    <div class="door-media">{% if cover %}<img src="{{ cover.thumb | relative_url }}" alt="" loading="lazy">{% else %}{% include patch.html px=120 %}{% endif %}</div>
+    <div class="door-body">
+      <span class="label">{{ cases | size }} {% if cases.size == 1 %}case study{% else %}case studies{% endif %}</span>
+      <span class="door-title">Design & Code<span aria-hidden="true">→</span></span>
+      <span class="door-text">UX case studies and prototypes.</span>
+    </div>
+  </a>
+</div>

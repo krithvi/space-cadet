@@ -1,0 +1,6 @@
+{%- comment -%} Top of an inner page. Usage: {% include page-head.html eyebrow="Research log" title="..." lede="..." %} {%- endcomment -%}
+<header class="page-head">
+  {%- if include.eyebrow %}<div class="eyebrow"><span>{{ include.eyebrow }}</span></div>{% endif %}
+  <h1 class="display">{{ include.title }}</h1>
+  {%- if include.lede %}<p class="lede">{{ include.lede }}</p>{% endif %}
+</header>

@@ -1,12 +1,17 @@
 ---
-title: "News from home, via the feed"
+title: "International Students vs News"
+status: in-progress
+badge: "In progress · Poster '26"
+tagline: "How the social media feed makes international students feel reading about news."
+patch: feed
 order: 3
 kicker: "In preparation · Poster, COEIT Research Day 2026"
 summary: "The emotional effects of reading news on social media for international students in the US."
 meta: "Wellbeing · Social media · International students"
 facts:
   Status: Manuscript in preparation
-  Collaborator: A. Kleinsmith
+  # Authorship: First author
+  Collaborator: S. Singh, A. Kleinsmith
   Poster: UMBC COEIT Research Day, May 2026
 ---
 

@@ -1,0 +1,6 @@
+<section class="stats" aria-label="At a glance">
+  {%- for s in site.data.stats %}
+  {%- if s.count %}{% assign v = site.data[s.count] | size %}{% else %}{% assign v = s.value %}{% endif %}
+  <div class="stat"><div class="stat-n">{{ v }}</div><div class="stat-l">{{ s.label }}</div></div>
+  {%- endfor %}
+</section>

@@ -4,8 +4,8 @@
   Usage: {% include poster.html src="/assets/posters/x.webp" alt="..." ratio="1.414" %}
   `ratio` is height ÷ width (A-series portrait posters are 1.414, landscape 0.707).
 {%- endcomment -%}
-<figure class="poster" role="img" aria-label="{{ include.alt }}"
+<div class="poster" role="img" aria-label="{{ include.alt }}"
         style="--ratio: {{ include.ratio | default: 1.414 }}; background-image: url('{{ include.src | relative_url }}')"
         oncontextmenu="return false" ondragstart="return false">
   <span class="poster-shield" aria-hidden="true"></span>
-</figure>
+</div>

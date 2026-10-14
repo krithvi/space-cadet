@@ -1,0 +1,49 @@
+---
+# front matter sappa matter
+layout: default
+title: Kavya Rajendran · Human-Centered Computing
+description: "Kavya Rajendran is a PhD student in Human-Centered Computing at UMBC, researching emotion, self-reflection and self-expression in interactive systems."
+---
+
+<section class="hero">
+  <span class="kicker">Incoming transmission · UMBC · Human-Centered Computing</span>
+  <h1>{{ "Hello World!" | downcase }}</h1>
+  <p class="tagline">Space: the final frontier. These are the voyages of <a href="{{ '/about.html' | relative_url }}">Kavya Rajendran</a>.</p>
+
+  <p class="lede">
+    I'm a PhD student in Human-Centered Computing at UMBC. My research looks at how people feel
+    when they reflect on their experiences, express themselves through writing, drawing and movement,
+    and take in the world through their screens, and what interactive systems could do with that. I will be
+    exploring the intersection of affective computing and emotional well-being through the lenses of 
+    collaborative reflection and dance therapy.
+  </p>
+
+  <div class="status-line"><span class="dot" aria-hidden="true"></span>Status: PhD student, 2025–2029 · Open to research collaborations</div>
+  {% comment %}
+    TODO (Kavya): add what you're actually open to, e.g. "summer 2027 research internships".
+  {% endcomment %}
+
+  <div class="cta-row">
+    <a class="cta" href="{{ '/research.html' | relative_url }}">Read the Research Log</a>
+    <a class="cta" href="https://krithvi.github.io/krithvi/CV.pdf">Download CV</a>
+    <a class="cta" href="mailto:kvyrjndrn@gmail.com">Open a Channel</a>
+  </div>
+</section>
+
+<section class="page-section" style="margin-top: 48px;">
+  <span class="kicker">Current Missions</span>
+  <h2>What I'm working on</h2>
+  {% include entry-list.html entries=site.research %}
+</section>
+
+<section class="page-section">
+  <span class="kicker">Ground Control</span>
+  <h2>Where I'm based</h2>
+  <p>
+    I'm a research volunteer in the Affective Behavior Interaction Lab at UMBC and a teaching assistant
+    for courses in interface design, interaction design, and accessibility. Before the PhD, I completed
+    an MS in Human-Centered Computing at UMBC (defended my thesis too!) and a BE in Computer Science 
+    Engineering at SVCE in India.
+    Read more on the <a href="{{ '/about.html' | relative_url }}">About</a> page.
+  </p>
+</section>

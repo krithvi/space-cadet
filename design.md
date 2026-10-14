@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Design Lab · Kavya Rajendran
+title: Design · Kavya Rajendran
 description: "UX case studies, prototypes and visual design work by Kavya Rajendran."
 ---
 

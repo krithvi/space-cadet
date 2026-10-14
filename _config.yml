@@ -1,11 +1,9 @@
-theme: jekyll-theme-hacker
 markdown: kramdown
 kramdown:
   input: GFM
 
-# GitHub Pages serves this repo at https://krithvi.github.io/space-cadet/
-# baseurl is that subpath; every asset and link must go through `| relative_url` so it resolves both locally and on Pages.
-# The Actions workflow passes --baseurl, which overrides this value; it's here so `jekyll serve` locally matches production.
+# Served at the root of the custom domain, so baseurl stays empty.
+# Every asset and link still goes through `| relative_url`, so a future move to a subpath only means changing baseurl.
 baseurl: ""
 url: "https://krithvi.space/"
 
@@ -17,6 +15,8 @@ exclude:
   - vendor
   - .gitsecret
   - README.md
+  - tools
+  - posters-src
 
 plugins:
   - jekyll-feed
@@ -38,4 +38,23 @@ defaults:
   - scope: { path: "", type: research }
     values: { layout: entry, section: Research, section_url: /research.html }
   - scope: { path: "", type: design }
-    values: { layout: entry, section: Design Lab, section_url: /design.html }
+    values: { layout: entry, section: Design, section_url: /design.html }
+
+# ── You ─────────────────────────────────────────────────────────────
+# Everything on Base and About that's about you lives here.
+# Leave a link empty ("") to hide its button.
+title: Kavya Rajendran
+description: "Kavya Rajendran is a PhD student in Human-Centered Computing at UMBC, exploring affective computing and emotional well-being."
+author:
+  name: Kavya Rajendran
+  initials: KR                     # shown in the porthole until a photo is set
+  portrait: ""                     # e.g. /assets/img/kavya.jpg (square, at least 600×600)
+  eyebrow: [PhD · Human-Centered Computing, UMBC, 2025 – 2029]
+  summary: "I will be exploring the intersection of affective computing and emotional well-being through the lenses of collaborative reflection and dance therapy."
+  location: Catonsville, MD
+  email: kvyrjndrn@gmail.com
+  cv: https://krithvi.github.io/krithvi/CV.pdf
+  scholar: https://scholar.google.com/citations?user=w7iv7qgAAAAJ&hl=en
+  linkedin: linkedin.com/in/kavya-rajendran
+  orcid: ""
+  github: https://github.com/krithvi

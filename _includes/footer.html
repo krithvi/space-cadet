@@ -1,0 +1,10 @@
+<footer class="site-foot">
+  <span>Open channel: <a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a></span>
+  <span class="site-foot-links">
+    {%- if site.author.cv != "" %}<a href="{{ site.author.cv }}">CV</a>{% endif %}
+    {%- if site.author.scholar != "" %}<a href="{{ site.author.scholar }}">Scholar</a>{% endif %}
+    {%- if site.author.linkedin != "" %}<a href="{{ site.author.linkedin }}">LinkedIn</a>{% endif %}
+    {%- if site.author.orcid != "" %}<a href="{{ site.author.orcid }}">ORCID</a>{% endif %}
+    <span>{{ site.author.location }}</span>
+  </span>
+</footer>

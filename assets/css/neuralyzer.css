@@ -38,9 +38,9 @@
   /* how far the site starfield reads through. 0 = off, 1 = full site brightness */
   --sky: .5;
 
-  /* the site nav is 10px padding + one line of Source Code Pro. Nudge this if
-     you ever change that padding — the progress bar hangs off it. */
-  --nav-h: 42px;
+  /* Height of the site nav. navigation.html measures the real nav and sets this
+     live (it grows when the keys wrap on a phone); 76px is only the fallback. */
+  --nav-h: 76px;
 }
 
 /* --- the site's shell, kept ------------------------------------------------
@@ -73,8 +73,8 @@
   scroll-behavior: smooth;
 }
 
-.ncase a { color: var(--a300); text-decoration: none; border-bottom: 1px solid var(--a700); }
-.ncase a:hover { color: var(--a200); border-bottom-color: var(--a400); }
+.ncase .n-scroll a { color: var(--a300); text-decoration: none; border-bottom: 1px solid var(--a700); }
+.ncase .n-scroll a:hover { color: var(--a200); border-bottom-color: var(--a400); }
 .ncase :focus-visible { outline: 2px solid var(--a); outline-offset: 3px; }
 .ncase ::selection { background: var(--a800); }
 
@@ -127,7 +127,7 @@
 
 /* --- measure -------------------------------------------------------------- */
 .n-col { --pad-l: 32px; --pad-r: 32px; max-width: 1120px; margin: 0 auto; padding: 0 var(--pad-r) 0 var(--pad-l); }
-.n-col--hero { padding-top: 96px; }
+.n-col--hero { padding-top: calc(var(--nav-h) + 54px); }
 .n-col--gap { padding-top: 64px; }
 .n-col--wide { max-width: 1360px; padding-top: 56px; }
 

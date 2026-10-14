@@ -49,6 +49,11 @@
   window.addEventListener('resize', onScroll);
   onScroll();
 
+  /* the nav's live height, set by navigation.html; 42 was the old one-line nav */
+  function navH() {
+    return parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 42;
+  }
+
   /* smooth in-page jumps inside the scroll container */
   railLinks.concat([].slice.call(document.querySelectorAll('a[href^="#"]:not(.n-rail a)')))
     .forEach(function (a) {
@@ -57,7 +62,7 @@
         if (!el) return;
         e.preventDefault();
         scroller.scrollTo({
-          top: scroller.scrollTop + el.getBoundingClientRect().top - scroller.getBoundingClientRect().top - 40,
+          top: scroller.scrollTop + el.getBoundingClientRect().top - scroller.getBoundingClientRect().top - navH(),
           behavior: 'smooth'
         });
       });

@@ -1,0 +1,14 @@
+<section class="hero">
+  <div class="hero-text">
+    <div class="eyebrow">{% for e in site.author.eyebrow %}<span>{{ e }}</span>{% endfor %}</div>
+    <h1 class="display display--xl">{{ site.author.name }}</h1>
+    <p class="lede">{{ site.author.summary }}</p>
+    <div class="btn-row">
+      {%- if site.author.cv != "" %}<a class="btn btn--primary" href="{{ site.author.cv }}">Download CV</a>{% endif %}
+      {%- if site.author.email != "" %}<a class="btn" href="mailto:{{ site.author.email }}">Email me</a>{% endif %}
+      {%- if site.author.scholar != "" %}<a class="btn btn--quiet" href="{{ site.author.scholar }}">Google Scholar</a>{% endif %}
+      {%- if site.author.linkedin != "" %}<a class="btn btn--quiet" href="{{ site.author.linkedin }}">LinkedIn</a>{% endif %}
+    </div>
+  </div>
+  {% include porthole.html %}
+</section>
