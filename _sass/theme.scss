@@ -164,6 +164,24 @@ body.site {
 
 .split { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
 
+// ── About: crew and community cards ──
+.crew-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(#{"min(100%, 420px)"}, 1fr)); gap: 12px; }
+.crew { display: flex; flex-direction: column; gap: 14px; padding: 22px 22px 20px; background: $surface; border-radius: 8px; box-shadow: 0 0 0 1px $n800; }
+.crew-top { display: flex; align-items: flex-start; gap: 14px; }
+.crew-mark {
+  flex: none; width: 48px; height: 48px; border-radius: 50%; object-fit: cover;
+  display: flex; align-items: center; justify-content: center;
+  border: 1.5px solid $a; background: $bg;
+  font-family: $label; font-size: 11px; letter-spacing: 0.04em; color: $cyan;
+}
+.crew-org { margin: 2px 0 0; font-family: $heading; font-weight: 700; font-size: 17px; line-height: 1.3; letter-spacing: -0.01em; color: $n100; a { color: inherit; text-decoration: none; } }
+.crew-about { margin: 4px 0 0; font-size: 13px; line-height: 1.5; color: $n500; }
+.crew-role { margin: 0; font-size: 15px; line-height: 1.55; color: $n300; }
+.crew-role-name { color: $n100; font-weight: 600; }
+.crew-events { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; li { padding: 4px 10px; border-radius: 999px; background: $bg; border: 1px solid $n800; font-family: $label; font-size: 11px; color: $n300; } }
+.crew-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: auto; padding-top: 4px; }
+.crew-years { margin-left: auto; font-family: $label; font-size: 11px; color: $n600; }
+
 // ── Publications ──
 .pubs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
 .pub { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; padding: 22px 24px; background: $surface; border-radius: 8px; box-shadow: 0 0 0 1px $n800; }

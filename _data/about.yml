@@ -21,13 +21,40 @@ education:
     school: UMBC
     now: true
 
-service:
-  - FIKA Committee Member
-  - ACM SIGCSE '24 volunteer
-  - BNConf '23 volunteer
-  - Know-I Research Forum, executive committee
-  - Math coach, Baltimore schools
+# "Crew and community" cards on About, in this order.
+# mark: 2–4 letters shown in the round badge (or set logo: /assets/img/logos/x.png for a real logo).
+# tags: the first one is highlighted. events: a growing list of chips (add the next conference here).
+# years: leave "" to hide.
+crew:
+  - org: FIKA · HCC Break Hour
+    mark: FIKA
+    about: A weekly break for the HCC department, after the Swedish ritual of pausing for coffee and conversation.
+    role: Committee Member
+    did: Plan each week's activity to keep a casual community space, with resources, motivation and, often, snacks and coffee.
+    tags: [Committee]
+    years: 2026 – now
 
-recognition:
-  - Top 4 · cult.fit case study challenge '23
-  - 3rd · SVCE poster contest '20
+  - org: Student Volunteer · Conferences
+    mark: SV
+    about: Helping research and design conferences run behind the scenes.
+    role: Student Volunteer
+    events: [ACM SIGCSE TS '24, BNConf '23]
+    tags: [Volunteer]
+    years: 2023 – now
+
+  - org: Sherman Scholars · Reach Together
+    mark: SSRT
+    about: UMBC's tutoring program in Baltimore City schools.
+    role: Math Coach
+    did: Coached students who needed extra support in math, across five Baltimore schools.
+    events: [Cherry Hill, Arundel, Curtis Bay, Park Heights, Fallstaff]
+    tags: [Volunteer]
+    years: 2023 – 2024
+
+  - org: Know-I Research Forum · SVCE
+    mark: K-I
+    about: The student research forum at Sri Venkateswara College of Engineering, India.
+    role: Committee Member · Gazette (social media) Lead
+    did: Led the copywriting and social media for the forum's events.
+    tags: [Leadership, Committee]
+    years: 2019 – 2022

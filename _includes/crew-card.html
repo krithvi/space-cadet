@@ -1,0 +1,16 @@
+{%- assign c = include.item -%}
+<article class="crew">
+  <div class="crew-top">
+    {%- if c.logo %}<img class="crew-mark" src="{{ c.logo | relative_url }}" alt="">{% else %}<span class="crew-mark" aria-hidden="true">{{ c.mark }}</span>{% endif %}
+    <div>
+      <h3 class="crew-org">{% if c.link %}<a href="{{ c.link }}">{{ c.org }}</a>{% else %}{{ c.org }}{% endif %}</h3>
+      <p class="crew-about">{{ c.about }}</p>
+    </div>
+  </div>
+  <p class="crew-role"><span class="crew-role-name">{{ c.role }}</span>{% if c.did %} · {{ c.did }}{% endif %}</p>
+  {%- if c.events %}<ul class="crew-events">{% for e in c.events %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+  <div class="crew-foot">
+    {%- for t in c.tags %}<span class="chip{% if forloop.first %} chip--lit{% endif %}">{{ t }}</span>{% endfor %}
+    {%- if c.years and c.years != "" %}<span class="crew-years">{{ c.years }}</span>{% endif %}
+  </div>
+</article>

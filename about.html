@@ -41,15 +41,10 @@ description: "About Kavya Rajendran: education, teaching and service in Human-Ce
 </section>
 
 <section class="sec">
-  {% include section-head.html num="03" title="Beyond the lab" %}
-  <div class="split">
-    <div>
-      <span class="label">Service</span>
-      <div class="chips">{% for s in a.service %}<span class="chip chip--round">{{ s }}</span>{% endfor %}</div>
-    </div>
-    <div>
-      <span class="label">Recognition</span>
-      <div class="chips">{% for r in a.recognition %}<span class="chip chip--round chip--lit">{{ r }}</span>{% endfor %}</div>
-    </div>
+  {% include section-head.html num="03" title="Crew and community" %}
+  <div class="crew-grid">
+    {%- for c in a.crew %}
+    {% include crew-card.html item=c %}
+    {%- endfor %}
   </div>
 </section>
