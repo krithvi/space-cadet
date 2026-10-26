@@ -1,0 +1,10 @@
+{%- comment -%} Icon-only keycaps for email and profiles. Empty links in _config.yml are skipped. {%- endcomment -%}
+{%- assign au = site.author -%}
+<ul class="social-keys" aria-label="Contact and profiles">
+  {%- if au.email and au.email != "" %}<li><a class="ckey ckey--icon" href="mailto:{{ au.email }}" aria-label="Email" title="Email">{% include icon.html name="mail" %}</a></li>{% endif %}
+  {%- if au.linkedin and au.linkedin != "" %}<li><a class="ckey ckey--icon" href="{{ au.linkedin }}" aria-label="LinkedIn" title="LinkedIn">{% include icon.html name="linkedin" %}</a></li>{% endif %}
+  {%- if au.scholar and au.scholar != "" %}<li><a class="ckey ckey--icon" href="{{ au.scholar }}" aria-label="Google Scholar" title="Google Scholar">{% include icon.html name="scholar" %}</a></li>{% endif %}
+  {%- if au.github and au.github != "" %}<li><a class="ckey ckey--icon" href="{{ au.github }}" aria-label="GitHub" title="GitHub">{% include icon.html name="github" %}</a></li>{% endif %}
+  {%- if au.behance and au.behance != "" %}<li><a class="ckey ckey--icon" href="{{ au.behance }}" aria-label="Behance" title="Behance">{% include icon.html name="behance" %}</a></li>{% endif %}
+  {%- if au.orcid and au.orcid != "" %}<li><a class="ckey ckey--icon" href="{{ au.orcid }}" aria-label="ORCID" title="ORCID">{% include icon.html name="orcid" %}</a></li>{% endif %}
+</ul>

@@ -1,0 +1,37 @@
+// ── Rocket cursor ───────────────────────────────────────────────────
+// Mouse and trackpad: the rocket replaces the arrow; its nose (6,6) is the click point.
+// Anything clickable keeps the normal hand, text fields keep the text cursor.
+// The SVG is sharp at any zoom; the PNG is a fallback for browsers that skip SVG cursors.
+// Touch screens have no cursor, so assets/js/rocket.js launches a rocket from each tap instead.
+@media (hover: hover) and (pointer: fine) {
+  html, body {
+    cursor: url("../img/cursor/rocket-cursor.svg") 6 6, url("../img/cursor/rocket-cursor.png") 6 6, auto;
+  }
+  a, button, summary, label, select,
+  [role="button"], [tabindex]:not([tabindex="-1"]),
+  input[type="submit"], input[type="button"], input[type="checkbox"], input[type="radio"] {
+    cursor: pointer;
+  }
+  input:not([type]), input[type="text"], input[type="email"], input[type="search"], textarea {
+    cursor: text;
+  }
+}
+
+.tap-rocket {
+  position: fixed;
+  z-index: 1000;
+  width: 30px;
+  height: 30px;
+  margin: -15px 0 0 -15px;
+  background: url("../img/cursor/rocket-up.svg") center / contain no-repeat;
+  pointer-events: none;
+  animation: tap-liftoff 0.9s cubic-bezier(0.5, 0, 0.75, 0) forwards;
+}
+@keyframes tap-liftoff {
+  0%   { opacity: 0; transform: translateY(0) scale(0.5); }
+  15%  { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-160px) scale(0.9); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tap-rocket { display: none; }
+}

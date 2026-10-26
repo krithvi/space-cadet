@@ -191,6 +191,13 @@ nav.console {
 @media (max-width: 520px) {
   nav.console { gap: 10px; padding: 14px 10px 16px; font-size: 13px; }
   .key { padding: 8px 10px 9px; gap: 6px; }
+  // Phones: drop the emoji so all four keys fit on one row; the LED still marks the current page.
+  .key-icon { display: none; }
+}
+@media (max-width: 380px) {
+  nav.console { gap: 6px; padding: 12px 8px 14px; font-size: 12px; }
+  .key { padding: 7px 8px 8px; gap: 5px; }
+  .key-well { padding: 2px 2px 3px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
