@@ -21,7 +21,7 @@ body.site {
   color: #e9e9ed;
   -webkit-font-smoothing: antialiased;
 
-  #canvas { opacity: 0.6; }          // stars a touch dimmer so cards stay readable
+  #canvas { opacity: 0.85; }         // starfield brightness; cards and the content panel stay solid over it
 
   .container-sm {                    // the scroll container from main.scss
     padding: var(--nav-h, 80px) 0 0;
