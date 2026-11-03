@@ -43,7 +43,7 @@ const clear = () => {
 
 // drawing a star
 const putPixel = (x, y, brightness) => {
-    const intensity = brightness * 255;
+    const intensity = brightness * 555;
     const rgb = "rgb(" + intensity + "," + intensity + "," + intensity + ")";
     c.fillStyle = rgb;
     c.fillRect(x, y, 1, 1);
