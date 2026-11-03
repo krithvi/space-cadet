@@ -12,3 +12,6 @@ end
 
 # Ruby 3 no longer ships webrick; `jekyll serve` needs it.
 gem "webrick", "~> 1.8"
+
+# Ruby 3.4 no longer includes bigdecimal by default, and Liquid (Jekyll's templates) needs it.
+gem "bigdecimal"
