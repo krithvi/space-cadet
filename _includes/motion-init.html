@@ -1,0 +1,10 @@
+<script>
+  // Decide before the page draws whether the ship is flying or parked, so there's no flash of motion.
+  // A choice made with the Park key wins; otherwise follow the device's reduced-motion setting.
+  (function () {
+    var saved;
+    try { saved = localStorage.getItem('motion'); } catch (e) {}
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.documentElement.setAttribute('data-motion', saved || (reduce ? 'parked' : 'flying'));
+  })();
+</script>

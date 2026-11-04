@@ -1,14 +1,16 @@
 // Warp starfield: stars stream toward you from the center of the screen.
-// Tune the feel with the four numbers below.
-const SPEED = 0.12;        // how fast you fly (0.1 = the original cruise)
+// "Park this ship" (or the device's reduced-motion setting) switches it to a still, twinkling sky.
+//
+// Tune the feel with these numbers:
+const SPEED = 0.06;        // how fast you fly: 0.04 drifting · 0.07 cruising · 0.12 warp
 const STAR_COUNT = 6000;   // more stars = denser sky
 const MAX_SIZE = 2.2;      // px size of the closest stars (far ones stay 1px)
-const STREAK = 0.6;        // 0 = dots only, 1 = long warp streaks on near stars
-const TWINKLE = 0.2;       // reduced-motion sky: share of stars that slowly twinkle (0 = fully still)
+const STREAK = 0.4;        // trail length on near stars: 0 = dots only, 1 = long warp lines
+const TWINKLE = 0.2;       // parked sky: share of stars that slowly twinkle (0 = fully still)
 
 const canvas = document.getElementById("canvas");
 const c = canvas.getContext("2d");
-const still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const parked = () => document.documentElement.getAttribute("data-motion") === "parked";
 
 let w, h, dpr;
 const setCanvasExtents = () => {
@@ -22,26 +24,22 @@ const setCanvasExtents = () => {
 setCanvasExtents();
 window.addEventListener("resize", setCanvasExtents);
 
-const makeStars = (count) => {
-  const out = [];
-  for (let i = 0; i < count; i++) {
-    out.push({ x: Math.random() * 1600 - 800, y: Math.random() * 900 - 450, z: Math.random() * 1000 });
-  }
-  return out;
-};
-const stars = makeStars(STAR_COUNT);
-
-// Twinkle only in the reduced-motion sky: each chosen star fades between dim and bright
-// over 4–10 seconds. Nothing moves, and nothing flashes.
-const twinkles = stars.map(() =>
-  still && Math.random() < TWINKLE
-    ? { phase: Math.random() * Math.PI * 2, speed: (Math.PI * 2) / (4000 + Math.random() * 6000) }
-    : null
-);
+const stars = [];
+for (let i = 0; i < STAR_COUNT; i++) {
+  stars.push({
+    x: Math.random() * 1600 - 800,
+    y: Math.random() * 900 - 450,
+    z: Math.random() * 1000,
+    // a slow 4–10 s fade between dim and bright, used only while parked
+    tw: Math.random() < TWINKLE
+      ? { phase: Math.random() * Math.PI * 2, speed: (Math.PI * 2) / (4000 + Math.random() * 6000) }
+      : null,
+  });
+}
 
 const project = (s, z) => [w / 2 + s.x / (z * 0.001), h / 2 + s.y / (z * 0.001)];
 
-const draw = (step, time = 0) => {
+const draw = (step, time, still) => {
   c.fillStyle = "black";
   c.fillRect(0, 0, w, h);
   c.lineCap = "round";
@@ -56,13 +54,12 @@ const draw = (step, time = 0) => {
 
     const near = 1 - s.z / 1000;              // 0 far away … 1 right in front of you
     let b = Math.min(1, 0.4 + near * near * 0.9);
-    const tw = twinkles[i];
-    if (tw) b *= 0.45 + 0.55 * (0.5 + 0.5 * Math.sin(time * tw.speed + tw.phase));
+    if (still && s.tw) b *= 0.45 + 0.55 * (0.5 + 0.5 * Math.sin(time * s.tw.speed + s.tw.phase));
     const size = 1 + near * near * (MAX_SIZE - 1);
     const shade = Math.round(205 + 50 * near); // far stars a cool blue-white, near ones pure white
     c.fillStyle = c.strokeStyle = `rgba(${shade - 20},${shade - 5},255,${b})`;
 
-    if (STREAK > 0 && step > 0 && near > 0.55) {
+    if (!still && STREAK > 0 && near > 0.55) {
       // a short trail back toward where the star was a moment ago
       const [px, py] = project(s, Math.min(1000, s.z + step * 6 * STREAK));
       c.lineWidth = size * 0.8;
@@ -75,21 +72,16 @@ const draw = (step, time = 0) => {
   }
 };
 
-if (still) {
-  // Reduced motion: the stars hold their places and some twinkle. ~15 frames a second is plenty for a slow fade.
-  let last = -1000;
-  const twinkle = (time) => {
-    if (time - last > 66) { draw(0, time); last = time; }
-    if (TWINKLE > 0) requestAnimationFrame(twinkle);
-  };
-  requestAnimationFrame(twinkle);
-} else {
-  let prev;
-  const tick = (time) => {
-    const elapsed = prev === undefined ? 16 : Math.min(time - prev, 50);  // no lurch after a background tab
-    prev = time;
-    draw(elapsed * SPEED);
-    requestAnimationFrame(tick);
-  };
+// One loop for both modes. Parked redraws ~15 times a second, plenty for a slow twinkle.
+let prev, lastStill = -1000;
+const tick = (time) => {
+  const elapsed = prev === undefined ? 16 : Math.min(time - prev, 50);  // no lurch after a background tab
+  prev = time;
+  if (parked()) {
+    if (time - lastStill > 66) { draw(0, time, true); lastStill = time; }
+  } else {
+    draw(elapsed * SPEED, time, false);
+  }
   requestAnimationFrame(tick);
-}
+};
+requestAnimationFrame(tick);

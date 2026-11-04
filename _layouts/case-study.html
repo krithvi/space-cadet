@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include motion-init.html %}
     <title>{{ page.title }}</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,6 +33,7 @@
     <!-- the site starfield, unmodified -->
     <script src="{{ '/assets/js/canvas.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/rocket.js' | relative_url }}" defer></script>
+    <script src="{{ '/assets/js/park.js' | relative_url }}" defer></script>
     <script src="{{ '/assets/js/neuralyzer.js' | relative_url }}"></script>
   </body>
 </html>

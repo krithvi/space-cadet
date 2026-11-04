@@ -1,0 +1,115 @@
+// ── "Park this ship" ────────────────────────────────────────────────
+// A latching nav key: pressed down with its LED lit = parked (motion off).
+// Desktop: right end of the nav with an "i" that explains it.
+// Narrower screens: icon-only. Phones: a round key in the bottom-right corner.
+
+.park { margin-left: auto; display: flex; align-items: center; gap: 10px; position: relative; }
+
+.park-key {
+  font: inherit;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  .park-icon { flex: none; }
+}
+
+// Latched down while parked, like a pressed toggle key
+.park-key[aria-pressed="true"] {
+  transform: translateY(0);
+  box-shadow:
+    inset 0 2px 3px rgba(0, 0, 0, 0.35),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+  .key-led { background: $led-on; box-shadow: 0 0 4px #6bd, 0 0 8px rgba(102, 187, 221, 0.7); }
+  &:hover, &:focus-visible { transform: translateY(-1px); }
+}
+
+.park-info {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #5590b8;
+  background: #1b3a50;
+  color: #c0e0ef;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  &:hover, &:focus-visible, &[aria-expanded="true"] { border-color: #8ee8ff; color: #fff; }
+}
+
+.park-help {
+  position: absolute;
+  top: calc(100% + 16px);
+  right: 0;
+  width: 280px;
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #5599bb;
+  background: #232532;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #cfd3e5;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+  z-index: 10;
+}
+.park-info:hover ~ .park-help,
+.park-info:focus-visible ~ .park-help,
+.park-help.is-open { opacity: 1; visibility: visible; transform: none; }
+
+// Short confirmation after pressing the key (the main feedback on phones)
+.park-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  margin: 0;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid #5599bb;
+  background: #18303e;
+  color: #c0e0ef;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-weight: 400;
+  font-size: 12px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 1001;
+  &.is-on { opacity: 1; transform: translate(-50%, 0); }
+}
+
+// Mid-width: keep the nav on one row by dropping the words
+@media (max-width: 960px) {
+  .park-label { display: none; }
+}
+
+// Phones: move it out of the nav to a round key in the bottom-right corner
+@media (max-width: 700px) {
+  .park { position: fixed; right: 16px; bottom: 18px; margin: 0; z-index: 6; }
+  .park .key-well { border-radius: 12px; }
+  .park-key { padding: 10px 12px 11px; }
+  .park-info, .park-help { display: none; }
+  .park-toast { bottom: 84px; }
+  .site-foot { padding-bottom: 96px; }   // room so the corner key never covers the footer links
+}
+
+// ── Everything that moves stops while parked ──
+html[data-motion="parked"] {
+  .porthole-orbit, .otw-led { animation: none; }
+  .key:hover .key-icon, .key:focus-visible .key-icon { animation: none; }
+  .tap-rocket { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .park-help, .park-toast { transition: none; }
+}
