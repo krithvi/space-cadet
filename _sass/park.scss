@@ -1,7 +1,7 @@
 // ── "Park this ship" ────────────────────────────────────────────────
 // A latching nav key: pressed down with its LED lit = parked (motion off).
 // Desktop: right end of the nav with an "i" that explains it.
-// Narrower screens: icon-only. Phones: a round key in the bottom-right corner.
+// Narrower screens: icon-only. Phones: a pause/play key in the bottom-right corner.
 
 .park { margin-left: auto; display: flex; align-items: center; gap: 10px; position: relative; }
 
@@ -10,7 +10,8 @@
   cursor: pointer;
   -webkit-appearance: none;
   appearance: none;
-  .park-icon { flex: none; }
+  .park-icon, .park-pause, .park-play { flex: none; }
+  .park-pause, .park-play { display: none; }   // phones only, see below
 }
 
 // Latched down while parked, like a pressed toggle key
@@ -98,7 +99,12 @@
 @media (max-width: 700px) {
   .park { position: fixed; right: 16px; bottom: 18px; margin: 0; z-index: 6; }
   .park .key-well { border-radius: 12px; }
-  .park-key { padding: 10px 12px 11px; }
+  .park-key { padding: 11px 13px 12px; }
+  // Phones: a plain pause/play key instead of the "P", since the words don't fit.
+  // Pause while flying; play once parked (press to fly again).
+  .park-icon, .park-key .key-led { display: none; }
+  .park-key[aria-pressed="false"] .park-pause,
+  .park-key[aria-pressed="true"] .park-play { display: block; }
   .park-info, .park-help { display: none; }
   .park-toast { bottom: 84px; }
   .site-foot { padding-bottom: 96px; }   // room so the corner key never covers the footer links

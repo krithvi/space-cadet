@@ -34,7 +34,7 @@
     root.setAttribute('data-motion', parked ? 'parked' : 'flying');
     try { localStorage.setItem('motion', parked ? 'parked' : 'flying'); } catch (e) {}
     show(parked);
-    announce(parked ? 'Ship parked. Motion is off.' : 'Back in flight. Motion is on.');
+    announce(parked ? 'Motion paused. Stars twinkle instead.' : 'Back in flight. Motion is on.');
     document.dispatchEvent(new CustomEvent('motionchange', { detail: { parked: parked } }));
   });
 

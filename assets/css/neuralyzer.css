@@ -562,3 +562,8 @@
   .n-scroll { scroll-behavior: auto; }
   .ncase #canvas { display: none; }
 }
+
+/* "Park this ship" on: same calm as the device's reduced-motion setting,
+   but the starfield stays, still and twinkling (canvas.js handles that). */
+html.ncase[data-motion="parked"] * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+html.ncase[data-motion="parked"] .n-scroll { scroll-behavior: auto; }
