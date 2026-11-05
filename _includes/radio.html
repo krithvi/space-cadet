@@ -1,0 +1,45 @@
+{%- comment -%}
+  The ship's radio. Stations, playlists and the after-dark secret live in _data/radio.yml;
+  playback is assets/js/radio.js. The YouTube player loads only after someone presses play,
+  and stays visible while it plays (YouTube's rules don't allow a hidden player).
+{%- endcomment -%}
+{%- assign r = site.data.radio -%}
+{%- assign count = r.stations | size -%}
+<figure class="radio-wrap">
+  <div class="radio" id="radio">
+    <div class="radio-face">
+      <span class="radio-cone" aria-hidden="true"></span>
+      <div class="radio-window">
+        <div class="radio-screen">
+          <div class="radio-player" id="radio-player"></div>
+          <p class="radio-idle" id="radio-idle">Off air · press ▶ to tune in</p>
+          <div class="radio-wave" aria-hidden="true">{% for n in (1..9) %}<i style="animation-delay: {{ n | times: 0.07 }}s"></i>{% endfor %}</div>
+        </div>
+        <div class="radio-scale" aria-hidden="true">
+          {%- for s in r.stations %}
+          {%- assign pos = forloop.index0 | times: 100.0 | plus: 50.0 | divided_by: count %}
+          <span class="radio-dot" style="left: {{ pos }}%"></span>
+          <span class="radio-mark" data-freq="{{ s.freq }}" style="left: {{ pos }}%">{{ s.freq }}</span>
+          {%- endfor %}
+          <span class="radio-needle" id="radio-needle"></span>
+        </div>
+      </div>
+      <span class="radio-cone" aria-hidden="true"></span>
+    </div>
+
+    <div class="radio-display" aria-live="polite">
+      <div class="radio-station"><b id="radio-freq"></b><span id="radio-name"></span><span class="radio-air" id="radio-air">On air</span></div>
+      <p class="radio-song" id="radio-song"></p>
+      <p class="radio-artist" id="radio-artist"></p>
+    </div>
+
+    <div class="radio-keys">
+      <button type="button" class="radio-key radio-key--skip" id="radio-prev" aria-label="Previous station">◀◀</button>
+      <button type="button" class="radio-key radio-key--play" id="radio-play" aria-label="Play" aria-pressed="false">▶</button>
+      <button type="button" class="radio-key radio-key--skip" id="radio-next" aria-label="Next station">▶▶</button>
+    </div>
+  </div>
+  {%- if r.note %}<figcaption class="radio-note">{{ r.note }}</figcaption>{% endif %}
+  <script type="application/json" id="radio-data">{{ r | jsonify }}</script>
+  <script src="{{ '/assets/js/radio.js' | relative_url }}" defer></script>
+</figure>
