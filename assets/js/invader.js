@@ -1,4 +1,5 @@
 /* A 👾 dances wherever you click or tap something clickable, like it's infecting what you pressed.
+   Call-to-action buttons (.ckey, .btn) also flash a purple ring.
    Works for mouse and touch. At most one every 350 ms, so mashing a button can't flood the screen.
    Nothing appears while the ship is parked. The 🛸/👾 cursors themselves are CSS (_sass/cursor.scss). */
 (function () {
@@ -8,6 +9,16 @@
   document.addEventListener('pointerdown', function (e) {
     if (document.documentElement.getAttribute('data-motion') === 'parked') return;
     if (!e.target.closest || !e.target.closest(CLICKABLE)) return;
+
+    // Call-to-action buttons also get a purple ring (styles in _sass/theme.scss)
+    var cta = e.target.closest('.ckey, .btn');
+    if (cta) {
+      cta.classList.remove('is-infected');
+      void cta.offsetWidth;                    // restart the ring if pressed again quickly
+      cta.classList.add('is-infected');
+      setTimeout(function () { cta.classList.remove('is-infected'); }, 600);
+    }
+
     var now = Date.now();
     if (now - last < 350) return;
     last = now;

@@ -1,11 +1,11 @@
 // ── The ship's radio (Off duty) ─────────────────────────────────────
-// Tabletop-arch silhouette and depth, boombox layout, space-age gunmetal and chrome,
-// with the boombox's orange skip keys and a blue play key.
+// Tabletop-arch silhouette and depth, boombox layout, space-age gunmetal and chrome.
+// Arched glass screen with a small equalizer in its crown; gunmetal keys (blue walls, purple play).
 
 $gun-1: #535a64; $gun-2: #383d45; $gun-3: #2a2e34; $gun-4: #16181b;
 $chrome: #b8c2cc; $chrome-hi: #d9e1e8;
 
-.radio-wrap { margin: 28px 0 0; max-width: 600px; }
+.radio-wrap { margin: 28px 0 0; max-width: 620px; }
 
 .radio {
   position: relative;
@@ -21,30 +21,43 @@ $chrome: #b8c2cc; $chrome-hi: #d9e1e8;
   &::after { content: ""; position: absolute; left: 12%; right: 12%; bottom: -16px; height: 8px; border-radius: 0 0 8px 8px; background: $gun-4; }
 }
 
-.radio-face { display: grid; grid-template-columns: 96px minmax(0, 1fr) 96px; gap: 16px; align-items: center; }
+.radio-face { display: grid; grid-template-columns: 76px minmax(0, 1fr) 76px; gap: 14px; align-items: center; }
 .radio-cone {
   display: block; aspect-ratio: 1; border-radius: 50%;
   background: radial-gradient(circle, $gun-3 0 16%, #5c646e 17% 21%, #1d2024 22% 50%, #5c646e 51% 55%, $gun-4 56%);
   box-shadow: inset 0 0 0 4px $chrome, 0 3px 6px rgba(0, 0, 0, 0.5);
 }
 
-// Arched chrome bezel; the screen inside stays a plain rectangle so the YouTube player is never covered
+// Arched chrome bezel with an even rim; the glass inside follows the same arch.
+$arch-x: 150px; $arch-y: 78px; $rim: 8px;
 .radio-window {
   display: grid; gap: 10px;
-  padding: 26px 12px 12px;
-  border-radius: 140px 140px 10px 10px / 70px 70px 10px 10px;
+  padding: $rim;
+  border-radius: #{$arch-x} #{$arch-x} 10px 10px / #{$arch-y} #{$arch-y} 10px 10px;   // #{} keeps Sass from reading / as division
   background: linear-gradient(180deg, $chrome-hi, $chrome);
   box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.45);
 }
+// The glass: recessed, dark, faint scanlines and a glare across the curve.
+// The video area sits at the bottom of the glass with no frame of its own, so the YouTube
+// player (or its thumbnail) reads as part of the same pane.
+.radio-glass {
+  position: relative; overflow: hidden;
+  padding-top: 50px;                     // the crown: tall enough that the arch never clips the video's corners
+  border-radius: #{$arch-x - $rim} #{$arch-x - $rim} 4px 4px / #{$arch-y - $rim} #{$arch-y - $rim} 4px 4px;
+  background: #05080c;
+  box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.9), inset 0 0 0 1px rgba(0, 0, 0, 0.6);
+  &::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 2;
+    background:
+      repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 3px),
+      linear-gradient(160deg, rgba(255, 255, 255, 0.1), transparent 32%);
+  }
+}
 .radio-screen {
   position: relative;
-  width: 100%;
-  min-height: 200px;                    // YouTube's minimum player size is 200×200
   aspect-ratio: 16 / 9;
-  border-radius: 6px;
-  overflow: hidden;
+  min-height: 200px;                     // YouTube's minimum player size; on narrow screens the video letterboxes into the dark glass
   background: #05080c;
-  box-shadow: inset 0 4px 14px rgba(0, 0, 0, 0.9);
 }
 .radio-screen iframe, .radio-player { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; opacity: 0; transition: opacity 0.3s ease; }
 .radio.is-playing .radio-screen iframe { opacity: 1; }
@@ -54,6 +67,15 @@ $chrome: #b8c2cc; $chrome-hi: #d9e1e8;
   font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px; color: #55606b;
 }
 .radio.is-playing .radio-idle, .radio.is-secret .radio-idle { display: none; }
+
+// Equalizer in the crown: still bars when off, dancing while something plays
+.radio-eq { position: absolute; top: 18px; left: 50%; transform: translateX(-50%); display: flex; align-items: flex-end; gap: 3px; height: 14px; z-index: 1; }
+.radio-eq i { width: 3px; height: 3px; border-radius: 1px; background: #c39bff; box-shadow: 0 0 4px #a855f7; opacity: 0.55; }
+.radio-eq i:nth-child(2) { animation-delay: -0.3s; } .radio-eq i:nth-child(3) { animation-delay: -0.6s; }
+.radio-eq i:nth-child(4) { animation-delay: -0.15s; } .radio-eq i:nth-child(5) { animation-delay: -0.45s; }
+.radio.is-playing .radio-eq i, .radio.is-secret .radio-eq i { opacity: 1; animation: radio-eq 1s ease-in-out infinite; }
+.radio.is-secret .radio-eq i { background: #ff5a8a; box-shadow: 0 0 4px #ff5a8a; }
+@keyframes radio-eq { 0%, 100% { height: 3px; } 50% { height: 14px; } }
 
 // Waveform shown while the after-dark message plays
 .radio-wave { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; gap: 4px; }
@@ -73,7 +95,7 @@ $chrome: #b8c2cc; $chrome-hi: #d9e1e8;
 .radio-mark { position: absolute; bottom: 3px; transform: translateX(-50%); font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 9px; color: #4a535c; white-space: nowrap; }
 .radio-mark.is-current { color: #c2401f; font-weight: 700; }
 .radio-needle {
-  position: absolute; top: 2px; bottom: 20px; width: 2px;   // stops above the numbers left: 50%;
+  position: absolute; top: 2px; bottom: 20px; left: 50%; width: 2px;   // stops above the numbers
   background: #e0482f; box-shadow: 0 0 4px rgba(224, 72, 47, 0.7);
   transform: translateX(-50%);
   transition: left 0.7s cubic-bezier(0.4, 1.4, 0.5, 1);
@@ -91,7 +113,7 @@ $chrome: #b8c2cc; $chrome-hi: #d9e1e8;
 .radio-air {
   margin-left: auto; padding: 2px 6px; border-radius: 3px; border: 1px solid #23404d;
   font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #23404d;
-  &.is-on { color: #ff8c6b; border-color: #ff8c6b; text-shadow: 0 0 6px #ff8c6b; }
+  &.is-on { color: #c39bff; border-color: #c39bff; text-shadow: 0 0 6px rgba(168, 85, 247, 0.8); }
 }
 .radio-song { margin-top: 4px !important; font-size: 20px; font-weight: 700; color: #eafaff; text-shadow: 0 0 8px rgba(142, 232, 255, 0.45); }
 .radio-artist { font-size: 14px; color: #8ee8ff; }
@@ -100,23 +122,45 @@ $chrome: #b8c2cc; $chrome-hi: #d9e1e8;
 
 // Tape-deck keys: orange skip, blue play (stays pressed while playing)
 .radio-keys { margin-top: 16px; display: flex; gap: 10px; justify-content: center; }
+// Keys: gunmetal keycaps with the same depth and press as the nav keys.
+// Skip keys sit on blue walls; play sits on a purple wall (the "infected" accent used on the site's buttons).
+$cap-top: #4a4f58; $cap-base: #33373e; $cap-rim: #5d636d;
 .radio-key {
+  --wall: #2f7fa8; --wall-dark: #174560;
   flex: 0 1 84px; height: 44px;
-  border-radius: 5px 5px 8px 8px; border: 1px solid;
+  border-radius: 6px; border: 1px solid $cap-rim;
+  background: linear-gradient(180deg, $cap-top, $cap-base);
+  color: #f3f5fe;
   font: 700 15px "JetBrains Mono", ui-monospace, monospace;
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.18),
+    0 5px 0 var(--wall), 0 6px 0 var(--wall-dark), 0 8px 10px rgba(0, 0, 0, 0.5);
   transform: translateY(-5px);
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
-  &:active { transform: translateY(0); }
-}
-.radio-key--skip {
-  background: linear-gradient(180deg, #f6b06a, #e08a3e 70%, #c9752f); color: #2a1606; border-color: #f7c08a;
-  box-shadow: 0 5px 0 #6b3a12, inset 0 -3px 0 rgba(0, 0, 0, 0.12);
-  &:active { box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.3); }
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  &:hover, &:focus-visible {
+    transform: translateY(-7px);
+    box-shadow:
+      inset 0 2px 0 rgba(255, 255, 255, 0.26),
+      inset 0 -3px 0 rgba(0, 0, 0, 0.18),
+      0 7px 0 var(--wall), 0 8px 0 var(--wall-dark), 0 12px 14px rgba(0, 0, 0, 0.5);
+  }
+  &:focus-visible { outline: 2px solid #8ee8ff; outline-offset: 3px; }
+  &:active {
+    transform: translateY(0); transition-duration: 0.05s;
+    box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.4), inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+  }
 }
 .radio-key--play {
-  background: linear-gradient(180deg, #a8e4f5, #66bbdd 70%, #4fa6cb); color: #06202c; border-color: #9fe4f7;
-  box-shadow: 0 5px 0 #2a6f8f, inset 0 -3px 0 rgba(0, 0, 0, 0.12);
-  &[aria-pressed="true"] { transform: translateY(-1px); box-shadow: 0 1px 0 #2a6f8f, inset 0 2px 4px rgba(0, 0, 0, 0.25); }
+  --wall: #7a3ac4; --wall-dark: #3f1d6b;
+  border-color: #8a6cc4; color: #ecdcff;
+  // Latched halfway down while playing, like the Park key
+  &[aria-pressed="true"] {
+    transform: translateY(-2px);
+    box-shadow:
+      inset 0 2px 3px rgba(0, 0, 0, 0.3),
+      0 2px 0 var(--wall), 0 3px 0 var(--wall-dark);
+  }
 }
 
 .radio-note { margin-top: 22px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 11px; color: #75798c; text-align: center; }
@@ -126,18 +170,19 @@ $chrome: #b8c2cc; $chrome-hi: #d9e1e8;
   .radio { padding: 40px 14px 18px; border-radius: 200px 200px 24px 24px / 110px 110px 24px 24px; }
   .radio-face { grid-template-columns: minmax(0, 1fr); }
   .radio-cone { display: none; }
-  .radio-window { padding-top: 22px; }
-  .radio-screen { aspect-ratio: auto; height: 200px; }   // full width, still YouTube's 200px minimum
+  .radio-window { padding: 6px; }
   .radio-mark { font-size: 8px; }
   .radio-song { font-size: 18px; }
 }
 
 // Calm modes: no needle swing, no moving waveform
 html[data-motion="parked"] {
-  .radio-needle { transition: none; }
+  .radio-needle, .radio-key { transition: none; }
   .radio-wave i { animation: none; height: 28px; }
+  .radio-eq i { animation: none !important; height: 9px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .radio-needle { transition: none; }
+  .radio-needle, .radio-key { transition: none; }
   .radio-wave i { animation: none; height: 28px; }
+  .radio-eq i { animation: none !important; height: 9px; }
 }

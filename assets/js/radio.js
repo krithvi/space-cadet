@@ -77,13 +77,13 @@
       ui.artist.textContent = secret.artist || '';
     } else if (!hasMusic(i)) {
       ui.song.textContent = 'Coming soon';
-      ui.artist.textContent = s.vibe || '';
+      ui.artist.textContent = '\u00a0';
     } else if (nowSong && mode === 'youtube') {
       ui.song.textContent = nowSong.song;
       ui.artist.textContent = nowSong.artist;
     } else {
       ui.song.textContent = playing ? 'Tuning in…' : 'Tune in';
-      ui.artist.textContent = s.vibe || '';
+      ui.artist.textContent = '\u00a0';   // keeps the line's height so nothing jumps
     }
 
     ui.air.classList.toggle('is-on', playing);

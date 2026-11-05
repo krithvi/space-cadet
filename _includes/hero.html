@@ -5,7 +5,7 @@
     <p class="lede">{{ site.author.summary }}</p>
     <div class="hero-actions">
       {%- if site.author.cv != "" %}
-      <a class="ckey ckey--primary" href="{{ site.author.cv }}">{% include icon.html name="download" %}<span>Download CV</span></a>
+      <a class="ckey ckey--primary" href="{{ site.author.cv }}" target="_blank" rel="noopener"><span>View CV</span>{% include icon.html name="external" %}<span class="sr-only"> (opens in a new tab)</span></a>
       {%- endif %}
       {% include social-keys.html %}
     </div>

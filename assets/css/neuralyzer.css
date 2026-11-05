@@ -172,7 +172,7 @@
 /* --- prototype: shell ----------------------------------------------------- */
 .n-stage {
   position: relative; border-radius: var(--r-lg); overflow: hidden;
-  box-shadow: var(--sh-md); cursor: pointer; background: #0b0c10;
+  box-shadow: var(--sh-md); cursor: var(--cursor-click, pointer); background: #0b0c10;
 }
 .n-glasses { display: block; width: 100%; height: auto; }
 
@@ -250,7 +250,7 @@
 .n-durrow { display: flex; gap: clamp(8px, 1.8vw, 24px); }
 .n-digit {
   font: inherit; background: transparent; border: 0; padding: 2px 4px;
-  color: var(--hud); cursor: pointer;
+  color: var(--hud); cursor: var(--cursor-click, pointer);
   display: flex; flex-direction: column; align-items: center; gap: 2px;
 }
 .n-digit:hover { background: rgba(93,220,88,.16); }
@@ -260,7 +260,7 @@
 .n-hudbtn {
   font: inherit; letter-spacing: .07em; color: var(--hud);
   background: transparent; border: 2px solid var(--hud); border-radius: 2px;
-  cursor: pointer;
+  cursor: var(--cursor-click, pointer);
   font-size: clamp(11px, 1.7vw, 23px);
   padding: clamp(3px, .8vw, 11px) clamp(10px, 2vw, 26px);
 }
@@ -320,7 +320,7 @@
   font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
   color: var(--a300); background: transparent;
   border: 1px solid var(--a700); border-radius: var(--r-sm);
-  padding: 7px 14px; cursor: pointer;
+  padding: 7px 14px; cursor: var(--cursor-click, pointer);
 }
 .n-restart:hover { background: var(--a900); color: var(--a200); }
 .n-protonote {

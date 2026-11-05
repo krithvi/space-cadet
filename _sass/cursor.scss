@@ -2,11 +2,14 @@
 // Mouse and trackpad: a flying saucer 🛸 while browsing; over anything clickable it turns into a space invader 👾.
 // The emoji are drawn by the visitor's own device, so they look like the emoji they already know.
 // Browsers that can't show an emoji cursor (Safari, for one) fall back to the normal arrow and hand.
+// Don't set cursor: pointer on buttons elsewhere; it would bring the hand back.
 // Clicks and taps also get a dancing 👾 (assets/js/invader.js). Text fields keep the text cursor.
 $cursor-ufo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext x='2' y='25' font-size='24'%3E%F0%9F%9B%B8%3C/text%3E%3C/svg%3E") 16 16;
 $cursor-invader: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext x='2' y='25' font-size='24'%3E%F0%9F%91%BE%3C/text%3E%3C/svg%3E") 16 16;
 
 @media (hover: hover) and (pointer: fine) {
+  // --cursor-click lets plain CSS files (like neuralyzer.css) use the invader too: cursor: var(--cursor-click, pointer)
+  :root { --cursor-click: #{$cursor-invader}, pointer; }
   html, body { cursor: $cursor-ufo, auto; }
   a, button, summary, label, select,
   [role="button"], [tabindex]:not([tabindex="-1"]),

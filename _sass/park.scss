@@ -7,7 +7,6 @@
 
 .park-key {
   font: inherit;
-  cursor: pointer;
   -webkit-appearance: none;
   appearance: none;
   .park-icon, .park-pause, .park-play { flex: none; }
@@ -37,7 +36,6 @@
   font-weight: 700;
   font-size: 15px;
   line-height: 1;
-  cursor: pointer;
   &:hover, &:focus-visible, &[aria-expanded="true"] { border-color: #8ee8ff; color: #fff; }
 }
 

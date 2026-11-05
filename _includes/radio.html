@@ -10,10 +10,13 @@
     <div class="radio-face">
       <span class="radio-cone" aria-hidden="true"></span>
       <div class="radio-window">
-        <div class="radio-screen">
-          <div class="radio-player" id="radio-player"></div>
-          <p class="radio-idle" id="radio-idle">Off air · press ▶ to tune in</p>
-          <div class="radio-wave" aria-hidden="true">{% for n in (1..9) %}<i style="animation-delay: {{ n | times: 0.07 }}s"></i>{% endfor %}</div>
+        <div class="radio-glass">
+          <span class="radio-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+          <div class="radio-screen">
+            <div class="radio-player" id="radio-player"></div>
+            <p class="radio-idle" id="radio-idle">Off air · press ▶ to tune in</p>
+            <div class="radio-wave" aria-hidden="true">{% for n in (1..9) %}<i style="animation-delay: {{ n | times: 0.07 }}s"></i>{% endfor %}</div>
+          </div>
         </div>
         <div class="radio-scale" aria-hidden="true">
           {%- for s in r.stations %}

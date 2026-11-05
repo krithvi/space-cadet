@@ -8,43 +8,96 @@
 #           e.g. https://music.youtube.com/playlist?list=PLxxxxxxxx
 #           It must be public or unlisted ("Liked music" and private playlists can't be embedded).
 #           Leave it "" and the station shows "Coming soon" and is skipped while the radio plays.
-# vibe:     shown under the station name until the song loads.
+#           Each song must allow embedding (on YouTube: Share → Embed is offered). Songs that don't are skipped.
+# fix:      optional, only for songs that need it. Match a song by its share link, then:
+#             at:     where its 30 seconds should begin, in that song ("m:ss")
+#             song:   / artist:  clean names for the display if YouTube's title is messy
+#           e.g.  fix:
+#                   - link: "https://music.youtube.com/watch?v=XXXXXXXXXXX"
+#                     at: "1:42"
+#
+# Or, instead of a playlist, ONE long mix video with time marks:
+# video:    the video's link
+# tracks:   one entry per song, in order. Each day plays the next one.
+#             at:     where the song begins in the video ("m:ss" or "h:mm:ss")
+#             song:   / artist:  shown on the display
+#             play:   optional, where its 30 seconds should begin, in the video ("m:ss").
+#                     Without it, the snippet starts a third of the way into that song.
 # Stations sit evenly along the dial whatever their numbers, so there are no odd gaps. Up to 8 fit on phones.
 
 start: "103.5"          # the station the dial rests on when the page loads
 
 stations:
   - freq: "89.7"
-    name: Growl FM
-    vibe: Anti-establishment, community-curated
+    name: Growl FM   # Anti-establishment, community-curated
     playlist: ""
   - freq: "91.1"
-    name: RadioCity
-    vibe: Music and talk
+    name: RadioCity   # Music and talk
     playlist: ""
   - freq: "92.9"
-    name: Night FM
-    vibe: Deep house and synth-pop
+    name: Night FM   # Deep house and synth-pop
     playlist: ""
   - freq: "98.3"
-    name: Radio Mirchi
-    vibe: Tamil and Indian music
+    name: Radio Mirchi   # Tamil and Indian music
     playlist: ""
   - freq: "98.7"
-    name: Body Heat Radio
-    vibe: Pop and synth-pop hits
+    name: Body Heat Radio   # Pop and synth-pop hits
     playlist: ""
   - freq: "99.9"
-    name: Impulse
-    vibe: Bass-heavy techno and club
+    name: Impulse   # Bass-heavy techno and club
     playlist: ""
   - freq: "103.5"
-    name: DawnFM
-    vibe: The Weeknd's Dawn FM
-    playlist: ""
+    name: DawnFM   # The Weeknd's Dawn FM
+    video: "https://youtu.be/hWlYEaxubRY"
+    tracks:
+      - at: "0:00"
+        song: Dawn FM
+        artist: The Weeknd
+      - at: "1:36"
+        song: Gasoline
+        artist: The Weeknd
+      - at: "5:08"
+        song: How Do I Make You Love Me?
+        artist: The Weeknd
+      - at: "8:45"
+        song: Take My Breath
+        artist: The Weeknd
+      - at: "14:15"
+        song: Sacrifice
+        artist: The Weeknd
+      - at: "19:06"
+        song: Out of Time
+        artist: The Weeknd
+      - at: "22:41"
+        song: Here We Go... Again 
+        artist: The Weeknd ft. Tyler, The Creator 
+      - at: "26:10"
+        song: Best Friends 
+        artist: The Weeknd
+      - at: "28:54"
+        song: Is There Someone Else?
+        artist: The Weeknd
+      - at: "32:13"
+        song: Starry Eyes 
+        artist: The Weeknd 
+      - at: "34:41"
+        song: Every Angel Is Terrifying 
+        artist: The Weeknd 
+      - at: "37:28"
+        song: Don’t Break My Heart 
+        artist: The Weeknd
+      - at: "40:54"
+        song: I Heard You’re Married 
+        artist: The Weeknd ft. Lil Wayna
+      - at: "45:17"
+        song: Less Than Zero 
+        artist: The Weeknd
+      - at: "48:49"
+        song: Phantom Regret By Jim 
+        artist: The Weeknd & Jim Carrey
+      # …one entry per song, in order (the last song runs to the end of the video)
   - freq: "106.4"
-    name: Hello FM
-    vibe: Tamil film soundtracks and classics
+    name: Hello FM   # Tamil film soundtracks and classics
     playlist: ""
 
 # Radio Mirchi after dark: between `from` and `to` (visitor's local time, 24-hour clock),
