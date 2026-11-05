@@ -114,7 +114,7 @@
 html[data-motion="parked"] {
   .porthole-orbit, .otw-led { animation: none; }
   .key:hover .key-icon, .key:focus-visible .key-icon { animation: none; }
-  .tap-rocket { display: none; }
+  .invader { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .park-help, .park-toast { transition: none; }

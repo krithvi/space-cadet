@@ -1,0 +1,61 @@
+# ── The ship's radio (Off duty, on About) ────────────────────────────
+# Each station plays ONE song a day from its playlist: the 1st song today, the 2nd tomorrow,
+# and so on, starting over after the last. Everyone visiting on the same day hears the same songs.
+# Each song plays a 30-second snippet from about a third of the way in, then the radio tunes
+# to the next station. Add songs to a playlist on YouTube and they join the rotation by themselves.
+#
+# playlist: paste the playlist link from YouTube or YouTube Music (the whole link is fine),
+#           e.g. https://music.youtube.com/playlist?list=PLxxxxxxxx
+#           It must be public or unlisted ("Liked music" and private playlists can't be embedded).
+#           Leave it "" and the station shows "Coming soon" and is skipped while the radio plays.
+# vibe:     shown under the station name until the song loads.
+# Stations sit evenly along the dial whatever their numbers, so there are no odd gaps. Up to 8 fit on phones.
+
+start: "103.5"          # the station the dial rests on when the page loads
+
+stations:
+  - freq: "89.7"
+    name: Growl FM
+    vibe: Anti-establishment, community-curated
+    playlist: ""
+  - freq: "91.1"
+    name: RadioCity
+    vibe: Music and talk
+    playlist: ""
+  - freq: "92.9"
+    name: Night FM
+    vibe: Deep house and synth-pop
+    playlist: ""
+  - freq: "98.3"
+    name: Radio Mirchi
+    vibe: Tamil and Indian music
+    playlist: ""
+  - freq: "98.7"
+    name: Body Heat Radio
+    vibe: Pop and synth-pop hits
+    playlist: ""
+  - freq: "99.9"
+    name: Impulse
+    vibe: Bass-heavy techno and club
+    playlist: ""
+  - freq: "103.5"
+    name: DawnFM
+    vibe: The Weeknd's Dawn FM
+    playlist: ""
+  - freq: "106.4"
+    name: Hello FM
+    vibe: Tamil film soundtracks and classics
+    playlist: ""
+
+# Radio Mirchi after dark: between `from` and `to` (visitor's local time, 24-hour clock),
+# tuning to this station plays your recorded message instead of a song.
+# Stays off until `audio` points to a real file (planned: encrypted in the repo with git-secret).
+secret:
+  station: "98.3"
+  from: 22              # 10 pm
+  to: 4                 # 4 am
+  audio: ""             # e.g. /assets/audio/after-dark.mp3
+  title: "If you're hearing this…"
+  artist: "a message from outer space"
+
+note: "Station names are a nod to Cyberpunk 2077, The Weeknd and Chennai radio; not affiliated."

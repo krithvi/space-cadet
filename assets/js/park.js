@@ -1,6 +1,6 @@
 /* "Park this ship": a latching key that turns the site's motion off and on.
    The choice is saved on this device and announced in a short message.
-   Other scripts (canvas.js, rocket.js) read <html data-motion="parked|flying">
+   Other scripts (canvas.js, invader.js, radio) read <html data-motion="parked|flying">
    and listen for the "motionchange" event. */
 (function () {
   'use strict';

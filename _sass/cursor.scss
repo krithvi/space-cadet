@@ -1,37 +1,39 @@
-// ── Rocket cursor ───────────────────────────────────────────────────
-// Mouse and trackpad: the rocket replaces the arrow; its nose (6,6) is the click point.
-// Anything clickable keeps the normal hand, text fields keep the text cursor.
-// The SVG is sharp at any zoom; the PNG is a fallback for browsers that skip SVG cursors.
-// Touch screens have no cursor, so assets/js/rocket.js launches a rocket from each tap instead.
+// ── Alien cursor ────────────────────────────────────────────────────
+// Mouse and trackpad: a flying saucer 🛸 while browsing; over anything clickable it turns into a space invader 👾.
+// The emoji are drawn by the visitor's own device, so they look like the emoji they already know.
+// Browsers that can't show an emoji cursor (Safari, for one) fall back to the normal arrow and hand.
+// Clicks and taps also get a dancing 👾 (assets/js/invader.js). Text fields keep the text cursor.
+$cursor-ufo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext x='2' y='25' font-size='24'%3E%F0%9F%9B%B8%3C/text%3E%3C/svg%3E") 16 16;
+$cursor-invader: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext x='2' y='25' font-size='24'%3E%F0%9F%91%BE%3C/text%3E%3C/svg%3E") 16 16;
+
 @media (hover: hover) and (pointer: fine) {
-  html, body {
-    cursor: url("../img/cursor/rocket-cursor.svg") 6 6, url("../img/cursor/rocket-cursor.png") 6 6, auto;
-  }
+  html, body { cursor: $cursor-ufo, auto; }
   a, button, summary, label, select,
   [role="button"], [tabindex]:not([tabindex="-1"]),
   input[type="submit"], input[type="button"], input[type="checkbox"], input[type="radio"] {
-    cursor: pointer;
+    cursor: $cursor-invader, pointer;
   }
   input:not([type]), input[type="text"], input[type="email"], input[type="search"], textarea {
     cursor: text;
   }
 }
 
-.tap-rocket {
+// The 👾 that dances where you click or tap, then fades
+.invader {
   position: fixed;
   z-index: 1000;
-  width: 30px;
-  height: 30px;
-  margin: -15px 0 0 -15px;
-  background: url("../img/cursor/rocket-up.svg") center / contain no-repeat;
+  font-size: 26px;
+  line-height: 1;
   pointer-events: none;
-  animation: tap-liftoff 0.9s cubic-bezier(0.5, 0, 0.75, 0) forwards;
+  animation: invader-dance 0.75s ease-out forwards;
 }
-@keyframes tap-liftoff {
-  0%   { opacity: 0; transform: translateY(0) scale(0.5); }
-  15%  { opacity: 1; transform: translateY(0) scale(1); }
-  100% { opacity: 0; transform: translateY(-160px) scale(0.9); }
+@keyframes invader-dance {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.3); }
+  20%  { opacity: 1; transform: translate(-50%, -62%) scale(1.15) rotate(-16deg); }
+  45%  { transform: translate(-50%, -56%) scale(1) rotate(14deg); }
+  70%  { opacity: 1; transform: translate(-50%, -64%) rotate(-10deg); }
+  100% { opacity: 0; transform: translate(-50%, -84%) scale(0.85) rotate(0); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .tap-rocket { display: none; }
+  .invader { display: none; }
 }
