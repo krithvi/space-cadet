@@ -162,7 +162,14 @@
         var tr = stations[i].tracks;
         yt.loadVideoById({ videoId: videoId(stations[i].video), startSeconds: secs(tr[today % tr.length].at) });
       }
-      else yt.cuePlaylist({ listType: 'playlist', list: list });
+      else {
+        // Remember what the player holds now, so the previous station's songs aren't mistaken for this one's
+        // (unless it is the very same playlist again).
+        var before = list === lastList ? null : String(yt.getPlaylist ? yt.getPlaylist() : '');
+        lastList = list;
+        yt.cuePlaylist({ listType: 'playlist', list: list });
+        waitForList(before);
+      }
     }
     loadYouTube(function () {
       if (!yt) {
@@ -220,7 +227,10 @@
       yt.playVideoAt(plAt);
       return;
     }
-    // Nothing on this station plays. If no station has played since, give up instead of looping forever.
+    stationFailed();
+  }
+  // Nothing on this station plays. If no station has played since, give up instead of looping forever.
+  function stationFailed() {
     failRun++;
     var withMusic = stations.filter(function (x, k) { return hasMusic(k); }).length;
     if (failRun >= withMusic) { offAir(); return; }
@@ -234,13 +244,32 @@
     ui.artist.textContent = 'These songs can\'t play here right now';
   }
 
+  // YouTube doesn't always announce when a playlist is ready, so check for its song list every
+  // quarter second instead, for up to 8 seconds.
+  var listPoll = null, lastList = '';
+  function waitForList(before) {
+    clearInterval(listPoll);
+    var t0 = Date.now(), station = i;
+    listPoll = setInterval(function () {
+      if (station !== i || !playing || mode !== 'youtube' || !wantIndex) { clearInterval(listPoll); return; }
+      var ids = yt.getPlaylist ? yt.getPlaylist() : null, waited = Date.now() - t0;
+      var fresh = ids && ids.length && (before === null || String(ids) !== before);
+      if (fresh) {
+        clearInterval(listPoll);
+        wantIndex = false; plIds = ids; plAt = today % ids.length; plTries = 0;
+        yt.playVideoAt(plAt);
+      } else if (waited > 8000) {
+        clearInterval(listPoll); wantIndex = false;
+        if (window.console) console.warn('[radio] ' + stations[i].freq + ' ' + stations[i].name +
+          ': the playlist never loaded. Check it is public or unlisted, and that the link is right.');
+        stationFailed();
+      }
+    }, 250);
+  }
+
   function onYtState(e) {
-    if (e.data === YT.PlayerState.CUED && wantIndex) {
-      wantIndex = false;
-      var ids = plIds = yt.getPlaylist() || [];
-      if (!ids.length) { if (playing) step(1, true); return; }
-      plAt = today % ids.length; plTries = 0;
-      if (playing) yt.playVideoAt(plAt);
+    if (e.data === YT.PlayerState.PLAYING && wantIndex) {
+      return;                                   // a stray start before today's song is picked; waitForList handles it
     } else if (e.data === YT.PlayerState.PLAYING) {
       if (wantSeek) {
         wantSeek = false; failRun = 0;
