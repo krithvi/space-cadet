@@ -5,7 +5,7 @@
 $gun-1: #535a64; $gun-2: #383d45; $gun-3: #2a2e34; $gun-4: #16181b;
 $chrome: #b8c2cc; $chrome-hi: #d9e1e8;
 
-.radio-wrap { margin: 28px 0 0; max-width: 620px; }
+.radio-wrap { margin: 28px auto 0; max-width: 620px; }   // centered on every screen size
 
 .radio {
   position: relative;

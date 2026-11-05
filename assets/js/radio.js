@@ -1,7 +1,7 @@
 /* The ship's radio (Off duty, on About).
    - Each station is a YouTube playlist, or one long mix video with time marks; today's song is
      the entry for today's date, moving one song down the list each day (see _data/radio.yml).
-   - ▶ plays a 30-second snippet starting about a third of the way in, then a burst of soft static,
+   - ▶ plays a 30-second snippet (from the song's `at` time if you set one, otherwise its first 30 seconds), then a burst of soft static,
      then the next station. ◀◀ / ▶▶ retune by hand.
    - The YouTube player only loads after the first press of ▶, so the page stays fast and nothing
      plays on its own. It stays visible while playing, as YouTube's rules require.
@@ -157,7 +157,10 @@
     mode = 'youtube'; nowSong = null; wantIndex = !mix; wantSeek = true;
     render();
     function start() {
-      if (mix) yt.loadVideoById(videoId(stations[i].video));   // plays; the seek happens once it starts
+      if (mix) {                                              // start straight at today's snippet
+        var tr = stations[i].tracks;
+        yt.loadVideoById({ videoId: videoId(stations[i].video), startSeconds: secs(tr[today % tr.length].at) });
+      }
       else yt.cuePlaylist({ listType: 'playlist', list: list });
     }
     loadYouTube(function () {
@@ -180,18 +183,15 @@
 
   // Where today's snippet starts, and what the display says
   function placeSnippet() {
-    var dur = yt.getDuration();
-    if (isMix(i)) {
-      var tr = stations[i].tracks, n = today % tr.length, t = tr[n];
-      var from = secs(t.at), to = tr[n + 1] ? secs(tr[n + 1].at) : dur;
-      yt.seekTo(t.play ? secs(t.play) : from + Math.max(0, to - from) / 3, true);
+    if (isMix(i)) {                                           // mix video: each track's `at` is where its 30 seconds begin
+      var tr = stations[i].tracks, t = tr[today % tr.length];
+      yt.seekTo(secs(t.at), true);
       nowSong = { song: t.song || 'Unknown track', artist: t.artist || '' };
       return;
     }
     var v = yt.getVideoData ? yt.getVideoData() : {};
     var fix = fixFor(i, v.video_id);
-    if (fix && fix.at) yt.seekTo(secs(fix.at), true);
-    else if (dur > 45) yt.seekTo(dur / 3, true);              // skip the intro: about a third of the way in
+    if (fix && fix.at) yt.seekTo(secs(fix.at), true);          // otherwise it plays from the start
     nowSong = tidy(v.title, v.author);
     if (fix && fix.song) nowSong.song = fix.song;
     if (fix && fix.artist) nowSong.artist = fix.artist;

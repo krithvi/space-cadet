@@ -1,8 +1,7 @@
 # ── The ship's radio (Off duty, on About) ────────────────────────────
 # Each station plays ONE song a day from its playlist: the 1st song today, the 2nd tomorrow,
 # and so on, starting over after the last. Everyone visiting on the same day hears the same songs.
-# Each song plays a 30-second snippet from about a third of the way in, then the radio tunes
-# to the next station. Add songs to a playlist on YouTube and they join the rotation by themselves.
+# Each song plays a 30-second snippet, then the radio tunes to the next station. Add songs to a playlist on YouTube and they join the rotation by themselves.
 #
 # playlist: paste the playlist link from YouTube or YouTube Music (the whole link is fine),
 #           e.g. https://music.youtube.com/playlist?list=PLxxxxxxxx
@@ -10,7 +9,8 @@
 #           Leave it "" and the station shows "Coming soon" and is skipped while the radio plays.
 #           Each song must allow embedding (on YouTube: Share → Embed is offered). Songs that don't are skipped.
 # fix:      optional, only for songs that need it. Match a song by its share link, then:
-#             at:     where its 30 seconds should begin, in that song ("m:ss")
+#             at:     where its 30 seconds should begin, in that song ("m:ss").
+#                     Songs without one play their first 30 seconds.
 #             song:   / artist:  clean names for the display if YouTube's title is messy
 #           e.g.  fix:
 #                   - link: "https://music.youtube.com/watch?v=XXXXXXXXXXX"
@@ -19,10 +19,8 @@
 # Or, instead of a playlist, ONE long mix video with time marks:
 # video:    the video's link
 # tracks:   one entry per song, in order. Each day plays the next one.
-#             at:     where the song begins in the video ("m:ss" or "h:mm:ss")
+#             at:     where its 30 seconds should begin, in the video ("m:ss" or "h:mm:ss")
 #             song:   / artist:  shown on the display
-#             play:   optional, where its 30 seconds should begin, in the video ("m:ss").
-#                     Without it, the snippet starts a third of the way into that song.
 # Stations sit evenly along the dial whatever their numbers, so there are no odd gaps. Up to 8 fit on phones.
 
 start: "103.5"          # the station the dial rests on when the page loads
@@ -95,7 +93,7 @@ stations:
       - at: "48:49"
         song: Phantom Regret By Jim 
         artist: The Weeknd & Jim Carrey
-      # …one entry per song, in order (the last song runs to the end of the video)
+      # …one entry per song, in order
   - freq: "106.4"
     name: Hello FM   # Tamil film soundtracks and classics
     playlist: ""
