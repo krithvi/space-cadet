@@ -27,70 +27,72 @@ start: "103.5"          # the station the dial rests on when the page loads
 
 stations:
   - freq: "89.7"
-    name: Growl FM   # Anti-establishment, community-curated
+    name: Growl FM   # Anti-establishment, community-curated - GRIMES, Melanie Martinez
     playlist: ""
   - freq: "91.1"
-    name: RadioCity   # Music and talk
-    playlist: ""
+    name: RadioCity   # Tamil Kaadhal Music
+    playlist: "https://music.youtube.com/playlist?list=PLI0w2pSKaxc0ke6A-4yA-Lr0PIzNQ64lc"
+    # Playlist from Youtube: "For the Kaadhal I may -never- have (Tamil)" 
   - freq: "92.9"
-    name: Night FM   # Deep house and synth-pop
-    playlist: ""
+    name: Night FM   # Chill Music
+    playlist: "https://music.youtube.com/playlist?list=PLI0w2pSKaxc1VMJdI3yhejCN4Wf-NgFRQ"
+    # Playlist from Youtube: "Chilly Evening Stroll in Baltimore County" 
   - freq: "98.3"
     name: Radio Mirchi   # Tamil and Indian music
     playlist: ""
   - freq: "98.7"
-    name: Body Heat Radio   # Pop and synth-pop hits
+    name: Body Heat Radio   # Freaky Music
     playlist: ""
   - freq: "99.9"
-    name: Impulse   # Bass-heavy techno and club
+    name: Impulse   # Bass-heavy techno and club - CharliXCX + SAMURAI Club mix
     playlist: ""
   - freq: "103.5"
     name: DawnFM   # The Weeknd's Dawn FM
     video: "https://youtu.be/hWlYEaxubRY"
     tracks:
-      - at: "0:00"
+      - at: "0:52"
         song: Dawn FM
         artist: The Weeknd
-      - at: "1:36"
+      - at: "2:44"
         song: Gasoline
         artist: The Weeknd
-      - at: "5:08"
+      - at: "6:27"
         song: How Do I Make You Love Me?
         artist: The Weeknd
-      - at: "8:45"
+      - at: "9:52"
         song: Take My Breath
         artist: The Weeknd
       - at: "14:15"
         song: Sacrifice
         artist: The Weeknd
-      - at: "19:06"
+      - at: "19:58"
         song: Out of Time
         artist: The Weeknd
-      - at: "22:41"
+      - at: "22:39"
         song: Here We Go... Again 
         artist: The Weeknd ft. Tyler, The Creator 
-      - at: "26:10"
+      - at: "26:25"
         song: Best Friends 
         artist: The Weeknd
-      - at: "28:54"
+      - at: "28:40"
         song: Is There Someone Else?
         artist: The Weeknd
       - at: "32:13"
         song: Starry Eyes 
         artist: The Weeknd 
-      - at: "34:41"
+      - at: "35:00"
         song: Every Angel Is Terrifying 
         artist: The Weeknd 
-      - at: "37:28"
+      - at: "37:41"
         song: Don’t Break My Heart 
         artist: The Weeknd
-      - at: "40:54"
+      - at: "41:11"
         song: I Heard You’re Married 
-        artist: The Weeknd ft. Lil Wayna
-      - at: "45:17"
+        artist: The Weeknd ft. Lil Wayne
+      - at: "46:11"
         song: Less Than Zero 
         artist: The Weeknd
-      - at: "48:49"
+      - at: "49:03"
         song: Phantom Regret By Jim 
         artist: The Weeknd & Jim Carrey
       # …one entry per song, in order

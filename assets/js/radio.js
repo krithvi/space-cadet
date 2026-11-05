@@ -32,6 +32,7 @@
   var playing = false;          // the visitor wants sound
   var mode = 'off';             // off | youtube | secret
   var yt = null, ytReady = false, wantIndex = false, wantSeek = false;
+  var plIds = [], plAt = 0, plTries = 0, failRun = 0;   // failRun: stations in a row that couldn't play   // today's playlist, which song is up, how many have failed
   var timer = null, timerStarted = 0, timerLeft = SNIPPET_MS;
   var audio = null;
   var nowSong = null;           // { song, artist } once a track has loaded
@@ -172,7 +173,7 @@
           events: {
             onReady: function () { ytReady = true; if (playing) start(); },
             onStateChange: onYtState,
-            onError: function () { if (playing) step(1, true); }   // a song that can't be embedded: move on
+            onError: onYtError
           }
         });
       } else if (ytReady) {
@@ -197,15 +198,52 @@
     if (fix && fix.artist) nowSong.artist = fix.artist;
   }
 
+  // A song that won't play here: say why in the browser console (so you can spot songs to replace),
+  // then try the next song in the same playlist. A mix video that won't play moves to the next station.
+  var YT_ERRORS = {
+    2: 'the link looks wrong',
+    5: 'the player hit an error (usually temporary)',
+    100: 'removed or private',
+    101: 'embedding is turned off by the uploader, or it is blocked in this country',
+    150: 'embedding is turned off by the uploader, or it is blocked in this country'
+  };
+  function onYtError(e) {
+    var s = stations[i], mix = isMix(i);
+    var id = mix ? videoId(s.video) : (plIds[plAt] || '?');
+    var where = mix ? 'the mix video' : 'song ' + (plAt + 1) + ' of ' + plIds.length;
+    if (window.console) console.warn('[radio] ' + s.freq + ' ' + s.name + ': ' + where +
+      ' (https://youtu.be/' + id + ') can\'t play here: ' + (YT_ERRORS[e && e.data] || 'unknown error ' + (e && e.data)));
+    if (!playing) return;
+    if (!mix && plIds.length && plTries < plIds.length - 1) {
+      plTries++; plAt = (plAt + 1) % plIds.length;
+      wantSeek = true; nowSong = null; render();
+      yt.playVideoAt(plAt);
+      return;
+    }
+    // Nothing on this station plays. If no station has played since, give up instead of looping forever.
+    failRun++;
+    var withMusic = stations.filter(function (x, k) { return hasMusic(k); }).length;
+    if (failRun >= withMusic) { offAir(); return; }
+    step(1, true);
+  }
+  function offAir() {
+    playing = false; mode = 'off'; failRun = 0;
+    clearTimeout(timer); timer = null;
+    render();
+    ui.song.textContent = 'No signal';
+    ui.artist.textContent = 'These songs can\'t play here right now';
+  }
+
   function onYtState(e) {
     if (e.data === YT.PlayerState.CUED && wantIndex) {
       wantIndex = false;
-      var ids = yt.getPlaylist() || [];
+      var ids = plIds = yt.getPlaylist() || [];
       if (!ids.length) { if (playing) step(1, true); return; }
-      if (playing) yt.playVideoAt(today % ids.length);
+      plAt = today % ids.length; plTries = 0;
+      if (playing) yt.playVideoAt(plAt);
     } else if (e.data === YT.PlayerState.PLAYING) {
       if (wantSeek) {
-        wantSeek = false;
+        wantSeek = false; failRun = 0;
         placeSnippet();
         render();
         startTimer(SNIPPET_MS);
