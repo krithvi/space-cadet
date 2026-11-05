@@ -1,6 +1,6 @@
 /* The ship's radio (Off duty, on About).
-   - Each station is a YouTube playlist; today's song is the playlist entry for today's date,
-     moving one song down the list each day (see _data/radio.yml).
+   - Each station is a YouTube playlist, or one long mix video with time marks; today's song is
+     the entry for today's date, moving one song down the list each day (see _data/radio.yml).
    - ▶ plays a 30-second snippet starting about a third of the way in, then a burst of soft static,
      then the next station. ◀◀ / ▶▶ retune by hand.
    - The YouTube player only loads after the first press of ▶, so the page stays fast and nothing
@@ -44,7 +44,22 @@
     var m = String(v).match(/[?&]list=([A-Za-z0-9_-]+)/);
     return m ? m[1] : String(v).trim();
   }
-  function hasMusic(k) { return !!listId(stations[k].playlist) || secretActive(k); }
+  function videoId(v) {
+    var m = String(v || '').match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/)([A-Za-z0-9_-]{11})/);
+    return m ? m[1] : (/^[A-Za-z0-9_-]{11}$/.test(String(v || '').trim()) ? String(v).trim() : '');
+  }
+  // "1:36" or "1:02:05" → seconds
+  function secs(t) {
+    return String(t || '0').split(':').reduce(function (acc, n) { return acc * 60 + (parseFloat(n) || 0); }, 0);
+  }
+  function isMix(k) { var s = stations[k]; return !!(videoId(s.video) && s.tracks && s.tracks.length); }
+  function hasMusic(k) { return !!listId(stations[k].playlist) || isMix(k) || secretActive(k); }
+  // A playlist song's fix entry (start time / clean names), matched by its link
+  function fixFor(k, id) {
+    var list = stations[k].fix || [];
+    for (var n = 0; n < list.length; n++) if (videoId(list[n].link) === id) return list[n];
+    return null;
+  }
   function secretActive(k) {
     if (!secret.audio || String(stations[k].freq) !== String(secret.station)) return false;
     var h = new Date().getHours(), from = +secret.from, to = +secret.to;
@@ -137,9 +152,14 @@
   }
 
   function playYouTube() {
-    var list = listId(stations[i].playlist);
-    mode = 'youtube'; nowSong = null; wantIndex = true; wantSeek = true;
+    var mix = isMix(i);
+    var list = mix ? '' : listId(stations[i].playlist);
+    mode = 'youtube'; nowSong = null; wantIndex = !mix; wantSeek = true;
     render();
+    function start() {
+      if (mix) yt.loadVideoById(videoId(stations[i].video));   // plays; the seek happens once it starts
+      else yt.cuePlaylist({ listType: 'playlist', list: list });
+    }
     loadYouTube(function () {
       if (!yt) {
         yt = new YT.Player('radio-player', {
@@ -147,15 +167,34 @@
           width: '100%', height: '100%',
           playerVars: { playsinline: 1, rel: 0, modestbranding: 1 },
           events: {
-            onReady: function () { ytReady = true; yt.cuePlaylist({ listType: 'playlist', list: list }); },
+            onReady: function () { ytReady = true; if (playing) start(); },
             onStateChange: onYtState,
             onError: function () { if (playing) step(1, true); }   // a song that can't be embedded: move on
           }
         });
       } else if (ytReady) {
-        yt.cuePlaylist({ listType: 'playlist', list: list });
+        start();
       }
     });
+  }
+
+  // Where today's snippet starts, and what the display says
+  function placeSnippet() {
+    var dur = yt.getDuration();
+    if (isMix(i)) {
+      var tr = stations[i].tracks, n = today % tr.length, t = tr[n];
+      var from = secs(t.at), to = tr[n + 1] ? secs(tr[n + 1].at) : dur;
+      yt.seekTo(t.play ? secs(t.play) : from + Math.max(0, to - from) / 3, true);
+      nowSong = { song: t.song || 'Unknown track', artist: t.artist || '' };
+      return;
+    }
+    var v = yt.getVideoData ? yt.getVideoData() : {};
+    var fix = fixFor(i, v.video_id);
+    if (fix && fix.at) yt.seekTo(secs(fix.at), true);
+    else if (dur > 45) yt.seekTo(dur / 3, true);              // skip the intro: about a third of the way in
+    nowSong = tidy(v.title, v.author);
+    if (fix && fix.song) nowSong.song = fix.song;
+    if (fix && fix.artist) nowSong.artist = fix.artist;
   }
 
   function onYtState(e) {
@@ -167,10 +206,7 @@
     } else if (e.data === YT.PlayerState.PLAYING) {
       if (wantSeek) {
         wantSeek = false;
-        var dur = yt.getDuration();
-        if (dur > 45) yt.seekTo(dur / 3, true);   // skip the intro: about a third of the way in
-        var v = yt.getVideoData ? yt.getVideoData() : {};
-        nowSong = tidy(v.title, v.author);
+        placeSnippet();
         render();
         startTimer(SNIPPET_MS);
       } else if (!timer && playing) {
@@ -179,7 +215,7 @@
     } else if (e.data === YT.PlayerState.PAUSED) {
       pauseTimer();
     } else if (e.data === YT.PlayerState.ENDED) {
-      if (playing) step(1, true);
+      if (playing && !wantSeek) step(1, true);
     }
   }
 
