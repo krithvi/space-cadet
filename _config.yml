@@ -59,7 +59,7 @@ author:
   orcid: ""
   github: https://github.com/krithvi
   behance: https://www.behance.net/krithvi
-  favicon: ""                      # later: e.g. /assets/img/favicon.png (square, 512×512)
+  favicon: "/assets/img/favicon.svg"                    # (square, 512×512)
   # The compact "Open to work" bar on Base. Set show: false to hide it.
   open_to_work:
     show: true
