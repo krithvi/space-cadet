@@ -70,7 +70,7 @@ $arch-x: 150px; $arch-y: 78px; $rim: 8px;
 
 // Equalizer in the crown: still bars when off, dancing while something plays
 .radio-eq { position: absolute; top: 18px; left: 50%; transform: translateX(-50%); display: flex; align-items: flex-end; gap: 3px; height: 14px; z-index: 1; }
-.radio-eq i { width: 3px; height: 3px; border-radius: 1px; background: #c39bff; box-shadow: 0 0 4px #a855f7; opacity: 0.55; }
+.radio-eq i { width: 3px; height: 3px; border-radius: 1px; background: $secondary; box-shadow: 0 0 4px $alien; opacity: 0.55; }
 .radio-eq i:nth-child(2) { animation-delay: -0.3s; } .radio-eq i:nth-child(3) { animation-delay: -0.6s; }
 .radio-eq i:nth-child(4) { animation-delay: -0.15s; } .radio-eq i:nth-child(5) { animation-delay: -0.45s; }
 .radio.is-playing .radio-eq i, .radio.is-secret .radio-eq i { opacity: 1; animation: radio-eq 1s ease-in-out infinite; }
@@ -109,21 +109,21 @@ $arch-x: 150px; $arch-y: 78px; $rim: 8px;
   font-family: "JetBrains Mono", ui-monospace, monospace;
   p { margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 }
-.radio-station { display: flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.08em; color: #6fb8cf; b { color: #a8e4f5; font-weight: 700; } }
+.radio-station { display: flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.08em; color: mix($secondary, #06121a, 75%); b { color: mix($secondary, #fff, 60%); font-weight: 700; } }
 .radio-air {
   margin-left: auto; padding: 2px 6px; border-radius: 3px; border: 1px solid #23404d;
   font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #23404d;
-  &.is-on { color: #c39bff; border-color: #c39bff; text-shadow: 0 0 6px rgba(168, 85, 247, 0.8); }
+  &.is-on { color: $accent-2; border-color: $accent-2; text-shadow: 0 0 6px rgba($accent-2, 0.8); }
 }
-.radio-song { margin-top: 4px !important; font-size: 20px; font-weight: 700; color: #eafaff; text-shadow: 0 0 8px rgba(142, 232, 255, 0.45); }
-.radio-artist { font-size: 14px; color: #8ee8ff; }
+.radio-song { margin-top: 4px !important; font-size: 20px; font-weight: 700; color: #f6f0ff; text-shadow: 0 0 8px rgba($secondary, 0.45); }
+.radio-artist { font-size: 14px; color: $secondary; }
 .radio.is-secret .radio-song { color: #ffd1df; text-shadow: 0 0 8px rgba(255, 90, 138, 0.6); }
 .radio.is-secret .radio-artist { color: #ff8fb1; }
 
 // Tape-deck keys: orange skip, blue play (stays pressed while playing)
 .radio-keys { margin-top: 16px; display: flex; gap: 10px; justify-content: center; }
 // Keys: gunmetal keycaps with the same depth and press as the nav keys.
-// Skip keys sit on blue walls; play sits on a purple wall (the "infected" accent used on the site's buttons).
+// Skip keys sit on blue walls; play sits on an amber wall (the accent colour, palette.scss).
 $cap-top: #4a4f58; $cap-base: #33373e; $cap-rim: #5d636d;
 .radio-key {
   --wall: #2f7fa8; --wall-dark: #174560;
@@ -145,15 +145,15 @@ $cap-top: #4a4f58; $cap-base: #33373e; $cap-rim: #5d636d;
       inset 0 -3px 0 rgba(0, 0, 0, 0.18),
       0 7px 0 var(--wall), 0 8px 0 var(--wall-dark), 0 12px 14px rgba(0, 0, 0, 0.5);
   }
-  &:focus-visible { outline: 2px solid #8ee8ff; outline-offset: 3px; }
+  &:focus-visible { outline: 2px solid $secondary; outline-offset: 3px; }
   &:active {
     transform: translateY(0); transition-duration: 0.05s;
     box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.4), inset 0 -1px 0 rgba(255, 255, 255, 0.08);
   }
 }
 .radio-key--play {
-  --wall: #7a3ac4; --wall-dark: #3f1d6b;
-  border-color: #8a6cc4; color: #ecdcff;
+  --wall: #{mix($accent, #000, 60%)}; --wall-dark: #{mix($accent, #000, 32%)};   // amber, like the other action buttons
+  border-color: mix($accent, #33373e, 55%); color: mix($accent, #fff, 45%);
   // Latched halfway down while playing, like the Park key
   &[aria-pressed="true"] {
     transform: translateY(-2px);

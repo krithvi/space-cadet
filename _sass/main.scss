@@ -59,7 +59,7 @@ $key-wall: #142f42;
 $key-wall-dark: #0c1f2c;
 $key-socket: #1b3a50;
 $led-off: #173447;
-$led-on: #8ee8ff;
+$led-on: $accent-2;   // lit LED (palette.scss) 
 
 nav.console {
   position: fixed;
@@ -183,8 +183,8 @@ nav.console {
 .key.current .key-led {
   background: $led-on;
   box-shadow:
-    0 0 4px $hover,
-    0 0 8px rgba(102, 187, 221, 0.7);
+    0 0 4px $led-on,
+    0 0 8px rgba($led-on, 0.7);
 }
 
 // Narrow screens: tighter keys so the panel stays on one or two rows.

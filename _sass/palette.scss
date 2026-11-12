@@ -1,0 +1,25 @@
+// ── Palette: "Supernova" ─────────────────────────────────────────────
+// The site's colours, by job. Change a value here and every shade made from it follows.
+// (The Neuralyzer case study keeps its own colours in assets/css/neuralyzer.css.)
+
+// Base: the steel blue of the nav bar and its keycaps
+$base: #336688;
+
+// Secondary: structure and status. Section numbers, heading glow, rules, chips, borders, links
+$secondary: #c39bff;     // lilac
+
+// Accent: actions only. View CV, primary buttons, the radio's play key
+$accent: #f2a65a;        // amber
+$accent-ink: #2a1606;    // text on amber
+
+// Second accent: "live" signals, used sparingly. Lit LEDs (current page, Park, Open to work),
+// the "now" stop on the timeline, the porthole's orbiting dot, the radio's ON AIR
+$accent-2: #3fd6a8;      // aurora green
+
+// The 👾 purple: the glow and ring when a button is hovered or pressed
+$alien: #a855f7;
+
+// Space and surfaces
+$space: #0b0c12;         // page background
+$surface: #232532;       // cards
+$ink: #e9e9ed;           // body text
