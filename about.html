@@ -53,7 +53,7 @@ description: "About Kavya Rajendran: education, teaching and service in Human-Ce
 </section>
 
 <section class="sec sec--tight">
-  {% include section-head.html " title="Crew and community" %}
+  {% include section-head.html title="Crew and community" %}
   <div class="crew-grid">
     {%- for c in a.crew %}
     {% include crew-card.html item=c %}
@@ -63,7 +63,7 @@ description: "About Kavya Rajendran: education, teaching and service in Human-Ce
 
 {%- if a.off_duty %}
 <section class="sec sec--tight">
-  {% include section-head.html  title="Off duty" %}
+  {% include section-head.html title="Off duty" %}
   <p class="lede">{{ a.off_duty }}</p>
   {% include radio.html %}
 </section>
