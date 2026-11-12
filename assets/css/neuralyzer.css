@@ -64,7 +64,7 @@
 }
 
 /* the site nav include, lifted above the canvas */
-.ncase > body > nav { position: relative; z-index: 65; }
+.ncase > body > nav.console { position: relative; z-index: 65; }
 
 .n-scroll {
   position: fixed; inset: 0; z-index: 1;
@@ -77,53 +77,6 @@
 .ncase .n-scroll a:hover { color: var(--a200); border-bottom-color: var(--a400); }
 .ncase :focus-visible { outline: 2px solid var(--a); outline-offset: 3px; }
 .ncase ::selection { background: var(--a800); }
-
-/* --- scroll progress + chapter rail --------------------------------------- */
-.n-progress {
-  position: fixed; top: var(--nav-h); left: 0; right: 0; height: 2px; z-index: 70;
-  background: rgba(233,233,237,.07);
-}
-.n-progress-bar {
-  height: 100%; width: 100%;
-  background: var(--a); box-shadow: 0 0 10px var(--a);
-  transform-origin: left center; transform: scaleX(0);
-  transition: transform .12s linear;
-}
-
-/* Deliberately NOT a <nav>: styles.css styles the bare nav element for the site
-   header (background #368, width 100%, pinned top), and the rail must not inherit
-   any of it. It's a div with role=navigation instead.
-   z-index 0 keeps it under the article at every scroll position — the 74px gutter
-   reserved on .n-col below 1320px is what keeps it clear of the text. */
-.n-rail {
-  position: fixed; right: 20px; top: 50%; transform: translateY(-50%); z-index: 0;
-  display: flex; flex-direction: column; gap: 2px; align-items: flex-end;
-}
-.n-rail a {
-  position: relative; display: flex; align-items: center; justify-content: flex-end;
-  gap: 10px; padding: 6px 2px 6px 14px;
-  border: 0; border-radius: var(--r-sm); text-decoration: none;
-}
-.n-rail-label {
-  position: absolute; right: 100%; top: 50%; pointer-events: none;
-  font-family: var(--mono); font-size: 10px; letter-spacing: .12em;
-  text-transform: uppercase; white-space: nowrap; color: var(--n400);
-  opacity: 0; transform: translateY(-50%) translateX(4px);
-  transition: opacity .22s ease, transform .22s ease;
-}
-.n-rail-num {
-  font-family: var(--mono); font-size: 10px; letter-spacing: .1em;
-  color: var(--n700); transition: color .22s ease;
-}
-.n-rail-tick {
-  display: block; width: 11px; height: 1px; border-radius: 1px;
-  background: var(--n800); transition: all .22s ease;
-}
-.n-rail .is-past .n-rail-num { color: var(--n600); }
-.n-rail .is-past .n-rail-tick { background: var(--n600); }
-.n-rail .is-on .n-rail-label { opacity: 1; transform: translateY(-50%) translateX(-2px); }
-.n-rail .is-on .n-rail-num { color: var(--a200); }
-.n-rail .is-on .n-rail-tick { width: 22px; background: var(--a); box-shadow: 0 0 8px var(--a); }
 
 /* --- measure -------------------------------------------------------------- */
 .n-col { --pad-l: 32px; --pad-r: 32px; max-width: 1120px; margin: 0 auto; padding: 0 var(--pad-r) 0 var(--pad-l); }
@@ -551,7 +504,6 @@
 /* --- responsive ----------------------------------------------------------- */
 @media (max-width: 1320px) { .n-col { --pad-r: 74px; } }
 @media (max-width: 760px) {
-  .n-rail { display: none; }
   .n-col { --pad-l: 20px; --pad-r: 20px; }
   .n-papergrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .n-band { padding-left: 20px; padding-right: 20px; }

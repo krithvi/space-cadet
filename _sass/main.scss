@@ -59,6 +59,10 @@ $key-wall: #142f42;
 $key-wall-dark: #0c1f2c;
 $key-socket: #1b3a50;
 $led-off: #173447;
+// Backlight: light leaking evenly from under each key (soft at rest, brighter on hover; current page in green)
+$backlight: 0 0 0 1px rgba($blue, 0.12), 0 2px 10px rgba($blue, 0.22);
+$backlight-hover: 0 0 0 1px rgba($blue, 0.35), 0 3px 18px rgba($blue, 0.55);
+$backlight-current: 0 0 0 1px rgba($accent-2, 0.2), 0 2px 10px rgba($accent-2, 0.33);
 $led-on: $accent-2;   // lit LED (palette.scss) 
 
 nav.console {
@@ -71,11 +75,9 @@ nav.console {
   flex-wrap: wrap;
   gap: 14px;
   padding: 16px 16px 18px;
-  background: $element;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    inset 0 -2px 0 rgba(0, 0, 0, 0.25),
-    0 6px 18px rgba(0, 0, 0, 0.5);
+  background: $glass;                                   // dark glass with a thin blue edge (palette.scss)
+  border-bottom: 1px solid $blue;
+  box-shadow: 0 1px 10px rgba($blue, 0.25), 0 6px 18px rgba(0, 0, 0, 0.5);
   font-family: $mono;
   font-weight: 700;
   font-size: 15px;
@@ -110,7 +112,8 @@ nav.console {
     inset 0 0 0 3px rgba(255, 255, 255, 0.03),
     0 6px 0 $key-wall,
     0 7px 0 $key-wall-dark,
-    0 9px 10px rgba(0, 0, 0, 0.5);
+    0 9px 10px rgba(0, 0, 0, 0.5),
+    $backlight;
   transform: translateY(-6px);
   transition: transform 0.12s ease, box-shadow 0.12s ease, text-shadow 0.25s ease;
 
@@ -127,12 +130,11 @@ nav.console {
     inset 0 0 0 3px rgba(255, 255, 255, 0.03),
     0 8px 0 $key-wall,
     0 9px 0 $key-wall-dark,
-    0 13px 14px rgba(0, 0, 0, 0.5);
-  text-shadow:
-    0 0 3px rgba(150, 215, 240, 0.45),
-    0 0 7px rgba(102, 187, 221, 0.35);
+    0 13px 14px rgba(0, 0, 0, 0.5),
+    $backlight-hover;
 
-  .key-icon { animation: zero-g 2.6s ease-in-out infinite; }
+  // Zero gravity: lifts at once (so a quick hover still shows it), then keeps floating
+  .key-icon { animation: zero-g-lift 0.35s cubic-bezier(0.3, 1.6, 0.5, 1), zero-g 1.6s ease-in-out 0.35s infinite; }
 }
 
 @media (hover: hover) {
@@ -159,13 +161,17 @@ nav.console {
   line-height: 1;
 }
 
-// Floats for as long as the key is hovered.
+// Floats for as long as the key is hovered: a quick 5px lift with a tilt, then a drift around that height.
+@keyframes zero-g-lift {
+  from { transform: translate(0, 0) rotate(0); }
+  to   { transform: translate(0, -5px) rotate(-14deg); }
+}
 @keyframes zero-g {
-  0%   { transform: translate(0, 0) rotate(0); }
-  25%  { transform: translate(1px, -3px) rotate(-12deg); }
-  50%  { transform: translate(-1px, -4px) rotate(6deg); }
-  75%  { transform: translate(1px, -2px) rotate(-6deg); }
-  100% { transform: translate(0, 0) rotate(0); }
+  0%   { transform: translate(0, -5px) rotate(-14deg); }
+  25%  { transform: translate(2px, -7px) rotate(4deg); }
+  50%  { transform: translate(-1px, -4px) rotate(12deg); }
+  75%  { transform: translate(-2px, -7px) rotate(-4deg); }
+  100% { transform: translate(0, -5px) rotate(-14deg); }
 }
 
 .key-led {
@@ -180,6 +186,17 @@ nav.console {
   transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
+// The current page's key glows green instead of blue
+.key.current:not(:hover):not(:focus-visible) {
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.18),
+    inset 0 0 0 3px rgba(255, 255, 255, 0.03),
+    0 6px 0 $key-wall,
+    0 7px 0 $key-wall-dark,
+    0 9px 10px rgba(0, 0, 0, 0.5),
+    $backlight-current;
+}
 .key.current .key-led {
   background: $led-on;
   box-shadow:

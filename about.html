@@ -15,7 +15,7 @@ description: "About Kavya Rajendran: education, teaching and service in Human-Ce
 </section>
 
 <section class="sec sec--tight">
-  {% include section-head.html num="01" title="Trajectory" %}
+  {% include section-head.html title="Trajectory" %}
   <ol class="trajectory">
     {%- for e in a.education %}
     <li class="stop{% if e.now %} stop--now{% endif %}">
@@ -28,7 +28,7 @@ description: "About Kavya Rajendran: education, teaching and service in Human-Ce
 </section>
 
 <section class="sec sec--tight">
-  {% include section-head.html num="02" title="Toolkit" %}
+  {% include section-head.html title="Toolkit" %}
   <div class="toolkit">
     {%- for g in a.toolkit %}
     <div class="toolkit-group">
@@ -40,7 +40,7 @@ description: "About Kavya Rajendran: education, teaching and service in Human-Ce
 </section>
 
 <section class="sec sec--tight">
-  {% include section-head.html num="03" title="Teaching" %}
+  {% include section-head.html title="Teaching" %}
   <div class="grid grid--tiles">
     {%- for c in site.data.teaching %}
     <div class="tile">
@@ -53,7 +53,7 @@ description: "About Kavya Rajendran: education, teaching and service in Human-Ce
 </section>
 
 <section class="sec sec--tight">
-  {% include section-head.html num="04" title="Crew and community" %}
+  {% include section-head.html " title="Crew and community" %}
   <div class="crew-grid">
     {%- for c in a.crew %}
     {% include crew-card.html item=c %}
@@ -63,7 +63,7 @@ description: "About Kavya Rajendran: education, teaching and service in Human-Ce
 
 {%- if a.off_duty %}
 <section class="sec sec--tight">
-  {% include section-head.html num="05" title="Off duty" %}
+  {% include section-head.html  title="Off duty" %}
   <p class="lede">{{ a.off_duty }}</p>
   {% include radio.html %}
 </section>

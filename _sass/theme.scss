@@ -8,6 +8,8 @@ $n100: #f3f5fe; $n200: #e4e7f5; $n300: #cfd3e5; $n400: #b2b6ca; $n500: #9397ab; 
 // Shades of the secondary colour: $a is the colour itself, 200/300 lighter (for text), 700/900 darker (for lines and tinted panels)
 $a: $secondary; $a200: mix($secondary, #fff, 30%); $a300: mix($secondary, #fff, 60%); $a400: $secondary;
 $a700: mix($secondary, $space, 40%); $a900: mix($secondary, $space, 14%);
+// Shades of the blue (palette.scss): porthole ring, asteroid plates, flight path
+$b: $blue; $b700: mix($blue, $space, 40%); $b900: mix($blue, $space, 14%);
 $rule: linear-gradient(to right, mix($secondary, #fff, 80%) 0%, $secondary 22%, $a700 55%, transparent 100%);
 $heading: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, monospace;
 $label: 'JetBrains Mono', ui-monospace, monospace;
@@ -29,7 +31,7 @@ body.site {
   }
   *, *::before, *::after { box-sizing: border-box; }
   a { color: $a300; }
-  .key, .key:visited { color: rgb(240, 255, 255); }   // nav keys keep their own near-white labels
+  .key, .key:visited, .key:hover, .key:focus-visible { color: rgb(240, 255, 255); }   // nav keys keep their own near-white labels
   a:hover { color: $a200; }
   :focus-visible { outline: 2px solid $a; outline-offset: 3px; }
   ::selection { background: $a700; }
@@ -57,10 +59,44 @@ body.site {
 // ── Numbered section heading: 01 · Title ──── ──
 // Spacing system (law of proximity): 12px inside a group · 24px heading → content · 96px between sections · 32px under the nav
 .sec { margin-top: 96px; }
-.sec-head { display: flex; align-items: center; gap: 16px; margin: 0 0 24px; }
-.sec-num { font-family: $label; font-size: 13px; letter-spacing: 0.14em; color: $a400; }
-.sec-title { font-family: $heading; font-weight: 600; font-size: clamp(22px, 2.6vw, 30px); letter-spacing: -0.03em; color: $n100; text-shadow: $glow; }
-.sec-rule { flex: 1; height: 2px; border-radius: 2px; background: $rule; }
+// Asteroid headings: each section title is a bolted plate on a drifting rock.
+// The rocks are drawn in the CSS below, so a heading only needs the class .sec-head (or to be a ## in an entry).
+// Four rock shapes take turns; markup: {% include section-head.html title="Toolkit" %}
+@function rock($d, $c1, $c2) {
+  @return url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 50' preserveAspectRatio='none'%3E%3Cpath d='#{$d}' fill='%23#{str-slice(inspect($rock), 2)}'/%3E%3Ccircle cx='#{nth($c1, 1)}' cy='#{nth($c1, 2)}' r='3' fill='%23#{str-slice(inspect($rock-crater), 2)}'/%3E%3Ccircle cx='#{nth($c2, 1)}' cy='#{nth($c2, 2)}' r='2.4' fill='%23#{str-slice(inspect($rock-crater), 2)}'/%3E%3C/svg%3E");
+}
+$rocks: (
+  rock('M6 26C2 12 20 3 38 6C55 1 78 3 90 10C99 18 98 34 88 42C72 50 46 49 30 46C14 47 8 38 6 26Z', 82 16, 16 38) -2deg,
+  rock('M4 30C6 14 24 6 44 8C60 2 84 6 94 18C100 30 92 44 74 46C56 50 34 48 20 44C8 42 3 38 4 30Z', 30 16, 76 38) 1.5deg,
+  rock('M8 22C10 8 30 4 50 6C70 4 90 10 95 24C98 38 82 47 60 46C40 49 18 46 9 38C4 33 6 27 8 22Z', 60 14, 22 36) -1deg,
+  rock('M5 28C3 14 18 5 36 8C52 2 76 4 90 14C99 24 96 40 80 45C62 50 40 48 24 45C10 44 6 36 5 28Z', 24 18, 70 40) 2deg
+);
+.sec-head, .prose h2 {
+  position: relative; isolation: isolate;
+  display: inline-block; margin: 0 0 24px 14px;
+  animation: rock-bob 5s ease-in-out infinite;
+  scroll-margin-top: calc(var(--nav-h, 80px) + 32px);   // jumps from the flight path land below the nav
+  &::before {                                            // the rock
+    content: ""; position: absolute; inset: -12px -22px; z-index: -1;
+    background: nth(nth($rocks, 1), 1) center / 100% 100% no-repeat;
+  }
+  &.is-arriving { animation: rock-nudge 0.7s cubic-bezier(0.3, 1.6, 0.5, 1), rock-bob 5s ease-in-out 0.7s infinite; }
+}
+.sec-title, .prose h2 .plate {                           // the plate
+  display: inline-block; padding: 5px 14px;
+  font-family: $heading; font-weight: 700; font-size: clamp(20px, 2.4vw, 26px); letter-spacing: -0.02em; color: $n100;
+  background: rgba($space, 0.92); border: 1px solid $b; border-radius: 4px;
+  box-shadow: 0 0 12px rgba($b, 0.25);
+  transform: rotate(nth(nth($rocks, 1), 2));
+}
+@for $i from 1 through length($rocks) {                  // rock shape and plate tilt take turns
+  .sec:nth-of-type(#{length($rocks)}n + #{$i}) .sec-head::before, .prose h2:nth-of-type(#{length($rocks)}n + #{$i})::before { background-image: nth(nth($rocks, $i), 1); }
+  .sec:nth-of-type(#{length($rocks)}n + #{$i}) .sec-title, .prose h2:nth-of-type(#{length($rocks)}n + #{$i}) .plate { transform: rotate(nth(nth($rocks, $i), 2)); }
+}
+@keyframes rock-bob { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(3px); } }
+@keyframes rock-nudge { from { transform: translateY(10px) rotate(-1.5deg); } to { transform: translateY(-2px); } }
+html[data-motion="parked"] .sec-head, html[data-motion="parked"] .prose h2 { animation: none !important; }
+@media (prefers-reduced-motion: reduce) { .sec-head, .prose h2 { animation: none !important; } }
 
 // ── Buttons and chips ──
 .btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
@@ -94,14 +130,14 @@ body.site {
 .porthole { position: relative; width: clamp(220px, 28vw, 320px); aspect-ratio: 1; margin: 0 auto; }
 .porthole-orbit {
   position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible;
-  ellipse { fill: none; stroke: $a700; stroke-width: 1; }
+  ellipse { fill: none; stroke: $b700; stroke-width: 1; }
   circle { fill: $accent-2; }
   animation: orbit 60s linear infinite;
 }
 @keyframes orbit { to { transform: rotate(360deg); } }
 .porthole-glass {
   position: absolute; inset: 12.5%; border-radius: 50%; padding: 8px; background: $surface;
-  box-shadow: 0 0 0 2px $a, 0 0 0 10px $a900, 0 0 0 11px $a700, 0 0 40px rgba($secondary, 0.3);
+  box-shadow: 0 0 0 2px $b, 0 0 0 10px $b900, 0 0 0 11px $b700, 0 0 40px rgba($blue, 0.3);
   img, .porthole-initials { width: 100%; height: 100%; border-radius: 50%; }
   img { display: block; object-fit: cover; object-position: var(--focus, 50% 50%); }
 }
@@ -323,13 +359,8 @@ body.site .ckey--icon { width: 44px; padding: 0; }
   margin-top: 8px; counter-reset: sec;
   font-size: 17px; line-height: 1.65; color: $n300;
   > p, > ul, > ol, > blockquote { max-width: 58ch; }
-  // Every ## heading in an entry becomes a numbered section: 01 · Title ────
-  h2 {
-    display: flex; align-items: center; gap: 16px; margin: 96px 0 0;
-    font-family: $heading; font-weight: 600; font-size: clamp(21px, 2.6vw, 28px); letter-spacing: -0.03em; color: $n100; text-shadow: $glow;
-    &::before { counter-increment: sec; content: counter(sec, decimal-leading-zero); font-family: $label; font-size: 13px; font-weight: 400; letter-spacing: 0.14em; color: $a400; text-shadow: none; }
-    &::after { content: ""; flex: 1; height: 2px; border-radius: 2px; background: $rule; }
-  }
+  // Every ## heading in an entry is an asteroid heading too (styles above; flightpath.js wraps its text in a plate)
+  h2 { margin: 72px 0 24px 14px; }
   h3 { margin: 40px 0 0; font-family: $heading; font-weight: 600; font-size: 18px; color: $n100; }
   p, ul, ol { margin: 20px 0 0; }
   ul, ol { padding-left: 1.2em; }

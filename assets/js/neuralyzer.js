@@ -1,4 +1,4 @@
-/* Neuralyzer case study — prototype flow + scroll rail.
+/* Neuralyzer case study — prototype flow. (The section scroller is the site-wide flightpath.js.)
    Vanilla, no dependencies. The starfield is the site's own assets/js/canvas.js,
    loaded separately and untouched. */
 (function () {
@@ -17,45 +17,13 @@
   var stage = document.getElementById('n-stage');
   if (!scroller || !stage) return;
 
-  /* ---------------------------------------------------------------- rail */
-  var bar = document.querySelector('.n-progress-bar');
-  var railLinks = [].slice.call(document.querySelectorAll('.n-rail a'));
-  var targets = railLinks.map(function (a) {
-    return document.getElementById(a.getAttribute('href').slice(1));
-  });
-
-  var railRaf = null;
-  function onScroll() {
-    if (railRaf) return;
-    railRaf = requestAnimationFrame(function () {
-      railRaf = null;
-      var max = scroller.scrollHeight - scroller.clientHeight;
-      var p = max > 0 ? Math.min(1, Math.max(0, scroller.scrollTop / max)) : 0;
-      if (bar) bar.style.transform = 'scaleX(' + p + ')';
-
-      var top = scroller.getBoundingClientRect().top;
-      var cut = scroller.clientHeight * 0.4;
-      var active = -1;
-      targets.forEach(function (el, i) {
-        if (el && el.getBoundingClientRect().top - top <= cut) active = i;
-      });
-      railLinks.forEach(function (a, i) {
-        a.classList.toggle('is-on', i === active);
-        a.classList.toggle('is-past', i < active);
-      });
-    });
-  }
-  scroller.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
-  onScroll();
-
   /* the nav's live height, set by navigation.html; 42 was the old one-line nav */
   function navH() {
     return parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 42;
   }
 
   /* smooth in-page jumps inside the scroll container */
-  railLinks.concat([].slice.call(document.querySelectorAll('a[href^="#"]:not(.n-rail a)')))
+  [].slice.call(document.querySelectorAll('.n-scroll a[href^="#"]'))
     .forEach(function (a) {
       a.addEventListener('click', function (e) {
         var el = document.getElementById(a.getAttribute('href').slice(1));

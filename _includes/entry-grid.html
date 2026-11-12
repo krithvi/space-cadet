@@ -7,7 +7,7 @@
 {%- if include.key %}{% assign list = list | where: include.key, include.value %}{% endif -%}
 {%- if list.size > 0 %}
 <section class="sec">
-  {% include section-head.html num=include.num title=include.title %}
+  {% include section-head.html title=include.title %}
   <div class="grid{% if include.row %} grid--rows{% endif %}">
     {%- for item in list %}
     {% include entry-card.html entry=item row=include.row %}

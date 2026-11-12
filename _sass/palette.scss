@@ -2,10 +2,17 @@
 // The site's colours, by job. Change a value here and every shade made from it follows.
 // (The Neuralyzer case study keeps its own colours in assets/css/neuralyzer.css.)
 
-// Base: the steel blue of the nav bar and its keycaps
+// Nav bar: dark glass with a thin blue edge
+$glass: #15131f;
+
+// Keys: the steel blue of the nav keys (and the radio's skip keys)
 $base: #336688;
 
-// Secondary: structure and status. Section numbers, heading glow, rules, chips, borders, links
+// Blue: the "hull" colour. Nav edge and key backlight, asteroid plate borders,
+// the flight-path scroller, the porthole ring
+$blue: #66bbdd;
+
+// Secondary: small text accents. Eyebrow labels, chip borders, heading glow, links
 $secondary: #c39bff;     // lilac
 
 // Accent: actions only. View CV, primary buttons, the radio's play key
@@ -13,11 +20,15 @@ $accent: #f2a65a;        // amber
 $accent-ink: #2a1606;    // text on amber
 
 // Second accent: "live" signals, used sparingly. Lit LEDs (current page, Park, Open to work),
-// the "now" stop on the timeline, the porthole's orbiting dot, the radio's ON AIR
+// the scroller's "you are here" marker, the "now" stop on the timeline, the porthole's orbiting dot, ON AIR
 $accent-2: #3fd6a8;      // aurora green
 
 // The 👾 purple: the glow and ring when a button is hovered or pressed
 $alien: #a855f7;
+
+// Asteroids: the rock behind each section heading
+$rock: #3a3e46;
+$rock-crater: #2c2f35;
 
 // Space and surfaces
 $space: #0b0c12;         // page background
