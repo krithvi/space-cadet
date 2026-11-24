@@ -1,0 +1,36 @@
+# Every graduate course, newest first within each degree.
+#   degree: PhD or MS — decides which table the course goes in.
+#   grade:  the letter grade. Leave it out for a course in progress and set status instead.
+#   status: Enrolled or Planned (only for courses without a grade yet).
+#   counts_toward_phd: true for MS courses that were waived or transferred into the PhD.
+# The "Led to" column fills itself: any research project (_research/) whose `code:` contains this code,
+# and any paper in publications.yml whose `course:` is this code.
+# Anything in [brackets] is a placeholder to replace.
+
+# ── PhD ──
+- code: "[HCC 8xx]"
+  title: "[Current course]"
+  term: Fall '26
+  degree: PhD
+  status: Enrolled
+
+- code: IS 805
+  title: Advanced Field Research Methodology
+  term: "[Term]"
+  degree: PhD
+  grade: "[A]"
+
+# ── MS ──
+- code: HCC 746
+  title: "[Course title]"
+  term: "[Term]"
+  degree: MS
+  grade: "[A]"
+  counts_toward_phd: true
+
+- code: HCC 760
+  title: "[Course title]"
+  term: "[Term]"
+  degree: MS
+  grade: "[A]"
+  counts_toward_phd: true

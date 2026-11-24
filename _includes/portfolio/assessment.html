@@ -1,0 +1,14 @@
+{%- comment -%}
+  Strength or weakness cards on Self-assessment. Each card: title, text, evidence links, and (weaknesses) the plan.
+  Usage: {% include portfolio/assessment.html items=site.data.portfolio.strengths %}
+{%- endcomment -%}
+<div class="pf-cards">
+{%- for s in include.items %}
+<article class="pf-card">
+<h3 class="pf-card-title">{{ s.title }}</h3>
+<p class="pf-card-text">{{ s.text }}</p>
+{%- if s.plan %}<p class="pf-plan"><span class="label">What I'm doing about it</span>{{ s.plan }}</p>{% endif %}
+{%- if s.evidence %}<div class="pf-evidence"><span class="label">Evidence</span>{% for e in s.evidence %}<a class="chip" href="{{ e.url | relative_url }}">{{ e.label }}</a>{% endfor %}</div>{% endif %}
+</article>
+{%- endfor %}
+</div>

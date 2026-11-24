@@ -1,12 +1,13 @@
 {%- comment -%} The two doorways on Base. Counts and the Design Lab picture update themselves from the collections. {%- endcomment -%}
 {%- assign studies = site.research -%}
+{%- assign published = site.data.publications | where_exp: "p", "p.status == nil or p.status == 'published'" -%}
 {%- assign cases = site.design | sort: "order" -%}
 {%- assign cover = cases | where_exp: "e", "e.thumb" | first -%}
 <div class="doors">
   <a class="door" href="{{ '/research.html' | relative_url }}">
     <div class="door-media">{% include patch.html kind="path" px=120 %}</div>
     <div class="door-body">
-      <span class="label">{{ studies | size }} {% if studies.size == 1 %}project{% else %}projects{% endif %} · {{ site.data.publications | size }} {% if site.data.publications.size == 1 %}paper{% else %}papers{% endif %}</span>
+      <span class="label">{{ studies | size }} {% if studies.size == 1 %}project{% else %}projects{% endif %} · {{ published | size }} {% if published.size == 1 %}paper{% else %}papers{% endif %}</span>
       <span class="door-title">Research <span aria-hidden="true">→</span></span>
       <span class="door-text">{{ site.data.sections.research.door }}</span>
     </div>

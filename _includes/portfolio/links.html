@@ -1,0 +1,7 @@
+{%- comment -%}
+  A row of linked chips. Each item: label and url.
+  Usage: {% include portfolio/links.html items=site.data.portfolio.dissertation.builds_on %}
+{%- endcomment -%}
+<div class="chips pf-links">
+{%- for l in include.items %}<a class="chip chip--round" href="{{ l.url | relative_url }}">{{ l.label }}</a>{% endfor -%}
+</div>

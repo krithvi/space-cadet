@@ -1,0 +1,9 @@
+{%- comment -%}
+  A two-column "when → what" list. `now: true` on a row lights it green.
+  Usage: {% include portfolio/ledger.html items=site.data.portfolio.status %}
+{%- endcomment -%}
+<dl class="pf-ledger">
+{%- for r in include.items %}
+<div class="pf-ledger-row{% if r.now %} is-now{% endif %}"><dt>{{ r.when }}{% if r.now %} · now{% endif %}</dt><dd>{{ r.what }}</dd></div>
+{%- endfor %}
+</dl>

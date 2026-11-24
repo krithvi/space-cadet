@@ -1,0 +1,9 @@
+{%- comment -%}
+  The progress timeline on Self-assessment, in the About page's trajectory style.
+  From _data/portfolio.yml → progress. Usage: {% include portfolio/progress.html %}
+{%- endcomment -%}
+<ol class="trajectory pf-trajectory">
+{%- for e in site.data.portfolio.progress %}
+<li class="stop{% if e.now %} stop--now{% endif %}"><span class="label">{{ e.when }}{% if e.now %} · now{% endif %}</span><span class="stop-title">{{ e.title }}</span><span class="stop-text">{{ e.text }}</span></li>
+{%- endfor %}
+</ol>

@@ -1,0 +1,21 @@
+{%- comment -%}
+  Planned dissertation studies as cards, in order. From _data/portfolio.yml → dissertation.studies.
+  Usage: {% include portfolio/studies.html %}
+{%- endcomment -%}
+<ol class="pf-studies">
+{%- for s in site.data.portfolio.dissertation.studies %}
+{%- case s.status -%}
+{%- when "done" %}{% assign st_label = "Done" %}
+{%- when "in-progress" %}{% assign st_label = "In progress" %}
+{%- else %}{% assign st_label = "Planned" %}
+{%- endcase %}
+<li class="pf-card pf-study pf-study--{{ s.status | default: 'planned' }}">
+<div class="pf-study-head"><h3 class="pf-card-title">{{ s.title }}</h3><span class="chip{% if s.status == 'in-progress' %} chip--lit{% endif %}">{{ st_label }}</span></div>
+<dl class="pf-study-facts">
+<div><dt class="label">Question</dt><dd>{{ s.question }}</dd></div>
+<div><dt class="label">Method</dt><dd>{{ s.method }}</dd></div>
+<div><dt class="label">Contributes</dt><dd>{{ s.contributes }}</dd></div>
+</dl>
+</li>
+{%- endfor %}
+</ol>

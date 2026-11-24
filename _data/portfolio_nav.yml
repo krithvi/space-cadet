@@ -1,0 +1,21 @@
+# The nav keys on the portfolio pages (/portfolio/…).
+# Same keycaps, LEDs and Park key as the main nav; only the destinations differ.
+# A key lights up when you're on its page. Add, remove or reorder freely.
+- icon: 🎛️
+  label: Overview
+  link: /portfolio/
+- icon: 📚
+  label: Courses
+  link: /portfolio/courses/
+- icon: 🪞
+  label: Self-assessment
+  link: /portfolio/self-assessment/
+- icon: 📄
+  label: Papers
+  link: /portfolio/papers/
+- icon: 🧭
+  label: Dissertation
+  link: /portfolio/dissertation/
+- icon: 🚀
+  label: Main site
+  link: /

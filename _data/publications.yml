@@ -1,10 +1,17 @@
-# One entry per publication, newest first. The Publications stat on Base counts these.
+# One entry per paper, newest first: published work, drafts and course papers all live here.
 # venue: the short name shown big on the left. type: Conference paper, Journal article, Master's thesis…
 # Wrap your own name in **double asterisks** to highlight it. Mark co-first authors with † after their names.
+#
+# status: leave it out (or write published) for published papers. These show on Research and in the portfolio,
+#         and the Publications stat on Base counts them.
+#         under-review, in-prep or course-paper: shown ONLY on the portfolio's Papers page, never on the main site.
+# course: optional, the course code a paper came from (e.g. HCC 746). Links it to that row on the portfolio's Courses page.
+# links:  for unpublished work, use org-wide Google Drive links (UMBC accounts only). A link with an empty url is hidden.
 - title: "Write! Draw! Move!: Investigating the Effects of Positive and Negative Self-Reflection on Emotion through Self-Expression Modalities"
   venue: ICMI '25
   type: Conference paper
   role: Co-first author
+  course: HCC 746
   authors: "Golnaz Moharrer†, **Kavya Rajendran**†, Rowena Pinto, Andrea Kleinsmith"
   links:
     - label: Read paper
@@ -17,3 +24,25 @@
   links:
     - label: Read thesis
       url: https://www.proquest.com/docview/3156362385
+
+# ── Unpublished: portfolio only ──
+
+- title: "[Working title]: International students and the news on social media"
+  venue: CHI '27
+  type: Full paper
+  status: in-prep
+  course: IS 805
+  authors: "**Kavya Rajendran**, [co-authors]"
+  links:
+    - label: Read draft (UMBC)
+      url: ""
+
+- title: "[Title]: Digital tools for relationships across generations"
+  venue: HCC 760
+  type: Literature review
+  status: course-paper
+  course: HCC 760
+  authors: "**Kavya Rajendran**"
+  links:
+    - label: Read PDF (UMBC)
+      url: ""

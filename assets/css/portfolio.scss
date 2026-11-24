@@ -1,0 +1,97 @@
+---
+---
+// Styles for the portfolio pages only (/portfolio/…). Loaded after styles.css, so the main site is untouched.
+// Colours come from the same palette as everything else.
+@import "palette";
+
+// The few theme shades used here (same recipes as _sass/theme.scss)
+$n100: #f3f5fe; $n200: #e4e7f5; $n300: #cfd3e5; $n400: #b2b6ca; $n500: #9397ab; $n600: #75798c; $n800: #3f424d;
+$a: $secondary; $a300: mix($secondary, #fff, 60%); $a700: mix($secondary, $space, 40%); $a900: mix($secondary, $space, 14%);
+$b: $blue; $b700: mix($blue, $space, 40%); $b900: mix($blue, $space, 14%);
+$heading: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, monospace;
+$label: 'JetBrains Mono', ui-monospace, monospace;
+
+// ── Overview ──
+.pf-advisor { margin: 20px 0 0; font-size: 17px; color: $n300; strong, a { color: $n100; font-weight: 600; } }
+
+// Prose pages hold tables, cards and timelines too: let those use the full width
+.pf-prose > div, .pf-prose > ol, .pf-prose > dl, .pf-prose > section { max-width: none; }
+// …and undo the prose list styling on lists that are really layouts
+.pf-prose .pubs, .pf-prose .trajectory, .pf-prose .pf-studies { margin-top: 0; padding-left: 0; }
+.pf-prose .pubs li + li, .pf-prose .trajectory li + li, 
+// ── When → what list (Where things stand, Timeline) ──
+.pf-ledger { margin: 0; display: grid; gap: 2px; max-width: 640px; }
+.pf-ledger-row { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 16px; padding: 10px 0; border-bottom: 1px solid rgba($n800, 0.6); }
+.pf-ledger-row dt { font-family: $label; font-size: 12px; letter-spacing: 0.06em; color: $n500; padding-top: 3px; }
+.pf-ledger-row dd { margin: 0; color: $n200; }
+.pf-ledger-row.is-now dt { color: $accent-2; }
+
+// ── Course tables ──
+.pf-table-wrap { overflow-x: auto; border-radius: 8px; box-shadow: 0 0 0 1px $n800; background: $surface; }
+.pf-table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.45; }
+.pf-table th { text-align: left; font-family: $label; font-size: 11px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: $n500; padding: 14px 16px; border-bottom: 1px solid $n800; }
+.pf-table td { padding: 14px 16px; border-bottom: 1px solid rgba($n800, 0.6); vertical-align: top; color: $n300; }
+.pf-table tr:last-child td { border-bottom: 0; }
+.pf-code { font-family: $label; color: $b !important; white-space: nowrap; }
+.pf-nowrap { white-space: nowrap; }
+.pf-grade { font-family: $label; color: $n100; }
+.pf-chip-inline { margin-left: 6px; vertical-align: 1px; }
+.pf-led { display: block; }
+.pf-led + .pf-led { margin-top: 4px; }
+.pf-none { color: $n600; }
+
+// ── Papers ──
+.pf-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 20px; }
+.pf-filter {
+  font-family: $label; font-size: 12px; letter-spacing: 0.04em; color: $n300; cursor: pointer;
+  padding: 7px 12px; border-radius: 999px; border: 1px solid $n800; background: $space;
+  span { color: $n500; margin-left: 4px; }
+  &:hover { border-color: $b700; color: $n100; }
+  &[aria-pressed="true"] { border-color: $b; background: $b900; color: $n100; box-shadow: 0 0 10px rgba($b, 0.25); span { color: $b; } }
+}
+.pf-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.pf-status--published { border-color: $accent-2; color: $accent-2; }
+.pf-status--under-review, .pf-status--in-prep { border-color: $b; color: $b; }
+a.pf-from { text-decoration: none; &:hover { border-color: $a; color: $a300; } }
+.pf-paper { scroll-margin-top: calc(var(--nav-h, 80px) + 32px); }
+.pf-paper:target { box-shadow: 0 0 0 1px $a, 0 0 18px rgba($a, 0.25); }
+.pf-paper[hidden] { display: none; }
+
+// ── Cards: strengths, weaknesses, studies ──
+.pf-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(#{"min(100%, 300px)"}, 1fr)); gap: 12px; }
+.pf-card { padding: 20px 22px 22px; background: $surface; border-radius: 8px; box-shadow: 0 0 0 1px $n800; display: flex; flex-direction: column; gap: 10px; }
+.pf-prose .pf-card-title { margin: 0; font-family: $heading; font-weight: 700; font-size: 18px; color: $n100; }
+.pf-prose .pf-card-text { margin: 0; font-size: 15px; line-height: 1.55; color: $n400; }
+.pf-prose .pf-plan { margin: 0; padding-left: 12px; border-left: 2px solid $b700; font-size: 15px; line-height: 1.55; color: $n300; .label { margin-bottom: 4px; } }
+.pf-evidence { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 2px; .label { margin-right: 4px; } a.chip { text-decoration: none; } }
+
+.pf-prose .pf-studies { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(#{"min(100%, 240px)"}, 1fr)); gap: 12px; counter-reset: none; }
+.pf-study-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.pf-study--in-progress { box-shadow: 0 0 0 1px $a700; }
+.pf-study-facts { margin: 0; display: flex; flex-direction: column; gap: 10px; dd { margin: 4px 0 0; font-size: 15px; line-height: 1.5; color: $n300; } }
+
+.pf-links a.chip { text-decoration: none; }
+
+// The About page's trajectory, sized to sit at the top of a page
+.pf-trajectory { margin-top: 8px; }
+
+// ── Phones ──
+@media (max-width: 640px) {
+  .pf-ledger-row { grid-template-columns: 1fr; gap: 2px; }
+  .pf-table { font-size: 14px; }
+  .pf-table th, .pf-table td { padding: 12px; }
+}
+
+// ── Print (if a committee member saves a page as PDF) ──
+@media print {
+  #canvas, .console, .park, .park-toast, .flight, .invader, .pf-filters, .site-foot { display: none !important; }
+  body.site { background: #fff !important; color: #111 !important; }
+  .page { padding-top: 0 !important; }
+  .display { text-shadow: none !important; color: #111 !important; }
+  .lede, .pf-advisor, .pf-table td, .pf-card-text, .pf-ledger-row dd, .stop-text, .prose { color: #222 !important; }
+  .pf-table-wrap, .pf-card, .pub { background: #fff !important; box-shadow: 0 0 0 1px #ccc !important; }
+  .pf-paper[hidden] { display: flex !important; }
+  .sec-head::before, .prose h2::before { display: none; }
+  .sec-title, .prose h2 .plate { background: none !important; border: 0 !important; box-shadow: none !important; color: #111 !important; transform: none !important; padding: 0 !important; }
+  a { color: #111 !important; }
+}

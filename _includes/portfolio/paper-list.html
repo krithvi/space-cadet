@@ -1,0 +1,44 @@
+{%- comment -%}
+  Every paper in _data/publications.yml, published or not, using the same card as the Research page (pub.html).
+  A paper with no `status` counts as published. The filter keys show only for statuses that have papers.
+  Usage: {% include portfolio/paper-list.html %}
+{%- endcomment -%}
+{%- assign papers = site.data.publications -%}
+{%- assign n_pub = papers | where_exp: "p", "p.status == nil or p.status == 'published'" | size -%}
+{%- assign n_rev = papers | where: "status", "under-review" | size -%}
+{%- assign n_prep = papers | where: "status", "in-prep" | size -%}
+{%- assign n_course = papers | where: "status", "course-paper" | size -%}
+<div class="pf-filters" role="group" aria-label="Show papers by status">
+<button type="button" class="pf-filter" data-filter="all" aria-pressed="true">All <span>{{ papers.size }}</span></button>
+{%- if n_pub > 0 %}<button type="button" class="pf-filter" data-filter="published" aria-pressed="false">Published <span>{{ n_pub }}</span></button>{% endif %}
+{%- if n_rev > 0 %}<button type="button" class="pf-filter" data-filter="under-review" aria-pressed="false">Under review <span>{{ n_rev }}</span></button>{% endif %}
+{%- if n_prep > 0 %}<button type="button" class="pf-filter" data-filter="in-prep" aria-pressed="false">In preparation <span>{{ n_prep }}</span></button>{% endif %}
+{%- if n_course > 0 %}<button type="button" class="pf-filter" data-filter="course-paper" aria-pressed="false">Course papers <span>{{ n_course }}</span></button>{% endif %}
+</div>
+<ol class="pubs pf-papers">
+{%- for p in papers %}
+{% include pub.html p=p tags=true %}
+{%- endfor %}
+</ol>
+{%- assign all_authors = papers | map: "authors" | join: " " -%}
+{%- if all_authors contains "†" %}<p class="fine">† Co-first authors</p>{% endif %}
+<p class="pf-empty fine" hidden>No papers with this status yet.</p>
+<script>
+  // Status filter: one key down at a time, like the nav.
+  (function () {
+    var keys = document.querySelectorAll('.pf-filter');
+    var items = document.querySelectorAll('.pf-paper');
+    var empty = document.querySelector('.pf-empty');
+    [].forEach.call(keys, function (k) {
+      k.addEventListener('click', function () {
+        var f = k.getAttribute('data-filter'), shown = 0;
+        [].forEach.call(keys, function (o) { o.setAttribute('aria-pressed', String(o === k)); });
+        [].forEach.call(items, function (li) {
+          var on = f === 'all' || li.getAttribute('data-status') === f;
+          li.hidden = !on; if (on) shown++;
+        });
+        if (empty) empty.hidden = shown > 0;
+      });
+    });
+  })();
+</script>

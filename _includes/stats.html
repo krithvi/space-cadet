@@ -1,6 +1,7 @@
 <section class="stats" aria-label="At a glance">
   {%- for s in site.data.stats %}
-  {%- if s.count %}{% assign v = site.data[s.count] | size %}{% else %}{% assign v = s.value %}{% endif %}
+  {%- if s.count == "publications" %}{% assign v = site.data.publications | where_exp: "p", "p.status == nil or p.status == 'published'" | size %}{%- comment -%} drafts and course papers don't count {%- endcomment -%}
+  {%- elsif s.count %}{% assign v = site.data[s.count] | size %}{% else %}{% assign v = s.value %}{% endif %}
   <div class="stat"><div class="stat-n">{{ v }}</div><div class="stat-l">{{ s.label }}</div></div>
   {%- endfor %}
 </section>

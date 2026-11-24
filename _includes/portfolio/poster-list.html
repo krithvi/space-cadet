@@ -1,0 +1,12 @@
+{%- comment -%}
+  Posters from _data/posters.yml, as a compact list in the papers style. Usage: {% include portfolio/poster-list.html %}
+{%- endcomment -%}
+<ol class="pubs pf-posters">
+{%- for p in site.data.posters %}
+<li class="pub">
+<div class="pub-venue"><span class="pub-venue-name">{{ p.when }}</span><span class="label">Poster</span></div>
+<div class="pub-body"><span class="pub-title">{{ p.title }}</span><span class="pub-authors">{{ p.venue }}</span></div>
+<div class="pub-links"><a class="btn btn--small" href="mailto:{{ site.author.email }}?subject={{ 'Poster: ' | append: p.title | uri_escape }}">Ask for the poster</a></div>
+</li>
+{%- endfor %}
+</ol>

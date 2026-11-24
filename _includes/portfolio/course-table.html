@@ -1,0 +1,27 @@
+{%- comment -%}
+  One table of courses from _data/courses.yml.
+  Usage: {% include portfolio/course-table.html degree="PhD" %}
+  "Led to" links: research projects whose `code:` contains the course code, and papers in publications.yml whose `course:` matches it.
+{%- endcomment -%}
+{%- assign rows = site.data.courses | where: "degree", include.degree -%}
+<div class="pf-table-wrap">
+<table class="pf-table">
+<thead><tr><th scope="col">Code</th><th scope="col">Course</th><th scope="col">Term</th><th scope="col">Grade</th><th scope="col">Led to</th></tr></thead>
+<tbody>
+{%- for c in rows %}
+<tr>
+<td class="pf-code">{{ c.code }}</td>
+<td>{{ c.title }}{% if c.counts_toward_phd %} <span class="chip pf-chip-inline">Counts toward PhD</span>{% endif %}</td>
+<td class="pf-nowrap">{{ c.term }}</td>
+<td>{% if c.grade %}<span class="pf-grade">{{ c.grade }}</span>{% else %}<span class="chip chip--lit">{{ c.status | default: "Enrolled" }}</span>{% endif %}</td>
+<td>
+{%- assign led = false -%}
+{%- for r in site.research %}{% if r.code and r.code contains c.code %}{% assign led = true %}<a class="pf-led" href="{{ r.url | relative_url }}">{{ r.title }}</a>{% endif %}{% endfor -%}
+{%- for p in site.data.publications %}{% if p.course == c.code %}{% assign led = true %}{% assign anchor = p.title | split: ":" | first | slugify %}<a class="pf-led" href="{{ '/portfolio/papers/' | relative_url }}#{{ anchor }}">{{ p.venue }} paper</a>{% endif %}{% endfor -%}
+{%- unless led %}<span class="pf-none" aria-label="None">—</span>{% endunless -%}
+</td>
+</tr>
+{%- endfor %}
+</tbody>
+</table>
+</div>

@@ -1,7 +1,9 @@
-<nav class="console" aria-label="Main">
-  {% for item in site.data.navigation %}
+{%- comment -%} Usage: {% include navigation.html %} for the main keys, or items=site.data.portfolio_nav for the portfolio's. {%- endcomment -%}
+{%- assign keys = include.items | default: site.data.navigation -%}
+<nav class="console" aria-label="{{ include.label | default: 'Main' }}">
+  {% for item in keys %}
     {% assign section = item.link | remove: '.html' %}
-    {% if page.url == item.link or item.link != '/' and page.url contains section %}
+    {% if page.url == item.link or item.link contains '.html' and page.url contains section %}
       {% assign is_current = true %}
     {% else %}
       {% assign is_current = false %}

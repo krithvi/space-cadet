@@ -1,0 +1,111 @@
+# Everything short on the portfolio pages lives here: the advisor line, the status list,
+# the progress timeline, strengths and weaknesses, and the dissertation's studies and timeline.
+# Longer writing goes in the Markdown files in portfolio/.
+# Anything in [brackets] is a placeholder to replace.
+
+# ── Overview ────────────────────────────────────────────────────────
+# Shown under your name on the portfolio's first page. Leave url "" to show the name without a link.
+advisor:
+  name: "Dr. Andrea Kleinsmith"
+  url: ""
+  lab: Affective Behavior Interaction Lab
+
+# "Where things stand" on the overview. `now: true` lights the current row green.
+status:
+  - when: Fall '26
+    what: Comprehensive exam and portfolio review
+    now: true
+  - when: Next
+    what: Form committee, then dissertation proposal
+  - when: Expected
+    what: PhD, 2029
+
+# ── Courses ─────────────────────────────────────────────────────────
+# Shown under the course tables. Leave "" to hide.
+gpa: ""
+
+# ── Self-assessment ─────────────────────────────────────────────────
+# The timeline at the top. One stop per milestone, oldest first. `now: true` lights the current stop.
+progress:
+  - when: 2022 – 2024
+    title: MS, Human-Centered Computing
+    text: "[One line: what this stage gave you]"
+  - when: 2025
+    title: First publication
+    text: Write! Draw! Move! at ICMI '25
+  - when: Fall '25
+    title: PhD begins
+    text: "[One line]"
+  - when: 2026
+    title: "[Milestone]"
+    text: "[e.g. teaching, CHI '27 study]"
+  - when: Fall '26
+    title: Comprehensive exam
+    text: Portfolio review
+    now: true
+
+# Each strength: a short title, a sentence or two, and the work that shows it.
+# evidence links can point anywhere: a paper's anchor, a research page, a course row.
+strengths:
+  - title: "[Strength]"
+    text: "[One or two sentences on what you do well and how it grew.]"
+    evidence:
+      - label: ICMI '25
+        url: /portfolio/papers/#write-draw-move
+      - label: HCC 746
+        url: /portfolio/courses/
+  - title: "[Strength]"
+    text: "[One or two sentences.]"
+    evidence:
+      - label: 6 courses as a TA
+        url: /about.html
+
+# Each weakness: what it is, and what you're doing about it (`plan`).
+weaknesses:
+  - title: "[Weakness]"
+    text: "[One or two sentences, honestly put.]"
+    plan: "[What you're doing about it: a course, a collaboration, a habit.]"
+  - title: "[Weakness]"
+    text: "[One or two sentences.]"
+    plan: "[What you're doing about it.]"
+
+# ── Dissertation ────────────────────────────────────────────────────
+dissertation:
+  # Chips under "Builds on": earlier work the dissertation grows from.
+  builds_on:
+    - label: "Write! Draw! Move! · ICMI '25"
+      url: /research/write-draw-move/
+    - label: What does your heart say?
+      url: /research/physiology-of-reflection/
+
+  # Planned studies, in order. status: done, in-progress or planned.
+  studies:
+    - title: Study 1
+      status: in-progress
+      question: "[Research question]"
+      method: "[Method in a few words]"
+      contributes: "[What this study adds]"
+    - title: Study 2
+      status: planned
+      question: "[Research question]"
+      method: "[Method]"
+      contributes: "[What this study adds]"
+    - title: Study 3
+      status: planned
+      question: "[Research question]"
+      method: "[Method]"
+      contributes: "[What this study adds]"
+
+  # Semester plan. `now: true` lights the current row.
+  timeline:
+    - when: Fall '26
+      what: Comprehensive exam and portfolio
+      now: true
+    - when: Spring '27
+      what: "[Form committee · Study 1 analysis]"
+    - when: Fall '27
+      what: "[Proposal defense]"
+    - when: "2028"
+      what: "[Studies 2 and 3]"
+    - when: "2029"
+      what: "[Write and defend]"

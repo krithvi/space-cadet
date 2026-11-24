@@ -1,0 +1,31 @@
+{%- comment -%}
+  One paper card, used by the Research page (publications.html) and the portfolio's Papers page.
+  Usage: {% include pub.html p=paper %}            → the main site's card
+         {% include pub.html p=paper tags=true %}  → also shows the status tag and the course it came from
+  A link with an empty url is hidden.
+{%- endcomment -%}
+{%- assign p = include.p -%}
+{%- assign st = p.status | default: "published" -%}
+<li class="pub{% if include.tags %} pf-paper{% endif %}"{% if include.tags %} id="{{ p.title | split: ':' | first | slugify }}" data-status="{{ st }}"{% endif %}>
+  <div class="pub-venue">
+    <span class="pub-venue-name">{{ p.venue }}</span>
+    <span class="label">{{ p.type }}</span>
+  </div>
+  <div class="pub-body">
+    <span class="pub-title">{{ p.title }}</span>
+    <span class="pub-authors">{{ p.authors | markdownify | remove: "<p>" | remove: "</p>" | strip | replace: "†", "<sup>†</sup>" }}</span>
+    {%- if include.tags %}
+    {%- case st -%}
+      {%- when "under-review" %}{% assign st_label = "Under review" %}
+      {%- when "in-prep" %}{% assign st_label = "In preparation" %}
+      {%- when "course-paper" %}{% assign st_label = "Course paper" %}
+      {%- else %}{% assign st_label = "Published" %}
+    {%- endcase %}
+    <span class="pf-tags"><span class="chip pf-status pf-status--{{ st }}">{{ st_label }}</span>{% if p.course %}<a class="chip pf-from" href="{{ '/portfolio/courses/' | relative_url }}">From {{ p.course }}</a>{% endif %}{% if p.role %}<span class="chip">{{ p.role }}</span>{% endif %}</span>
+    {%- elsif p.role %}<span class="chip chip--lit">{{ p.role }}</span>
+    {%- endif %}
+  </div>
+  {%- assign live = "" | split: "" -%}
+  {%- for l in p.links %}{% if l.url and l.url != "" %}{% assign live = live | push: l %}{% endif %}{% endfor -%}
+  {%- if live.size > 0 %}<div class="pub-links">{% for l in live %}<a class="btn btn--small" href="{{ l.url }}"{% if include.tags %} target="_blank" rel="noopener"{% endif %}>{{ l.label }}</a>{% endfor %}</div>{% endif %}
+</li>

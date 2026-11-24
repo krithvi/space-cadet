@@ -1,0 +1,10 @@
+{%- comment -%} Top of the portfolio overview: who you are, and who advises you. From _config.yml and _data/portfolio.yml. {%- endcomment -%}
+{%- assign adv = site.data.portfolio.advisor -%}
+<section class="hero pf-hero">
+  <div class="hero-text">
+    <div class="eyebrow">{% for e in site.author.eyebrow %}<span>{{ e }}</span>{% endfor %}</div>
+    <h1 class="display display--xl">{{ site.author.name }}</h1>
+    <p class="lede">{{ site.author.summary }}</p>
+    <p class="pf-advisor">Advised by {% if adv.url and adv.url != "" %}<a href="{{ adv.url }}">{{ adv.name }}</a>{% else %}<strong>{{ adv.name }}</strong>{% endif %}{% if adv.lab %} · {{ adv.lab }}{% endif %}</p>
+  </div>
+</section>
